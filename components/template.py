@@ -21,9 +21,20 @@ _COUNTRIES = ["Turkey", "Argentina", "Nigeria", "Egypt", "Pakistan", "Philippine
 # ── Slug helpers ───────────────────────────────────────────────────────────────
 
 def _slug(text: str) -> str:
+    """Filesystem slug (underscores) — must match actual .py filenames."""
+    return (
+        text.lower()
+            .replace("+", "_plus")
+            .replace(" ", "_")
+            .replace("_", "_")
+    )
+
+
+def _url_slug(text: str) -> str:
     """
-    Hyphen slug — matches both .py filenames and Streamlit Cloud URLs.
-    'YouTube Premium' → 'youtube-premium', 'Disney+' → 'disney-plus'
+    Public URL slug (hyphens).
+    Streamlit Cloud auto-converts filename underscores → URL hyphens.
+    'youtube_premium_turkey.py' is served at '/youtube-premium-turkey'.
     """
     return (
         text.lower()
@@ -31,11 +42,6 @@ def _slug(text: str) -> str:
             .replace(" ", "-")
             .replace("_", "-")
     )
-
-
-def _url_slug(text: str) -> str:
-    """Alias of _slug — filenames and URLs are now identical."""
-    return _slug(text)
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
 

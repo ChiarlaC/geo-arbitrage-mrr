@@ -55,9 +55,22 @@ SITEMAP_OUT = os.path.join(os.path.dirname(__file__), "sitemap.xml")
 
 def to_slug(text: str) -> str:
     """
-    Hyphen slug — used for BOTH filenames and URLs.
+    Filesystem slug — MUST use underscores for Streamlit to recognise the file.
+    Streamlit then auto-converts underscores → hyphens in the public URL.
+    'YouTube Premium' → 'youtube_premium', 'Disney+' → 'disney_plus'
+    """
+    return (
+        text.lower()
+            .replace("+", "_plus")
+            .replace(" ", "_")
+            .replace("-", "_")
+    )
+
+
+def to_url_slug(text: str) -> str:
+    """
+    Public URL slug — hyphens, matching what Streamlit Cloud exposes.
     'YouTube Premium' → 'youtube-premium', 'Disney+' → 'disney-plus'
-    Streamlit Cloud maps 'netflix-turkey.py' → '/netflix-turkey'.
     """
     return (
         text.lower()
@@ -65,11 +78,6 @@ def to_slug(text: str) -> str:
             .replace(" ", "-")
             .replace("_", "-")
     )
-
-
-def to_url_slug(text: str) -> str:
-    """Alias of to_slug — filenames and URLs are now identical."""
-    return to_slug(text)
 
 
 # ── Page file template ────────────────────────────────────────────────────────
@@ -138,7 +146,7 @@ def generate(dry_run: bool = False) -> None:
         print()
         print("Files that would be created:")
         for service, country in combos:
-            fname = f"{to_slug(service)}-{to_slug(country)}.py"
+            fname = f"{to_slug(service)}_{to_slug(country)}.py"
             print(f"  pages/{fname}")
         print(f"  sitemap.xml")
         return
@@ -168,7 +176,7 @@ def generate(dry_run: bool = False) -> None:
     # Write page files
     written = 0
     for service, country in combos:
-        fname    = f"{to_slug(service)}-{to_slug(country)}.py"
+        fname    = f"{to_slug(service)}_{to_slug(country)}.py"
         fpath    = os.path.join(PAGES_DIR, fname)
         content  = PAGE_TEMPLATE.format(service=service, country=country)
 
