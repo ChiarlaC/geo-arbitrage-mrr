@@ -8,6 +8,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+st.markdown('<meta name="google-site-verification" content="GdGpc5s9o4IzzfSKYzqh3aaUIq1IJ4xxyrJqAdM-5tY" />', unsafe_allow_html=True)
+
 st.markdown("""
 <style>
     /* Reset and base */
