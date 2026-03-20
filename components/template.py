@@ -21,19 +21,9 @@ _COUNTRIES = ["Turkey", "Argentina", "Nigeria", "Egypt", "Pakistan", "Philippine
 # ── Slug helpers ───────────────────────────────────────────────────────────────
 
 def _slug(text: str) -> str:
-    """Filesystem slug (underscores) — matches actual .py filenames."""
-    return (
-        text.lower()
-            .replace("+", "_plus")
-            .replace(" ", "_")
-            .replace("-", "_")
-    )
-
-
-def _url_slug(text: str) -> str:
     """
-    Streamlit Cloud URL slug (hyphens).
-    Cloud maps 'netflix_turkey.py' → '/netflix-turkey'.
+    Hyphen slug — matches both .py filenames and Streamlit Cloud URLs.
+    'YouTube Premium' → 'youtube-premium', 'Disney+' → 'disney-plus'
     """
     return (
         text.lower()
@@ -41,6 +31,11 @@ def _url_slug(text: str) -> str:
             .replace(" ", "-")
             .replace("_", "-")
     )
+
+
+def _url_slug(text: str) -> str:
+    """Alias of _slug — filenames and URLs are now identical."""
+    return _slug(text)
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
 

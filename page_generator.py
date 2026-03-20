@@ -54,20 +54,10 @@ SITEMAP_OUT = os.path.join(os.path.dirname(__file__), "sitemap.xml")
 # ── Slug helpers ──────────────────────────────────────────────────────────────
 
 def to_slug(text: str) -> str:
-    """Filesystem slug (underscores): 'YouTube Premium' → 'youtube_premium'."""
-    return (
-        text.lower()
-            .replace("+", "_plus")
-            .replace(" ", "_")
-            .replace("-", "_")
-    )
-
-
-def to_url_slug(text: str) -> str:
     """
-    Streamlit Cloud URL slug (hyphens).
-    Streamlit converts 'netflix_turkey.py' → URL '/netflix-turkey'.
+    Hyphen slug — used for BOTH filenames and URLs.
     'YouTube Premium' → 'youtube-premium', 'Disney+' → 'disney-plus'
+    Streamlit Cloud maps 'netflix-turkey.py' → '/netflix-turkey'.
     """
     return (
         text.lower()
@@ -75,6 +65,11 @@ def to_url_slug(text: str) -> str:
             .replace(" ", "-")
             .replace("_", "-")
     )
+
+
+def to_url_slug(text: str) -> str:
+    """Alias of to_slug — filenames and URLs are now identical."""
+    return to_slug(text)
 
 
 # ── Page file template ────────────────────────────────────────────────────────
@@ -143,13 +138,25 @@ def generate(dry_run: bool = False) -> None:
         print()
         print("Files that would be created:")
         for service, country in combos:
-            fname = f"{to_slug(service)}_{to_slug(country)}.py"
+            fname = f"{to_slug(service)}-{to_slug(country)}.py"
             print(f"  pages/{fname}")
         print(f"  sitemap.xml")
         return
 
     # Create directories
     os.makedirs(PAGES_DIR, exist_ok=True)
+
+    # Remove any stale .py files from previous naming conventions
+    removed = 0
+    expected = {f"{to_slug(s)}-{to_slug(c)}.py" for s, c in product(SERVICES, COUNTRIES)}
+    for fname in os.listdir(PAGES_DIR):
+        if fname.endswith(".py") and fname not in expected:
+            stale = os.path.join(PAGES_DIR, fname)
+            os.remove(stale)
+            print(f"  [-] removed stale: pages/{fname}")
+            removed += 1
+    if removed:
+        print()
 
     # Ensure components/__init__.py exists (makes it importable as a package)
     components_dir = os.path.join(os.path.dirname(__file__), "components")
@@ -161,7 +168,7 @@ def generate(dry_run: bool = False) -> None:
     # Write page files
     written = 0
     for service, country in combos:
-        fname    = f"{to_slug(service)}_{to_slug(country)}.py"
+        fname    = f"{to_slug(service)}-{to_slug(country)}.py"
         fpath    = os.path.join(PAGES_DIR, fname)
         content  = PAGE_TEMPLATE.format(service=service, country=country)
 
