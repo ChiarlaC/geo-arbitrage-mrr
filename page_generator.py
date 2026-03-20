@@ -54,7 +54,7 @@ SITEMAP_OUT = os.path.join(os.path.dirname(__file__), "sitemap.xml")
 # ── Slug helpers ──────────────────────────────────────────────────────────────
 
 def to_slug(text: str) -> str:
-    """Convert 'YouTube Premium' → 'youtube_premium', 'Disney+' → 'disney_plus'."""
+    """Filesystem slug (underscores): 'YouTube Premium' → 'youtube_premium'."""
     return (
         text.lower()
             .replace("+", "_plus")
@@ -64,8 +64,17 @@ def to_slug(text: str) -> str:
 
 
 def to_url_slug(text: str) -> str:
-    """URL-safe slug: 'YouTube Premium' → 'youtube_premium'."""
-    return to_slug(text)
+    """
+    Streamlit Cloud URL slug (hyphens).
+    Streamlit converts 'netflix_turkey.py' → URL '/netflix-turkey'.
+    'YouTube Premium' → 'youtube-premium', 'Disney+' → 'disney-plus'
+    """
+    return (
+        text.lower()
+            .replace("+", "-plus")
+            .replace(" ", "-")
+            .replace("_", "-")
+    )
 
 
 # ── Page file template ────────────────────────────────────────────────────────
@@ -101,7 +110,7 @@ def build_sitemap(combos: list[tuple[str, str]]) -> str:
 
     # Sub-pages
     for service, country in combos:
-        slug = f"{to_url_slug(service)}_{to_url_slug(country)}"
+        slug = f"{to_url_slug(service)}-{to_url_slug(country)}"
         url_blocks.append(f"""  <url>
     <loc>{BASE_URL}/{slug}</loc>
     <lastmod>{today}</lastmod>

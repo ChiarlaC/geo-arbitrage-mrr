@@ -18,14 +18,28 @@ from data_engine import get_price
 _SERVICES = ["Netflix", "YouTube Premium", "Spotify", "Disney+", "Tidal", "Canva Pro"]
 _COUNTRIES = ["Turkey", "Argentina", "Nigeria", "Egypt", "Pakistan", "Philippines", "India"]
 
-# ── Slug helper ───────────────────────────────────────────────────────────────
+# ── Slug helpers ───────────────────────────────────────────────────────────────
 
 def _slug(text: str) -> str:
+    """Filesystem slug (underscores) — matches actual .py filenames."""
     return (
         text.lower()
             .replace("+", "_plus")
             .replace(" ", "_")
             .replace("-", "_")
+    )
+
+
+def _url_slug(text: str) -> str:
+    """
+    Streamlit Cloud URL slug (hyphens).
+    Cloud maps 'netflix_turkey.py' → '/netflix-turkey'.
+    """
+    return (
+        text.lower()
+            .replace("+", "-plus")
+            .replace(" ", "-")
+            .replace("_", "-")
     )
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
@@ -182,7 +196,7 @@ def render_page(service: str, country: str) -> None:
     # ── Breadcrumb ────────────────────────────────────────────────────────────
     st.markdown(
         f'<div class="breadcrumb">'
-        f'<a href="/">Home</a> &rsaquo; {service} &rsaquo; {country}'
+        f'<a href="https://geo-subs-tracker.streamlit.app/">Home</a> &rsaquo; {service} &rsaquo; {country}'
         f'</div>',
         unsafe_allow_html=True,
     )
@@ -274,7 +288,7 @@ def render_page(service: str, country: str) -> None:
     cards_html = ""
     for rel_service, rel_country in related:
         rel_data  = get_price(rel_service, rel_country)
-        rel_slug  = f"{_slug(rel_service)}_{_slug(rel_country)}"
+        rel_slug  = f"{_url_slug(rel_service)}-{_url_slug(rel_country)}"
         rel_save  = f"Save {rel_data['saving_pct']:.0f}%" if rel_data and rel_data['saving_pct'] > 0 else ""
         rel_usd   = f"${rel_data['usd_price']:.2f}/mo" if rel_data else "—"
         cards_html += f"""
