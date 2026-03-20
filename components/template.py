@@ -6,12 +6,27 @@ Called by every file in pages/ via: render_page(service=..., country=...)
 """
 
 import streamlit as st
+import random
 import sys
 import os
 
-# Allow import of data_engine from the project root
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from data_engine import get_price
+
+# ── Master catalogue (must stay in sync with page_generator.py) ──────────────
+
+_SERVICES = ["Netflix", "YouTube Premium", "Spotify", "Disney+", "Tidal", "Canva Pro"]
+_COUNTRIES = ["Turkey", "Argentina", "Nigeria", "Egypt", "Pakistan", "Philippines", "India"]
+
+# ── Slug helper ───────────────────────────────────────────────────────────────
+
+def _slug(text: str) -> str:
+    return (
+        text.lower()
+            .replace("+", "_plus")
+            .replace(" ", "_")
+            .replace("-", "_")
+    )
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
 
@@ -69,6 +84,20 @@ _CSS = """
     .breadcrumb { font-size: 0.7rem; color: #999; margin-bottom: 1.2rem; }
     .breadcrumb a { color: #555; text-decoration: none; }
 
+    /* Internal links */
+    .internal-links { margin-top: 0.4rem; }
+    .il-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+               gap: 0; }
+    .il-card { border: 1px solid #ddd; padding: 0.75rem 1rem; background: #fff; }
+    .il-card + .il-card { border-left: none; }
+    .il-card:nth-child(n+6) { border-top: none; }
+    .il-service { font-size: 0.62rem; text-transform: uppercase;
+                  letter-spacing: 0.08em; color: #888; }
+    .il-card a { display: block; font-size: 0.8rem; font-weight: 700; color: #111;
+                 text-decoration: none; margin-top: 0.15rem; }
+    .il-card a:hover { text-decoration: underline; }
+    .il-saving { font-size: 0.7rem; color: #555; margin-top: 0.1rem; }
+
     /* Divider */
     hr { border: none; border-top: 1px solid #e0e0e0; margin: 1.8rem 0; }
 
@@ -80,35 +109,77 @@ _CSS = """
 </style>
 """
 
+# ── Internal link picker ──────────────────────────────────────────────────────
+
+def _pick_related(current_service: str, current_country: str, n: int = 5) -> list[tuple]:
+    """
+    Return n (service, country) pairs that are NOT the current page.
+    Strategy: prefer same-service/different-country AND same-country/different-service
+    to maximise topical relevance, then pad with random combos.
+    """
+    same_service   = [(current_service, c) for c in _COUNTRIES if c != current_country]
+    same_country   = [(s, current_country) for s in _SERVICES  if s != current_service]
+    cross          = [(s, c) for s in _SERVICES for c in _COUNTRIES
+                      if s != current_service and c != current_country]
+
+    # Build a deduplicated ordered list: same-service first, then same-country, then cross
+    seen, ordered = set(), []
+    for pair in same_service + same_country + cross:
+        if pair not in seen:
+            seen.add(pair)
+            ordered.append(pair)
+
+    # Deterministic shuffle keyed on the current page (reproducible across reloads)
+    rng = random.Random(f"{current_service}-{current_country}")
+    rng.shuffle(ordered)
+    return ordered[:n]
+
+
 # ── Main render function ──────────────────────────────────────────────────────
 
 def render_page(service: str, country: str) -> None:
     """
     Render a complete pSEO landing page for the given service + country pair.
-    Fetches live pricing via data_engine.get_price().
+    Includes: dynamic page config, price card, how-to guide, CTA, internal links.
     """
-    # Inject CSS once per page load
+    year = 2026
+
+    # ── Dynamic st.set_page_config ────────────────────────────────────────────
+    # Must be the very first Streamlit call on the page.
+    page_title = f"{service} Price in {country} {year} — Geo-Subs Tracker"
+    meta_desc  = (
+        f"How much does {service} cost in {country} in {year}? "
+        f"See the real-time local price, USD equivalent, and exact savings vs the US. "
+        f"Step-by-step guide to subscribe at the {country} rate."
+    )
+    st.set_page_config(
+        page_title=page_title,
+        page_icon=None,
+        layout="wide",
+        initial_sidebar_state="collapsed",
+    )
+    # Inject meta description via HTML (Streamlit doesn't expose a native API for this)
+    st.markdown(
+        f'<meta name="description" content="{meta_desc}">',
+        unsafe_allow_html=True,
+    )
+
+    # Inject CSS
     st.markdown(_CSS, unsafe_allow_html=True)
 
-    # Fetch pricing data
+    # ── Fetch live pricing ─────────────────────────────────────────────────────
     data = get_price(service, country)
-
-    # Graceful degradation if combo not in data set
     if data is None:
         st.error(f"No pricing data available for {service} in {country}.")
         return
 
-    usd_price  = data["usd_price"]
-    saving_pct = data["saving_pct"]
-    local_str  = data["local_price"]
-    plan       = data["plan"]
-    year       = 2026
+    usd_price      = data["usd_price"]
+    saving_pct     = data["saving_pct"]
+    local_str      = data["local_price"]
+    plan           = data["plan"]
+    saving_display = f"{saving_pct:.1f}%" if saving_pct > 0 else "Baseline"
 
-    # ── SEO Title (H1) ────────────────────────────────────────────────────────
-    slug_service = service.replace(" ", "-")
-    h1 = f"Cheapest {service} Subscription: {country} {year} Price Guide"
-
-    # Breadcrumb nav
+    # ── Breadcrumb ────────────────────────────────────────────────────────────
     st.markdown(
         f'<div class="breadcrumb">'
         f'<a href="/">Home</a> &rsaquo; {service} &rsaquo; {country}'
@@ -116,6 +187,8 @@ def render_page(service: str, country: str) -> None:
         unsafe_allow_html=True,
     )
 
+    # ── H1 ────────────────────────────────────────────────────────────────────
+    h1 = f"Cheapest {service} Subscription: {country} {year} Price Guide"
     st.markdown(f"# {h1}")
     st.markdown(
         f"<p style='font-size:0.78rem;color:#888;margin-top:-0.6rem'>"
@@ -124,8 +197,6 @@ def render_page(service: str, country: str) -> None:
     )
 
     # ── Price Card ────────────────────────────────────────────────────────────
-    saving_display = f"{saving_pct:.1f}%" if saving_pct > 0 else "Baseline"
-
     st.markdown(f"""
 <div class="price-card">
   <div class="price-cell">
@@ -194,6 +265,29 @@ def render_page(service: str, country: str) -> None:
   <div class="cta-disclaimer">Affiliate link · We may earn a commission at no cost to you</div>
 </div>
 """, unsafe_allow_html=True)
+
+    # ── Internal Links ────────────────────────────────────────────────────────
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown("## Related Price Guides")
+
+    related = _pick_related(service, country, n=5)
+    cards_html = ""
+    for rel_service, rel_country in related:
+        rel_data  = get_price(rel_service, rel_country)
+        rel_slug  = f"{_slug(rel_service)}_{_slug(rel_country)}"
+        rel_save  = f"Save {rel_data['saving_pct']:.0f}%" if rel_data and rel_data['saving_pct'] > 0 else ""
+        rel_usd   = f"${rel_data['usd_price']:.2f}/mo" if rel_data else "—"
+        cards_html += f"""
+  <div class="il-card">
+    <div class="il-service">{rel_service}</div>
+    <a href="/{rel_slug}">{rel_country} Price Guide</a>
+    <div class="il-saving">{rel_usd} &nbsp;·&nbsp; {rel_save}</div>
+  </div>"""
+
+    st.markdown(
+        f'<div class="internal-links"><div class="il-grid">{cards_html}</div></div>',
+        unsafe_allow_html=True,
+    )
 
     # ── Footer ────────────────────────────────────────────────────────────────
     st.markdown("<hr>", unsafe_allow_html=True)
