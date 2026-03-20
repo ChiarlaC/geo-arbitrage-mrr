@@ -21,6 +21,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timezone
 import logging
 import sys
+from functools import lru_cache
 
 # ── Logging ──────────────────────────────────────────────────────────────────
 
@@ -143,6 +144,7 @@ COUNTRY_CURRENCY = {
 
 # ── Step 1: Exchange Rates ────────────────────────────────────────────────────
 
+@lru_cache(maxsize=1)
 def fetch_exchange_rates() -> dict:
     """
     Fetch live USD exchange rates from open.er-api.com.
