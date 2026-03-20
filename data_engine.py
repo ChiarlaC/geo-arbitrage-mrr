@@ -52,9 +52,13 @@ HEADERS = {
 # Updated: 2025-Q2.  Refresh manually if rates drift significantly.
 
 FALLBACK_RATES = {
-    "TRY": 32.50,   # Turkish lira
-    "ARS": 890.00,  # Argentine peso
-    "NGN": 1520.00, # Nigerian naira
+    "TRY": 32.50,    # Turkish lira
+    "ARS": 890.00,   # Argentine peso
+    "NGN": 1520.00,  # Nigerian naira
+    "EGP": 48.50,    # Egyptian pound
+    "PKR": 278.00,   # Pakistani rupee
+    "PHP": 56.00,    # Philippine peso
+    "INR": 83.50,    # Indian rupee
     "USD": 1.00,
 }
 
@@ -67,18 +71,60 @@ FALLBACK_PRICES = {
         "Turkey":         (149.99,  "₺",   "Standard HD"),
         "Argentina":      (1199.00, "ARS", "Standard HD"),
         "Nigeria":        (2900.00, "₦",   "Standard HD"),
+        "Egypt":          (100.00,  "EGP", "Standard HD"),
+        "Pakistan":       (250.00,  "PKR", "Standard HD"),
+        "Philippines":    (149.00,  "₱",   "Standard HD"),
+        "India":          (199.00,  "₹",   "Mobile"),
     },
     "YouTube Premium": {
-        "US (Baseline)": (13.99,  "$",   "Individual"),
-        "Turkey":         (47.99,  "₺",   "Individual"),
-        "Argentina":      (549.00, "ARS", "Individual"),
-        "Nigeria":        (1490.00,"₦",   "Individual"),
+        "US (Baseline)": (13.99,   "$",   "Individual"),
+        "Turkey":         (47.99,   "₺",   "Individual"),
+        "Argentina":      (549.00,  "ARS", "Individual"),
+        "Nigeria":        (1490.00, "₦",   "Individual"),
+        "Egypt":          (39.99,   "EGP", "Individual"),
+        "Pakistan":       (219.00,  "PKR", "Individual"),
+        "Philippines":    (99.00,   "₱",   "Individual"),
+        "India":          (89.00,   "₹",   "Individual"),
     },
     "Spotify": {
         "US (Baseline)": (11.99,  "$",   "Individual"),
         "Turkey":         (34.99,  "₺",   "Individual"),
         "Argentina":      (399.00, "ARS", "Individual"),
         "Nigeria":        (900.00, "₦",   "Individual"),
+        "Egypt":          (25.00,  "EGP", "Individual"),
+        "Pakistan":       (159.00, "PKR", "Individual"),
+        "Philippines":    (129.00, "₱",   "Individual"),
+        "India":          (119.00, "₹",   "Individual"),
+    },
+    "Disney+": {
+        "US (Baseline)": (13.99,  "$",   "Standard"),
+        "Turkey":         (89.99,  "₺",   "Standard"),
+        "Argentina":      (599.00, "ARS", "Standard"),
+        "Nigeria":        (2100.00,"₦",   "Standard"),
+        "Egypt":          (59.00,  "EGP", "Standard"),
+        "Pakistan":       (300.00, "PKR", "Standard"),
+        "Philippines":    (149.00, "₱",   "Standard"),
+        "India":          (299.00, "₹",   "Standard"),
+    },
+    "Tidal": {
+        "US (Baseline)": (10.99,  "$",   "Individual"),
+        "Turkey":         (29.99,  "₺",   "Individual"),
+        "Argentina":      (349.00, "ARS", "Individual"),
+        "Nigeria":        (700.00, "₦",   "Individual"),
+        "Egypt":          (20.00,  "EGP", "Individual"),
+        "Pakistan":       (130.00, "PKR", "Individual"),
+        "Philippines":    (99.00,  "₱",   "Individual"),
+        "India":          (99.00,  "₹",   "Individual"),
+    },
+    "Canva Pro": {
+        "US (Baseline)": (14.99,  "$",   "Individual"),
+        "Turkey":         (119.99, "₺",   "Individual"),
+        "Argentina":      (799.00, "ARS", "Individual"),
+        "Nigeria":        (3500.00,"₦",   "Individual"),
+        "Egypt":          (79.00,  "EGP", "Individual"),
+        "Pakistan":       (400.00, "PKR", "Individual"),
+        "Philippines":    (249.00, "₱",   "Individual"),
+        "India":          (499.00, "₹",   "Individual"),
     },
 }
 
@@ -88,6 +134,10 @@ COUNTRY_CURRENCY = {
     "Turkey":         "TRY",
     "Argentina":      "ARS",
     "Nigeria":        "NGN",
+    "Egypt":          "EGP",
+    "Pakistan":       "PKR",
+    "Philippines":    "PHP",
+    "India":          "INR",
 }
 
 
@@ -357,3 +407,57 @@ if __name__ == "__main__":
     df = run()
     print("\n" + df.to_string(index=False).encode(sys.stdout.encoding, errors="replace").decode(sys.stdout.encoding))
     sys.exit(0)
+
+
+# ── Public API ────────────────────────────────────────────────────────────────
+
+def get_price(service: str, country: str) -> dict:
+    """
+    Return pricing data for a single service/country pair.
+
+    Used by components/template.py to populate individual pSEO pages.
+
+    Returns a dict with keys:
+      local_price (str)  — formatted local currency string
+      usd_price   (float)
+      saving_pct  (float)  — 0.0 for US baseline
+      plan        (str)
+      currency    (str)    — ISO code
+    Returns None if the service/country combo is not found.
+    """
+    rates = fetch_exchange_rates()
+
+    service_data = FALLBACK_PRICES.get(service)
+    if service_data is None:
+        return None
+
+    region_data = service_data.get(country)
+    if region_data is None:
+        return None
+
+    local_price_raw, symbol, plan = region_data
+    currency = COUNTRY_CURRENCY.get(country, "USD")
+    rate     = rates.get(currency, 1.0)
+    usd_price = round(local_price_raw / rate, 2)
+
+    # US baseline price for savings calc
+    us_raw, _, _ = service_data.get("US (Baseline)", (usd_price, "$", plan))
+    us_usd = us_raw  # US price is already in USD
+
+    saving_pct = 0.0 if country == "US (Baseline)" else round((1 - usd_price / us_usd) * 100, 1)
+
+    # Format local price string
+    if symbol == "$":
+        local_str = f"${local_price_raw:.2f}"
+    elif symbol in ("ARS", "NGN", "EGP", "PKR"):
+        local_str = f"{symbol} {local_price_raw:,.0f}"
+    else:
+        local_str = f"{symbol}{local_price_raw:.2f}"
+
+    return {
+        "local_price": local_str,
+        "usd_price":   usd_price,
+        "saving_pct":  saving_pct,
+        "plan":        plan,
+        "currency":    currency,
+    }
