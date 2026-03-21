@@ -69,14 +69,14 @@ def to_slug(text: str) -> str:
 
 def to_url_slug(text: str) -> str:
     """
-    Public URL slug — hyphens, matching what Streamlit Cloud exposes.
-    'YouTube Premium' → 'youtube-premium', 'Disney+' → 'disney-plus'
+    Public URL slug — underscores, matching what Streamlit actually serves.
+    'YouTube Premium' → 'youtube_premium', 'Disney+' → 'disney_plus'
     """
     return (
         text.lower()
-            .replace("+", "-plus")
-            .replace(" ", "-")
-            .replace("_", "-")
+            .replace("+", "_plus")
+            .replace(" ", "_")
+            .replace("-", "_")
     )
 
 
@@ -113,7 +113,7 @@ def build_sitemap(combos: list[tuple[str, str]]) -> str:
 
     # Sub-pages
     for service, country in combos:
-        slug = f"{to_url_slug(service)}-{to_url_slug(country)}"
+        slug = f"{to_url_slug(service)}_{to_url_slug(country)}"
         url_blocks.append(f"""  <url>
     <loc>{BASE_URL}/{slug}</loc>
     <lastmod>{today}</lastmod>

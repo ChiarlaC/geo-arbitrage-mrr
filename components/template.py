@@ -32,15 +32,13 @@ def _slug(text: str) -> str:
 
 def _url_slug(text: str) -> str:
     """
-    Public URL slug (hyphens).
-    Streamlit Cloud auto-converts filename underscores → URL hyphens.
-    'youtube_premium_turkey.py' is served at '/youtube-premium-turkey'.
+    Public URL slug (underscores).
+    Streamlit preserves underscores in URLs: netflix_turkey.py → /netflix_turkey
     """
     return (
         text.lower()
-            .replace("+", "-plus")
-            .replace(" ", "-")
-            .replace("_", "-")
+            .replace("+", "_plus")
+            .replace(" ", "_")
     )
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
