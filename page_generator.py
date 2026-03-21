@@ -46,7 +46,7 @@ INTENTS = [
     "how-to-get-cheaper",
 ]
 
-BASE_URL    = "https://geo-subs-tracker.streamlit.app"
+BASE_URL    = "https://subpricing.com"
 PAGES_DIR   = os.path.join(os.path.dirname(__file__), "pages")
 SITEMAP_OUT = os.path.join(os.path.dirname(__file__), "sitemap.xml")
 

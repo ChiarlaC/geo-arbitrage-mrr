@@ -195,7 +195,7 @@ def render_page(service: str, country: str) -> None:
     # ── Breadcrumb ────────────────────────────────────────────────────────────
     st.markdown(
         f'<div class="breadcrumb">'
-        f'<a href="https://geo-subs-tracker.streamlit.app/">Home</a> &rsaquo; {service} &rsaquo; {country}'
+        f'<a href="https://subpricing.com/">Home</a> &rsaquo; {service} &rsaquo; {country}'
         f'</div>',
         unsafe_allow_html=True,
     )
