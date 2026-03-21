@@ -19,7 +19,7 @@ st.markdown("""
         font-family: 'Courier New', Courier, monospace;
     }
     [data-testid="stHeader"] { background-color: #f5f5f5; }
-    /* [data-testid="stSidebar"] { display: none; } */
+    [data-testid="stSidebar"] { display: none; }
     .block-container { padding: 2rem 3rem; max-width: 1100px; }
 
     /* Typography */

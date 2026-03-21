@@ -35,7 +35,7 @@ log = logging.getLogger(__name__)
 # ── Constants ─────────────────────────────────────────────────────────────────
 
 EXCHANGE_RATE_URL = "https://open.er-api.com/v6/latest/USD"
-REQUEST_TIMEOUT   = 8          # seconds before giving up on any HTTP call
+REQUEST_TIMEOUT   = 3          # seconds before giving up on any HTTP call
 OUTPUT_FILE       = "data.csv"
 
 # Realistic browser User-Agent to reduce bot detection probability
@@ -427,7 +427,7 @@ def get_price(service: str, country: str) -> dict:
       currency    (str)    — ISO code
     Returns None if the service/country combo is not found.
     """
-    rates = fetch_exchange_rates()
+    rates = FALLBACK_RATES
 
     service_data = FALLBACK_PRICES.get(service)
     if service_data is None:

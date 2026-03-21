@@ -55,7 +55,7 @@ _CSS = """
         font-family: 'Courier New', Courier, monospace;
     }
     [data-testid="stHeader"]  { background-color: #ffffff; }
-    /* [data-testid="stSidebar"] { display: none !important; } */
+    [data-testid="stSidebar"] { display: none !important; }
     .block-container { padding: 2.5rem 3rem; max-width: 860px; }
 
     /* Typography */
