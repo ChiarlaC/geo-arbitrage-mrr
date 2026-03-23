@@ -223,6 +223,38 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# ── Detailed Guides Navigation ───────────────────────────────────────────────
+
+st.markdown("## Detailed Price Guides")
+
+SERVICES = {
+    "Netflix":          "netflix",
+    "YouTube Premium":  "youtube_premium",
+    "Spotify":          "spotify",
+    "Disney+":          "disney_plus",
+    "Tidal":            "tidal",
+    "Canva Pro":        "canva_pro",
+}
+COUNTRIES = ["Turkey", "Argentina", "Nigeria", "Egypt", "Pakistan", "Philippines", "India"]
+
+for service_label, service_slug in SERVICES.items():
+    st.markdown(f"**{service_label}**")
+    cols = st.columns(len(COUNTRIES))
+    for col, country in zip(cols, COUNTRIES):
+        country_slug = country.lower()
+        page_path = f"/{service_slug}_{country_slug}"
+        col.markdown(
+            f"<a href='{page_path}' target='_self' style='"
+            "display:inline-block;padding:0.35rem 0.7rem;"
+            "background:#111;color:#f5f5f5;font-size:0.72rem;"
+            "text-decoration:none;letter-spacing:0.04em;"
+            "font-family:Courier New,monospace;margin-bottom:0.3rem'>"
+            f"{country}</a>",
+            unsafe_allow_html=True,
+        )
+    st.markdown("<div style='margin-bottom:1rem'></div>", unsafe_allow_html=True)
+
+
 # ── Footer ───────────────────────────────────────────────────────────────────
 
 st.markdown("<hr>", unsafe_allow_html=True)
