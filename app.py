@@ -115,7 +115,7 @@ st.markdown("# Digital Subscription Geo-Arbitrage Dashboard")
 st.markdown(
     "<p style='font-size:0.8rem;color:#666;margin-top:-0.8rem'>"
     "Real-time pricing intelligence across global markets &nbsp;·&nbsp; "
-    "Live exchange rates &nbsp;·&nbsp; Run <code>python data_engine.py</code> to refresh</p>",
+    "Live exchange rates</p>",
     unsafe_allow_html=True,
 )
 
