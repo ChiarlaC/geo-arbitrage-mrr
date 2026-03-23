@@ -192,6 +192,9 @@ def render_page(service: str, country: str) -> None:
     plan           = data["plan"]
     saving_display = f"{saving_pct:.1f}%" if saving_pct > 0 else "Baseline"
 
+    # ── Back to Home ──────────────────────────────────────────────────────────
+    st.page_link("app.py", label="← Back to Dashboard")
+
     # ── Breadcrumb ────────────────────────────────────────────────────────────
     st.markdown(
         f'<div class="breadcrumb">'

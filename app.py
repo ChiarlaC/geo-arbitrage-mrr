@@ -112,12 +112,6 @@ display_df["Savings vs US (%)"] = display_df["Savings vs US (%)"].map(
 # ── Header ───────────────────────────────────────────────────────────────────
 
 st.markdown("# Digital Subscription Geo-Arbitrage Dashboard")
-st.markdown(
-    "<p style='font-size:0.8rem;color:#666;margin-top:-0.8rem'>"
-    "Real-time pricing intelligence across global markets &nbsp;·&nbsp; "
-    "Live exchange rates</p>",
-    unsafe_allow_html=True,
-)
 
 # Summary metrics
 best_saving = df[df["Savings vs US (%)"] > 0]["Savings vs US (%)"].max()
@@ -150,36 +144,67 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 
-# ── Detailed Guides Navigation ───────────────────────────────────────────────
-
-st.markdown("## Detailed Price Guides")
+# ── Service Navigation (Pure CSS / HTML) ──────────────────────────────────────
 
 SERVICES = {
-    "Netflix":          "netflix",
-    "YouTube Premium":  "youtube_premium",
-    "Spotify":          "spotify",
-    "Disney+":          "disney_plus",
-    "Tidal":            "tidal",
-    "Canva Pro":        "canva_pro",
+    "Netflix":         "netflix",
+    "YouTube Premium": "youtube_premium",
+    "Spotify":         "spotify",
 }
-COUNTRIES = ["Turkey", "Argentina", "Nigeria", "Egypt", "Pakistan", "Philippines", "India"]
 
-for service_label, service_slug in SERVICES.items():
-    st.markdown(f"**{service_label}**")
-    cols = st.columns(len(COUNTRIES))
-    for col, country in zip(cols, COUNTRIES):
-        country_slug = country.lower()
-        page_path = f"/{service_slug}_{country_slug}"
-        col.markdown(
-            f"<a href='{page_path}' target='_self' style='"
-            "display:inline-block;padding:0.35rem 0.7rem;"
-            "background:#111;color:#f5f5f5;font-size:0.72rem;"
-            "text-decoration:none;letter-spacing:0.04em;"
-            "font-family:Courier New,monospace;margin-bottom:0.3rem'>"
-            f"{country}</a>",
-            unsafe_allow_html=True,
-        )
-    st.markdown("<div style='margin-bottom:1rem'></div>", unsafe_allow_html=True)
+_nav_countries = [c for c in df["Country"].unique() if c != "US (Baseline)"]
+
+def _build_dropdown(service_name, slug):
+    links = "".join(
+        f'<a href="/{slug}_{c.lower().replace(" ", "_")}" target="_self">{c}</a>'
+        for c in _nav_countries
+    )
+    return f'<div class="nav-dropdown"><span>{service_name} ▾</span><div class="nav-dropdown-content">{links}</div></div>'
+
+nav_html = f"""
+<style>
+  .nav-bar-container {{
+    display: flex; gap: 2rem; align-items: center;
+    margin: 0.8rem 0 1.4rem;
+    font-family: 'Courier New', Courier, monospace;
+  }}
+  .nav-dropdown {{
+    position: relative;
+    display: inline-block;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: #111; cursor: pointer;
+  }}
+  .nav-dropdown:hover > span {{ text-decoration: underline; }}
+  .nav-dropdown-content {{
+    display: none; position: absolute; top: 100%; left: 0;
+    background-color: #f5f5f5; min-width: 140px;
+    border: 1px solid #ccc; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    z-index: 999;
+  }}
+  .nav-dropdown:hover .nav-dropdown-content {{ display: block; }}
+  .nav-dropdown-content a {{
+    color: #111; padding: 10px 14px; text-decoration: none;
+    display: block; font-size: 0.8rem;
+  }}
+  .nav-dropdown-content a:hover {{ background-color: #ebebeb; }}
+  .nav-feedback {{
+    margin-left: auto; font-size: 0.72rem; color: #999;
+    text-decoration: none; font-family: 'Courier New', monospace;
+    letter-spacing: 0.03em;
+  }}
+  .nav-feedback:hover {{ color: #111; }}
+</style>
+
+<div class="nav-bar-container">
+  {_build_dropdown("Netflix", "netflix")}
+  {_build_dropdown("YouTube Premium", "youtube_premium")}
+  {_build_dropdown("Spotify", "spotify")}
+  <a class="nav-feedback" href="mailto:feedback@subpricing.com">✉ Report a Bug</a>
+</div>
+"""
+
+st.markdown(nav_html, unsafe_allow_html=True)
 
 
 # ── Data Table ───────────────────────────────────────────────────────────────
