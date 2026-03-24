@@ -41,8 +41,6 @@ def _url_slug(text: str) -> str:
             .replace(" ", "_")
     )
 
-# ── CSS ───────────────────────────────────────────────────────────────────────
-
 _CSS = """
 <style>
     html, body,
@@ -82,16 +80,34 @@ _CSS = """
     .step-t { font-size: 0.83rem; color: #333; line-height: 1.65; }
     .step-t strong { color: #111; }
 
-    /* CTA */
-    .cta-block { border: 2px solid #111; padding: 1.2rem 1.6rem; margin-top: 1.8rem; }
-    .cta-label { font-size: 0.62rem; text-transform: uppercase;
-                 letter-spacing: 0.1em; color: #888; margin-bottom: 0.5rem; }
-    .cta-btn { display: inline-block; background: #111; color: #fff !important;
-               text-decoration: none; font-size: 0.78rem; font-weight: 700;
-               letter-spacing: 0.07em; text-transform: uppercase;
-               padding: 0.55rem 1.5rem; margin-top: 0.6rem; }
-    .cta-btn:hover { background: #333; }
-    .cta-disclaimer { font-size: 0.67rem; color: #aaa; margin-top: 0.5rem; }
+    /* Inline CTA (below price card) */
+    .cta-inline { background: #f5f5f5; border-left: 4px solid #111;
+                  padding: 0.9rem 1.4rem; margin: 0.6rem 0 1.6rem 0;
+                  display: flex; align-items: center; justify-content: space-between;
+                  flex-wrap: wrap; gap: 0.75rem; }
+    .cta-inline-text { font-size: 0.82rem; color: #333; line-height: 1.5; }
+    .cta-inline-text strong { color: #111; }
+    .cta-inline-btn { display: inline-block; background: #111; color: #fff !important;
+                      text-decoration: none; font-size: 0.78rem; font-weight: 700;
+                      letter-spacing: 0.06em; text-transform: uppercase;
+                      padding: 0.55rem 1.4rem; white-space: nowrap; flex-shrink: 0; }
+    .cta-inline-btn:hover { background: #e63000; }
+
+    /* Main CTA block (after steps) */
+    .cta-block { background: #111; color: #fff;
+                 padding: 1.6rem 2rem; margin-top: 1.8rem; }
+    .cta-block-eyebrow { font-size: 0.6rem; text-transform: uppercase;
+                         letter-spacing: 0.12em; color: #aaa; margin-bottom: 0.4rem; }
+    .cta-block-headline { font-size: 1.05rem; font-weight: 700; color: #fff;
+                          margin-bottom: 0.35rem; line-height: 1.35; }
+    .cta-block-sub { font-size: 0.8rem; color: #ccc; margin-bottom: 0.25rem; }
+    .cta-social { font-size: 0.72rem; color: #888; margin-bottom: 1rem; }
+    .cta-main-btn { display: inline-block; background: #e63000; color: #fff !important;
+                    text-decoration: none; font-size: 0.88rem; font-weight: 700;
+                    letter-spacing: 0.05em; text-transform: uppercase;
+                    padding: 0.75rem 2.2rem; }
+    .cta-main-btn:hover { background: #ff3a00; }
+    .cta-disclaimer { font-size: 0.62rem; color: #666; margin-top: 0.9rem; }
 
     /* Breadcrumb */
     .breadcrumb { font-size: 0.7rem; color: #999; margin-bottom: 1.2rem; }
@@ -187,7 +203,9 @@ def render_page(service: str, country: str) -> None:
         return
 
     usd_price      = data["usd_price"]
+    us_usd         = data["us_usd"]
     saving_pct     = data["saving_pct"]
+    saving_usd     = round(us_usd - usd_price, 2)
     local_str      = data["local_price"]
     plan           = data["plan"]
     saving_display = f"{saving_pct:.1f}%" if saving_pct > 0 else "Baseline"
@@ -207,7 +225,7 @@ def render_page(service: str, country: str) -> None:
     h1 = f"Cheapest {service} Subscription: {country} {year} Price Guide"
     st.markdown(f"# {h1}")
     st.markdown(
-        f"<p style='font-size:0.78rem;color:#888;margin-top:-0.6rem'>"
+        f"<p style='font-size:0.78rem;color:#888;margin-top:0.3rem'>"
         f"Live pricing · {plan} plan · Converted at real-time exchange rates</p>",
         unsafe_allow_html=True,
     )
@@ -231,6 +249,26 @@ def render_page(service: str, country: str) -> None:
     <div class="cell-label">Plan</div>
     <div class="cell-value" style="font-size:0.95rem">{plan}</div>
   </div>
+</div>
+""", unsafe_allow_html=True)
+
+    # ── Inline CTA (above the fold, right after price card) ───────────────────
+    if saving_pct > 0:
+        inline_cta_text = (
+            f"<strong>You could save ${saving_usd:.2f}/mo</strong> — but you need a VPN "
+            f"that actually works in {country}. Most free VPNs are blocked."
+        )
+    else:
+        inline_cta_text = (
+            "To subscribe at this price you need a VPN that reliably bypasses geo-blocks. "
+            "Most free VPNs are blocked."
+        )
+    st.markdown(f"""
+<div class="cta-inline">
+  <div class="cta-inline-text">{inline_cta_text}</div>
+  <a class="cta-inline-btn"
+     href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902"
+     target="_blank">Get NordVPN &rarr;</a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -267,19 +305,73 @@ def render_page(service: str, country: str) -> None:
 </div>
 """, unsafe_allow_html=True)
 
-    # ── CTA ───────────────────────────────────────────────────────────────────
+    # ── Main CTA ──────────────────────────────────────────────────────────────
+    if saving_pct > 0:
+        headline = f"Save ${saving_usd:.2f}/mo on {service} — setup takes 3 minutes"
+        cta_sub = (
+            f"Connect NordVPN to a {country} server, open an incognito window, "
+            f"and subscribe with a region-compatible payment method."
+        )
+    else:
+        headline = f"Access {country} {service} pricing — Step 1 is a VPN"
+        cta_sub = (
+            f"To access the {country} price, your IP must resolve to {country} at signup "
+            f"and on every billing renewal."
+        )
     st.markdown(f"""
 <div class="cta-block">
-  <div class="cta-label">Recommended tool</div>
-  <p style="font-size:0.83rem;color:#111;margin:0">
-    To access the {country} {service} price you need a VPN that reliably
-    bypasses streaming geo-blocks. Most free or cheap VPNs fail at this step.
-  </p>
-  <a class="cta-btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902" target="_blank">
-    Get a Compatible VPN &rarr;
-  </a>
-  <div class="cta-disclaimer">Affiliate link · We may earn a commission at no cost to you</div>
+  <div class="cta-block-eyebrow">Recommended tool</div>
+  <div class="cta-block-headline">{headline}</div>
+  <div class="cta-block-sub">{cta_sub}</div>
+  <div class="cta-social">&#9733;&#9733;&#9733;&#9733;&#9733; &nbsp;4.9/5 &middot; 14M+ users &middot; Works in {country}</div>
+  <a class="cta-main-btn"
+     href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902"
+     target="_blank">Get NordVPN &rarr;</a>
+  <div class="cta-disclaimer">Affiliate link &middot; We may earn a commission at no extra cost to you</div>
 </div>
+""", unsafe_allow_html=True)
+
+    # ── How-To Guides (prominent, right after CTA) ────────────────────────────
+    guide_map = {
+        "Spotify":         "/guide_spotify",
+        "YouTube Premium": "/guide_youtube_premium",
+        "Netflix":         "/guide_netflix",
+    }
+    guide_labels = {
+        "Spotify":         ("Spotify Setup Guide", "Easy · Gift card method · No ongoing VPN required"),
+        "YouTube Premium": ("YouTube Premium Setup Guide", "Hard · Apple IAP method · Obfuscated VPN required"),
+        "Netflix":         ("Netflix Setup Guide", "Hard · Gift card method · 30-day VPN lock-in"),
+    }
+
+    def _guide_card(svc, active=False):
+        if svc not in guide_map:
+            return ""
+        url   = guide_map[svc]
+        label, sub = guide_labels[svc]
+        bg    = "#111" if active else "#f5f5f5"
+        color = "#fff" if active else "#111"
+        subcolor = "#aaa" if active else "#666"
+        border = "none" if active else "1px solid #ddd"
+        return (
+            f'<a href="{url}" style="display:block;flex:1;min-width:180px;background:{bg};'
+            f'border:{border};padding:1rem 1.4rem;text-decoration:none;color:{color}">'
+            f'<div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;'
+            f'color:{"#e63000" if active else "#888"};font-weight:700;margin-bottom:0.3rem">Full Setup Guide</div>'
+            f'<div style="font-size:0.88rem;font-weight:700;color:{color};margin-bottom:0.25rem">{label} &rarr;</div>'
+            f'<div style="font-size:0.72rem;color:{subcolor}">{sub}</div>'
+            f'</a>'
+        )
+
+    cards = ""
+    if service in guide_map:
+        cards += _guide_card(service, active=True)
+    for svc in guide_map:
+        if svc != service:
+            cards += _guide_card(svc, active=False)
+
+    st.markdown(f"""
+<h2>Step-by-step setup guides</h2>
+<div style="display:flex;gap:0;flex-wrap:wrap;margin-top:0.6rem">{cards}</div>
 """, unsafe_allow_html=True)
 
     # ── Internal Links ────────────────────────────────────────────────────────

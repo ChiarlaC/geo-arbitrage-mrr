@@ -48,27 +48,34 @@ st.markdown("""
     .metric-value { font-size: 1.3rem; font-weight: 700; color: #111; }
 
     /* Guide section */
-    .guide-section { background: #fff; border: 1px solid #ccc;
-                     padding: 1.4rem 1.8rem; margin-top: 2rem; }
+    .guide-section { margin-top: 2rem; }
     .guide-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-                   letter-spacing: 0.1em; color: #111; border-bottom: 1px solid #ccc;
+                   letter-spacing: 0.1em; color: #111;
                    padding-bottom: 0.5rem; margin-bottom: 1rem; }
-    .guide-step { display: flex; gap: 1rem; margin-bottom: 0.9rem;
-                  align-items: flex-start; }
-    .step-num { font-size: 0.7rem; font-weight: 700; background: #111; color: #f5f5f5;
-                min-width: 22px; height: 22px; display: flex; align-items: center;
-                justify-content: center; flex-shrink: 0; }
-    .step-text { font-size: 0.82rem; color: #333; line-height: 1.6; }
-    .step-text strong { color: #111; }
+    .steps-row { display: flex; gap: 0; }
+    .step-card { flex: 1; border: 1px solid #ccc; padding: 1.2rem 1.4rem; background: #fff; }
+    .step-card + .step-card { border-left: none; }
+    .step-num { font-size: 0.65rem; font-weight: 700; background: #111; color: #f5f5f5;
+                display: inline-flex; align-items: center; justify-content: center;
+                width: 20px; height: 20px; margin-bottom: 0.6rem; }
+    .step-title { font-size: 0.78rem; font-weight: 700; color: #111;
+                  margin-bottom: 0.3rem; line-height: 1.35; }
+    .step-body { font-size: 0.72rem; color: #666; line-height: 1.55; }
 
     /* CTA button */
-    .cta-wrapper { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid #ccc; }
-    .cta-link { display: inline-block; background: #111; color: #f5f5f5 !important;
-                text-decoration: none; font-size: 0.8rem; font-weight: 700;
-                letter-spacing: 0.08em; text-transform: uppercase;
-                padding: 0.6rem 1.6rem; }
-    .cta-link:hover { background: #333; }
-    .cta-sub { font-size: 0.7rem; color: #888; margin-top: 0.5rem; }
+    .cta-wrapper { background: #111; padding: 1.6rem 2rem; margin-top: 1.4rem; }
+    .cta-eyebrow { font-size: 0.6rem; text-transform: uppercase;
+                   letter-spacing: 0.12em; color: #aaa; margin-bottom: 0.4rem; }
+    .cta-headline { font-size: 1.05rem; font-weight: 700; color: #fff;
+                    margin-bottom: 0.35rem; line-height: 1.35; }
+    .cta-body { font-size: 0.8rem; color: #ccc; margin-bottom: 0.25rem; }
+    .cta-social { font-size: 0.72rem; color: #888; margin-bottom: 1rem; }
+    .cta-link { display: inline-block; background: #e63000; color: #fff !important;
+                text-decoration: none; font-size: 0.88rem; font-weight: 700;
+                letter-spacing: 0.05em; text-transform: uppercase;
+                padding: 0.75rem 2.2rem; }
+    .cta-link:hover { background: #ff3a00; }
+    .cta-sub { font-size: 0.62rem; color: #666; margin-top: 0.9rem; }
 
     /* Savings highlight */
     .savings-high { color: #1a7a1a; font-weight: 700; }
@@ -238,42 +245,39 @@ st.markdown(
 
 st.markdown("""
 <div class="guide-section">
-  <div class="guide-title">5-Minute Cross-Border Purchase Guide</div>
-
-  <div class="guide-step">
-    <div class="step-num">1</div>
-    <div class="step-text">
-      <strong>Acquire a premium VPN with server presence in your target country.</strong>
-      Free or low-tier VPNs are detected and blocked by major streaming platforms.
-      A paid VPN with residential or obfuscated IPs is non-negotiable for reliable access.
+  <div class="guide-title">How to subscribe at geo-arbitrage prices</div>
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-title">Get a premium VPN</div>
+      <div class="step-body">Free VPNs are detected and blocked. You need residential or obfuscated IPs.</div>
     </div>
-  </div>
-
-  <div class="guide-step">
-    <div class="step-num">2</div>
-    <div class="step-text">
-      <strong>Connect to a server in the target region before visiting the service's site.</strong>
-      Your IP address must match the billing country at the point of account creation
-      and each subsequent payment cycle. Use an incognito window to avoid cached data.
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-title">Connect to target country</div>
+      <div class="step-body">Your IP must match the billing country at signup and on every renewal. Use incognito.</div>
     </div>
-  </div>
-
-  <div class="guide-step">
-    <div class="step-num">3</div>
-    <div class="step-text">
-      <strong>Use a payment method that clears without currency flags.</strong>
-      Wise (formerly TransferWise) virtual cards or a local-currency prepaid card
-      are the most reliable options. Standard US/EU credit cards may trigger
-      geo-mismatch declines.
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-title">Pay with Wise card</div>
+      <div class="step-body">US/EU cards trigger geo-mismatch declines. A Wise multi-currency card is most reliable.</div>
     </div>
   </div>
 
   <div class="cta-wrapper">
+    <div class="cta-eyebrow">Recommended tool</div>
+    <div class="cta-headline">Step 1 is a VPN — free ones get blocked</div>
+    <div class="cta-body">
+      To subscribe at any geo-arbitrage price, your IP must resolve to that country
+      at signup and on every billing renewal. Free VPNs are detected and blocked —
+      you need residential or obfuscated IPs.
+    </div>
+    <div class="cta-social">&#9733;&#9733;&#9733;&#9733;&#9733; &nbsp;4.9/5 &middot; 14M+ users &middot; Works in Turkey, India, Argentina &amp; more</div>
     <a class="cta-link" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902" target="_blank">
-      Get a Compatible VPN &rarr;
+      Get NordVPN &rarr;
     </a>
     <div class="cta-sub">
-      Affiliate link &nbsp;·&nbsp; We may earn a commission at no cost to you
+      Affiliate link &nbsp;·&nbsp; We may earn a commission at no extra cost to you
     </div>
   </div>
 </div>
@@ -283,6 +287,22 @@ st.markdown("""
 # ── Footer ───────────────────────────────────────────────────────────────────
 
 st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("""
+<div style="margin-bottom:1.2rem">
+  <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:#888;margin-bottom:0.6rem;font-weight:700">How-To Guides</div>
+  <div style="display:flex;gap:0;flex-wrap:wrap">
+    <a href="/guide_spotify" style="display:block;border:1px solid #ccc;padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:700;color:#111;text-decoration:none;min-width:200px">
+      Spotify — Easy Guide &#9654;
+    </a>
+    <a href="/guide_youtube_premium" style="display:block;border:1px solid #ccc;border-left:none;padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:700;color:#111;text-decoration:none;min-width:200px">
+      YouTube Premium — Hard Guide &#9654;
+    </a>
+    <a href="/guide_netflix" style="display:block;border:1px solid #ccc;border-left:none;padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:700;color:#111;text-decoration:none;min-width:200px">
+      Netflix — Hard Guide &#9654;
+    </a>
+  </div>
+</div>
+""", unsafe_allow_html=True)
 st.markdown(
     "<p style='font-size:0.7rem;color:#aaa;text-align:center'>"
     "For informational purposes only. Terms of service compliance is your responsibility."

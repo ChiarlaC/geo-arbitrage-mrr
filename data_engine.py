@@ -459,6 +459,7 @@ def get_price(service: str, country: str) -> dict:
     return {
         "local_price": local_str,
         "usd_price":   usd_price,
+        "us_usd":      us_usd,
         "saving_pct":  saving_pct,
         "plan":        plan,
         "currency":    currency,
