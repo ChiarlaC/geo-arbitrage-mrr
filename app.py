@@ -269,7 +269,7 @@ st.markdown("""
   </div>
 
   <div class="cta-wrapper">
-    <a class="cta-link" href="https://example.com/vpn-affiliate" target="_blank">
+    <a class="cta-link" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902" target="_blank">
       Get a Compatible VPN &rarr;
     </a>
     <div class="cta-sub">

@@ -275,7 +275,7 @@ def render_page(service: str, country: str) -> None:
     To access the {country} {service} price you need a VPN that reliably
     bypasses streaming geo-blocks. Most free or cheap VPNs fail at this step.
   </p>
-  <a class="cta-btn" href="https://example.com/vpn-affiliate" target="_blank">
+  <a class="cta-btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902" target="_blank">
     Get a Compatible VPN &rarr;
   </a>
   <div class="cta-disclaimer">Affiliate link · We may earn a commission at no cost to you</div>
