@@ -402,6 +402,7 @@ def render_page(service: str, country: str) -> None:
     st.markdown(
         f'<p class="page-footer">Prices converted at live exchange rates. '
         f'Terms of service compliance is your responsibility. '
-        f'Data last updated: {year}.</p>',
+        f'Data last updated: {year}. &nbsp;·&nbsp; '
+        f'<a href="/privacy_policy" style="color:#bbb">Privacy Policy</a></p>',
         unsafe_allow_html=True,
     )
