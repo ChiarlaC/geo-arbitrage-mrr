@@ -6,6 +6,8 @@ Difficulty: Easy — gift card method, no ongoing VPN required.
 """
 
 import streamlit as st
+import os
+import base64 as _b64
 
 NORDVPN_URL = "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902"
 WISE_URL     = "https://wise.com/invite/i/PLACEHOLDER"  # TODO: replace with affiliate link
@@ -207,17 +209,28 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# ── Banner ────────────────────────────────────────────────────────────────────
+_banner_path = os.path.join(os.path.dirname(__file__), "..", "static", "nordvpn-banner-970x250.png")
+with open(_banner_path, "rb") as _f:
+    _banner_b64 = _b64.b64encode(_f.read()).decode()
+st.markdown(
+    f'<a href="{NORDVPN_URL}" target="_blank" rel="noopener">'
+    f'<img src="data:image/png;base64,{_banner_b64}" style="width:100%;display:block;cursor:pointer;margin:1.5rem 0 0" alt="NordVPN Special Offer">'
+    f'</a>',
+    unsafe_allow_html=True,
+)
+
 # ── CTA ───────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <div class="cta-block">
   <div class="cta-block-eyebrow">Step 1 — Required for all methods</div>
-  <div class="cta-block-headline">Get NordVPN — needed for account setup</div>
+  <div class="cta-block-headline">Get NordVPN — Up to 73% Off + Amazon Gift Card</div>
   <div class="cta-block-sub">
     You only need the VPN active during account creation and gift card redemption.
     NordVPN's Argentina and Turkey servers are fast and reliably undetected by Spotify.
   </div>
   <div class="cta-social">&#9733;&#9733;&#9733;&#9733;&#9733; &nbsp;4.9/5 &middot; 14M+ users</div>
-  <a class="cta-main-btn" href="{NORDVPN_URL}" target="_blank">Get NordVPN &rarr;</a>
+  <a class="cta-main-btn" href="{NORDVPN_URL}" target="_blank">Get NordVPN — 73% Off &rarr;</a>
   <div class="cta-disclaimer">Affiliate link &middot; We may earn a commission at no extra cost to you</div>
 </div>
 """, unsafe_allow_html=True)

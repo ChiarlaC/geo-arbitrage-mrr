@@ -382,7 +382,7 @@ def render_page(service: str, country: str) -> None:
     cards_html = ""
     for rel_service, rel_country in related:
         rel_data  = get_price(rel_service, rel_country)
-        rel_slug  = f"{_url_slug(rel_service)}-{_url_slug(rel_country)}"
+        rel_slug  = f"{_url_slug(rel_service)}_{_url_slug(rel_country)}"
         rel_save  = f"Save {rel_data['saving_pct']:.0f}%" if rel_data and rel_data['saving_pct'] > 0 else ""
         rel_usd   = f"${rel_data['usd_price']:.2f}/mo" if rel_data else "—"
         cards_html += f"""

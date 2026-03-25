@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 
+NORDVPN_URL = "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902"
 st.set_page_config(
     page_title="Geo-Arbitrage Dashboard",
     page_icon=None,
@@ -117,6 +118,19 @@ display_df["Savings vs US (%)"] = display_df["Savings vs US (%)"].map(
 
 
 # ── Header ───────────────────────────────────────────────────────────────────
+
+# Leaderboard banner
+import base64 as _b64
+_lb_path = os.path.join(os.path.abspath(os.path.dirname(__file__) or "."), "static", "nordvpn-banner-970x90.png")
+with open(_lb_path, "rb") as _f:
+    _lb_b64 = _b64.b64encode(_f.read()).decode()
+st.markdown(
+    f'<div style="text-align:center;margin:0 0 0.8rem">'
+    f'<a href="{NORDVPN_URL}" target="_blank" rel="noopener">'
+    f'<img src="data:image/png;base64,{_lb_b64}" style="width:100%;cursor:pointer" alt="NordVPN Special Offer">'
+    f'</a></div>',
+    unsafe_allow_html=True,
+)
 
 st.markdown("# Digital Subscription Geo-Arbitrage Dashboard")
 
@@ -240,6 +254,16 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(f"""
+<div style="display:flex;align-items:center;gap:1.2rem;margin:1.4rem 0;padding:1rem 1.4rem;border:2px solid #111;background:#f9f9f9">
+  <div style="flex:1">
+    <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:#888;margin-bottom:0.3rem;font-weight:700">VPN Guide</div>
+    <div style="font-size:0.95rem;font-weight:700;color:#111">Does NordVPN actually work for geo-arbitrage?</div>
+    <div style="font-size:0.78rem;color:#555;margin-top:0.25rem">Tested on Netflix Turkey · Spotify Argentina · YouTube Premium — March 2026</div>
+  </div>
+  <a href="/nordvpn_review" style="display:inline-block;background:#111;color:#fff;text-decoration:none;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.6rem 1.4rem;white-space:nowrap">Read Review &#9654;</a>
+</div>
+""", unsafe_allow_html=True)
 
 # ── Monetization Node ────────────────────────────────────────────────────────
 
@@ -283,12 +307,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-
-# ── Footer ───────────────────────────────────────────────────────────────────
-
-st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("""
-<div style="margin-bottom:1.2rem">
+<div style="margin-top:1.2rem;margin-bottom:0.4rem">
   <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:#888;margin-bottom:0.6rem;font-weight:700">How-To Guides</div>
   <div style="display:flex;gap:0;flex-wrap:wrap">
     <a href="/guide_spotify" style="display:block;border:1px solid #ccc;padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:700;color:#111;text-decoration:none;min-width:200px">
@@ -300,9 +320,29 @@ st.markdown("""
     <a href="/guide_netflix" style="display:block;border:1px solid #ccc;border-left:none;padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:700;color:#111;text-decoration:none;min-width:200px">
       Netflix — Hard Guide &#9654;
     </a>
+    <a href="/nordvpn_review" style="display:block;border:1px solid #e63000;border-left:none;padding:0.7rem 1.2rem;font-size:0.78rem;font-weight:700;color:#e63000;text-decoration:none;min-width:200px">
+      NordVPN Review &#9654;
+    </a>
   </div>
 </div>
 """, unsafe_allow_html=True)
+
+# ── Footer ───────────────────────────────────────────────────────────────────
+
+st.markdown("<hr>", unsafe_allow_html=True)
+
+# NordVPN banner (clickable)
+import base64 as _b64
+_banner_path = os.path.join(os.path.abspath(os.path.dirname(__file__) or "."), "static", "nordvpn-banner-970x250.png")
+with open(_banner_path, "rb") as _f:
+    _banner_b64 = _b64.b64encode(_f.read()).decode()
+st.markdown(
+    f'<a href="{NORDVPN_URL}" target="_blank" rel="noopener">'
+    f'<img src="data:image/png;base64,{_banner_b64}" style="width:100%;display:block;cursor:pointer" alt="NordVPN Special Offer">'
+    f'</a>',
+    unsafe_allow_html=True,
+)
+
 st.markdown(
     "<p style='font-size:0.7rem;color:#aaa;text-align:center'>"
     "For informational purposes only. Terms of service compliance is your responsibility."
