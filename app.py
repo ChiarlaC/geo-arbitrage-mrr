@@ -285,6 +285,7 @@ st.markdown("""
       <div class="step-num">3</div>
       <div class="step-title">Pay with Wise card</div>
       <div class="step-body">US/EU cards trigger geo-mismatch declines. A Wise multi-currency card is most reliable.</div>
+      <div style="margin-top:0.6rem"><a href="https://wise.com" target="_blank" style="font-size:0.72rem;font-weight:700;color:#111;text-decoration:underline">Open Wise account &rarr;</a></div>
     </div>
   </div>
 
