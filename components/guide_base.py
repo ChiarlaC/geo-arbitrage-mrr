@@ -156,6 +156,8 @@ def render_footer(disclaimer: str) -> None:
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
         f'<p class="page-footer">{disclaimer} '
-        f'Terms of service compliance is your responsibility.</p>',
+        f'Terms of service compliance is your responsibility.<br>'
+        f'This site contains affiliate links. We may earn a commission when you purchase '
+        f'through our links, at no extra cost to you.</p>',
         unsafe_allow_html=True,
     )

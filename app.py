@@ -346,7 +346,8 @@ st.markdown(
 
 st.markdown(
     "<p style='font-size:0.7rem;color:#aaa;text-align:center'>"
-    "For informational purposes only. Terms of service compliance is your responsibility. "
+    "For informational purposes only. Terms of service compliance is your responsibility."
+    "<br>This site contains affiliate links. We may earn a commission when you purchase through our links, at no extra cost to you."
     "&nbsp;·&nbsp; <a href='/privacy_policy' style='color:#aaa'>Privacy Policy</a>"
     "</p>",
     unsafe_allow_html=True,
