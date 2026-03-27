@@ -63,6 +63,11 @@ _CSS = """
     .cmp-table td { font-size: 0.78rem; color: #333; padding: 0.6rem 0.8rem;
                     border-bottom: 1px solid #eee; vertical-align: top; }
     .cmp-table tr.highlight td { background: #f9f9f9; font-weight: 600; }
+    .check-deal-btn { display: inline-block; background: #e63000; color: #fff !important;
+                      text-decoration: none; font-size: 0.68rem; font-weight: 700;
+                      letter-spacing: 0.06em; text-transform: uppercase;
+                      padding: 0.35rem 0.85rem; white-space: nowrap; }
+    .check-deal-btn:hover { background: #ff3a00; }
     .tag-yes  { background: #e8f5e9; color: #1b5e20; font-size: 0.6rem; font-weight: 700;
                 text-transform: uppercase; padding: 0.15rem 0.4rem; letter-spacing: 0.06em; }
     .tag-no   { background: #fce4ec; color: #880e24; font-size: 0.6rem; font-weight: 700;
@@ -189,6 +194,7 @@ st.markdown("""
     <th>Argentina servers</th>
     <th>Price / month</th>
     <th>Works for Netflix TR</th>
+    <th>Deal</th>
   </tr>
   <tr class="highlight">
     <td><strong>NordVPN</strong></td>
@@ -197,6 +203,7 @@ st.markdown("""
     <td><span class="tag-yes">Yes</span></td>
     <td>~$3.39</td>
     <td><span class="tag-yes">Yes</span></td>
+    <td><a class="check-deal-btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902" target="_blank">Check Deal &rarr;</a></td>
   </tr>
   <tr>
     <td>ExpressVPN</td>
@@ -205,6 +212,7 @@ st.markdown("""
     <td><span class="tag-yes">Yes</span></td>
     <td>~$8.32</td>
     <td><span class="tag-partial">Inconsistent</span></td>
+    <td>—</td>
   </tr>
   <tr>
     <td>Surfshark</td>
@@ -213,6 +221,7 @@ st.markdown("""
     <td><span class="tag-yes">Yes</span></td>
     <td>~$2.49</td>
     <td><span class="tag-partial">Inconsistent</span></td>
+    <td>—</td>
   </tr>
   <tr>
     <td>ProtonVPN</td>
@@ -221,6 +230,7 @@ st.markdown("""
     <td><span class="tag-yes">Yes</span></td>
     <td>~$4.99</td>
     <td><span class="tag-no">No</span></td>
+    <td>—</td>
   </tr>
   <tr>
     <td>Free VPNs</td>
@@ -229,6 +239,7 @@ st.markdown("""
     <td><span class="tag-no">No</span></td>
     <td>$0</td>
     <td><span class="tag-no">Blocked</span></td>
+    <td>—</td>
   </tr>
 </table>
 """, unsafe_allow_html=True)
