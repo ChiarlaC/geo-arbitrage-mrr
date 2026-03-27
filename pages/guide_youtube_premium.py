@@ -13,8 +13,7 @@ import base64 as _b64
 STATIC = Path(os.path.dirname(os.path.abspath(__file__))).parent / "static"
 
 NORDVPN_URL = "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797&url_id=902"
-WISE_URL     = "https://wise.com/invite/i/PLACEHOLDER"  # TODO: replace with affiliate link
-G2A_URL      = "https://www.g2a.com/PLACEHOLDER"        # TODO: replace with G2A Goldmine affiliate link
+G2A_URL      = "https://www.g2a.com/n/reflink-1878aa7c5b"
 
 st.set_page_config(
     page_title="How to Get YouTube Premium Turkey Price 2026 — Full Guide",
@@ -39,7 +38,7 @@ _CSS = """
          padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
     h2 { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.06em;
          text-transform: uppercase; color: #444; margin-top: 1.8rem; }
-    p, li { font-size: 0.85rem; color: #333; line-height: 1.75; }
+    p, li { font-size: 1rem; color: #333; line-height: 1.75; }
     .breadcrumb { font-size: 0.7rem; color: #999; margin-bottom: 1.2rem; }
     .breadcrumb a { color: #555; text-decoration: none; }
     .diff-badge { display: inline-flex; align-items: center;
@@ -49,7 +48,7 @@ _CSS = """
     .method-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; }
     .method-table th { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em;
                        color: #888; border-bottom: 2px solid #111; padding: 0.4rem 0.8rem; text-align: left; }
-    .method-table td { font-size: 0.78rem; color: #333; padding: 0.6rem 0.8rem;
+    .method-table td { font-size: 0.92rem; color: #333; padding: 0.6rem 0.8rem;
                        border-bottom: 1px solid #eee; vertical-align: top; }
     .tag-best { background: #e8f5e9; color: #1b5e20; font-size: 0.6rem; font-weight: 700;
                 text-transform: uppercase; padding: 0.15rem 0.4rem; letter-spacing: 0.06em; }
@@ -61,12 +60,12 @@ _CSS = """
     .step-n { background: #111; color: #fff; font-size: 0.68rem; font-weight: 700;
               min-width: 22px; height: 22px; display: flex; align-items: center;
               justify-content: center; flex-shrink: 0; }
-    .step-t { font-size: 0.85rem !important; color: #333; line-height: 1.75; }
+    .step-t { font-size: 1rem !important; color: #333; line-height: 1.75; }
     .step-t strong { color: #111; }
     .tip-box { border-left: 4px solid #111; background: #f5f5f5;
-               padding: 0.8rem 1.2rem; margin: 1rem 0; font-size: 0.8rem; color: #333; line-height: 1.6; }
+               padding: 0.8rem 1.2rem; margin: 1rem 0; font-size: 0.95rem; color: #333; line-height: 1.6; }
     .warn-box { border-left: 4px solid #e63000; background: #fff5f3;
-                padding: 0.8rem 1.2rem; margin: 1rem 0; font-size: 0.8rem; color: #333; line-height: 1.6; }
+                padding: 0.8rem 1.2rem; margin: 1rem 0; font-size: 0.95rem; color: #333; line-height: 1.6; }
     .cta-block { background: #111; color: #fff; padding: 1.6rem 2rem; margin-top: 1.8rem; }
     .cta-block-eyebrow { font-size: 0.6rem; text-transform: uppercase;
                          letter-spacing: 0.12em; color: #aaa; margin-bottom: 0.4rem; }
@@ -87,6 +86,8 @@ _CSS = """
                      color: #111 !important; text-decoration: none;
                      border-bottom: 2px solid #111; padding-bottom: 0.1rem; }
     hr { border: none; border-top: 1px solid #e0e0e0; margin: 1.8rem 0; }
+    [data-testid="stImage"] { width: 85% !important; }
+    [data-testid="stImage"] img { width: 100% !important; }
     .page-footer { font-size: 0.68rem; color: #bbb; text-align: center; }
     #MainMenu, footer, [data-testid="stToolbar"] { display: none; }
 </style>
@@ -135,7 +136,7 @@ st.markdown("""
     <td><span class="tag-fail">Blocked</span> — Google BIN-locks non-Turkish cards (error OR-CCSEH-05)</td>
   </tr>
   <tr>
-    <td>Wise / virtual card</td><td>~10%</td>
+    <td>Wise / Revolut virtual card</td><td>~10%</td>
     <td><span class="tag-fail">Blocked</span> — European/UK BINs rejected at payment gateway</td>
   </tr>
   <tr>
@@ -171,7 +172,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 st.markdown(f"""
-<div style="font-size:0.85rem;color:#333;margin:0 0 1rem 2.2rem;line-height:2">
+<div style="font-size:1rem;color:#333;margin:0 0 1rem 2.2rem;line-height:2">
   Do not have VPN?<br>
   1. <a href="{NORDVPN_URL}" target="_blank" style="color:#e63000;font-weight:700;text-decoration:underline;">NordVPN</a> — obfuscated servers, best for YouTube Premium<br>
   2. ExpressVPN<br>
@@ -219,10 +220,22 @@ st.markdown(f"""
   <div class="step-n">4</div>
   <div class="step-t"><strong>Buy Turkish iTunes gift cards.</strong>
   Recommended platforms: <strong>G2A</strong> or <strong>Eneba</strong>.
-  Avoid SEAGM and TurGame — they require local ID verification.
-  Individual plan: buy <strong>150 TL</strong> to test first.
-  Family plan: buy <strong>300 TL</strong>. Codes arrive by email within ~10 minutes.
-  Buy only a small amount initially until you confirm the subscription works.<br><br>
+  Avoid SEAGM and TurGame — they require local ID verification.<br><br>
+
+  <strong>4a. Search on G2A:</strong> Click the button below, then search
+  <strong>iTunes Turkey</strong>
+  in the search bar. Filter by <strong>Region: Turkey</strong> to avoid getting the
+  wrong region. Select a seller with 95%+ positive ratings and a high number of sales.<br><br>
+
+  <strong>4b. Choose the right amount:</strong>
+  Individual plan → buy <strong>150 TL</strong> to test first (YouTube Premium Individual costs ~130 TL/month).
+  Family plan → buy <strong>300 TL</strong> (Family plan costs ~230 TL/month).
+  Buy only a small amount until you confirm the subscription works.<br><br>
+
+  <strong>4c. Receive and save your code:</strong> Codes are delivered to your email
+  within ~10 minutes. Copy the code — you will enter it in App Store in the next step.
+  Do not share the code with anyone.<br><br>
+
   <a href="{G2A_URL}" target="_blank" style="display:inline-block;background:#111;color:#fff;
   font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;
   padding:0.45rem 1.2rem;text-decoration:none;margin-top:0.4rem">
@@ -295,18 +308,6 @@ st.markdown(f"""
   </div>
   <div class="cta-social">&#9733;&#9733;&#9733;&#9733;&#9733; &nbsp;4.9/5 &middot; 14M+ users &middot; Has Turkey obfuscated servers</div>
   <a class="cta-main-btn" href="{NORDVPN_URL}" target="_blank">Get NordVPN — 73% Off &rarr;</a>
-  <div class="cta-disclaimer">Affiliate link &middot; We may earn a commission at no extra cost to you</div>
-</div>
-
-<div class="cta-block" style="background:#1a1a1a;margin-top:0.8rem">
-  <div class="cta-block-eyebrow">For managing multi-currency payments</div>
-  <div class="cta-block-headline">Open a Wise account</div>
-  <div class="cta-block-sub">
-    Wise lets you hold Turkish lira and issue a virtual debit card — useful for
-    purchasing iTunes gift cards on platforms that accept card payments,
-    and for other geo-arbitrage services where Wise BINs are not blocked.
-  </div>
-  <a class="cta-main-btn" href="{WISE_URL}" target="_blank">Open Wise Account &rarr;</a>
   <div class="cta-disclaimer">Affiliate link &middot; We may earn a commission at no extra cost to you</div>
 </div>
 """, unsafe_allow_html=True)
