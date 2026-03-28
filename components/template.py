@@ -13,6 +13,52 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from data_engine import get_price
 
+def _price_insight(service: str, country: str, usd_price: float, us_usd: float, saving_pct: float) -> str:
+    """Generate a one-sentence market insight based on current pricing data."""
+    # Global rank by saving_pct among known countries
+    _SAVING_BENCHMARKS = {
+        "Netflix":         {"Turkey": 78.2, "Argentina": 94.4, "Nigeria": 86.5, "Egypt": 87.8, "Pakistan": 94.2, "Philippines": 84.1, "India": 86.5},
+        "YouTube Premium": {"Turkey": 92.3, "Argentina": 85.0, "Nigeria": 70.0, "Egypt": 75.0, "Pakistan": 88.0, "Philippines": 72.0, "India": 80.0},
+        "Spotify":         {"Turkey": 70.0, "Argentina": 80.0, "Nigeria": 65.0, "Egypt": 68.0, "Pakistan": 75.0, "Philippines": 60.0, "India": 72.0},
+    }
+
+    benchmarks = _SAVING_BENCHMARKS.get(service, {})
+    if benchmarks:
+        sorted_regions = sorted(benchmarks.items(), key=lambda x: x[1], reverse=True)
+        rank = next((i + 1 for i, (c, _) in enumerate(sorted_regions) if c == country), None)
+        total = len(sorted_regions)
+    else:
+        rank, total = None, None
+
+    if saving_pct >= 90:
+        insight = (
+            f"{country} is one of the cheapest regions for {service} globally — "
+            f"at ${usd_price:.2f}/mo it costs {saving_pct:.0f}% less than the US price."
+        )
+    elif saving_pct >= 75:
+        rank_str = f"ranked #{rank} of {total} tracked regions" if rank else "among the top regions"
+        insight = (
+            f"{country} offers strong value for {service} ({rank_str}), "
+            f"at ${usd_price:.2f}/mo versus the US price of ${us_usd:.2f}/mo."
+        )
+    elif saving_pct >= 50:
+        insight = (
+            f"{country} pricing for {service} is moderately discounted — "
+            f"${usd_price:.2f}/mo vs ${us_usd:.2f}/mo in the US ({saving_pct:.0f}% saving)."
+        )
+    elif saving_pct > 0:
+        insight = (
+            f"{country} offers a modest discount on {service} at ${usd_price:.2f}/mo, "
+            f"a {saving_pct:.0f}% saving versus the US list price."
+        )
+    else:
+        insight = (
+            f"{country} is the US baseline price for {service} at ${usd_price:.2f}/mo — "
+            f"use it as a reference when comparing other regions."
+        )
+    return insight
+
+
 def _get_data_timestamp() -> str:
     """Read the timestamp from the first line of data.csv."""
     try:
@@ -265,6 +311,14 @@ def render_page(service: str, country: str) -> None:
   </div>
 </div>
 """, unsafe_allow_html=True)
+
+    # ── Price Insight ─────────────────────────────────────────────────────────
+    insight = _price_insight(service, country, usd_price, us_usd, saving_pct)
+    st.markdown(
+        f"<p style='font-size:0.85rem;color:#555;margin:0.2rem 0 1rem;line-height:1.6'>"
+        f"{insight}</p>",
+        unsafe_allow_html=True,
+    )
 
     # ── Inline CTA (above the fold, right after price card) ───────────────────
     if saving_pct > 0:
