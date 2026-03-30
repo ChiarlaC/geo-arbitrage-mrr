@@ -131,7 +131,7 @@ def render_nordvpn_cta(eyebrow: str, body: str, social_line: str = "&#9733;&#973
     st.markdown(f"""
 <div class="cta-block">
   <div class="cta-block-eyebrow">{eyebrow}</div>
-  <div class="cta-block-headline">Get NordVPN — Up to 73% Off + Amazon Gift Card</div>
+  <div class="cta-block-headline">Get NordVPN — Up to 76% Off + 3 Months Extra</div>
   <div class="cta-block-sub">{body}</div>
   <div class="cta-social">{social_line}</div>
   <a class="cta-main-btn" href="{NORDVPN_URL}" target="_blank">Get NordVPN — Best Value: 2-Year Plan &rarr;</a>
