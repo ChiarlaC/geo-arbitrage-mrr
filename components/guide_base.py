@@ -71,6 +71,7 @@ GUIDE_CSS = """
                     text-decoration: none; font-size: 0.88rem; font-weight: 700;
                     letter-spacing: 0.05em; text-transform: uppercase; padding: 0.75rem 2.2rem; }
     .cta-main-btn:hover { background: #ff3a00; }
+    .cta-plan-note { font-size: 0.78rem; color: #444; margin-top: 0.5rem; }
     .cta-disclaimer { font-size: 0.62rem; color: #666; margin-top: 0.9rem; }
     .alt-card { background: #f0f7f0; border: 1px solid #a5d6a7; padding: 1rem 1.4rem; margin: 1.2rem 0; }
     .alt-card-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
@@ -133,7 +134,8 @@ def render_nordvpn_cta(eyebrow: str, body: str, social_line: str = "&#9733;&#973
   <div class="cta-block-headline">Get NordVPN — Up to 73% Off + Amazon Gift Card</div>
   <div class="cta-block-sub">{body}</div>
   <div class="cta-social">{social_line}</div>
-  <a class="cta-main-btn" href="{NORDVPN_URL}" target="_blank">Get NordVPN — 73% Off &rarr;</a>
+  <a class="cta-main-btn" href="{NORDVPN_URL}" target="_blank">Get NordVPN — Best Value: 2-Year Plan &rarr;</a>
+  <div class="cta-plan-note">&#10003; 2-year plan locks in the lowest rate &nbsp;&middot;&nbsp; &#10003; Cancel anytime</div>
   <div class="cta-disclaimer">Affiliate link &middot; We may earn a commission at no extra cost to you</div>
 </div>
 """, unsafe_allow_html=True)
