@@ -118,18 +118,18 @@ GitHub Actions (.github/workflows/refresh-data.yml) → runs data_engine.py dail
 ### 已修复问题
 | 问题 | 原因 | 修复 |
 |------|------|------|
-| `push rejected` | `git pull --rebase` 在 commit 之后执行 | 改为 add → stash → pull --rebase → stash pop → commit → push |
-| `cannot pull with rebase: unstaged changes` | `data_engine.py` 运行后 data.csv 有变更，直接 pull 报错 | 加 `git stash` / `git stash pop` 包住 pull 步骤 |
+| `push rejected` | `git pull --rebase` 在 commit 之后执行 | 改为 add → commit → push |
+| `cannot pull with rebase: unstaged changes` | `data_engine.py` 修改了 `data.csv` 导致 tree 为 dirty，无法进行 pull/rebase | **Sync-First 策略**：运行前先 fetch + reset --hard，运行后直接 push |
 
-### 当前正确执行顺序（Commit step）
-```
-git add data.csv
-git stash
-git pull --rebase origin main
-git stash pop
-git diff --staged --quiet || git commit -m "chore: refresh pricing data [skip ci]"
-git push
-```
+### 当前正确执行顺序 (Sync-First Strategy)
+1. **Sync (Action Prep):** `git fetch` 和 `git reset --hard origin/main` 确保 runner 环境绝对干净。
+2. **Execute:** 运行 `data_engine.py` 修改 `data.csv`。
+3. **Commit & Push:**
+   ```bash
+   git add data.csv
+   git commit -m "chore: refresh pricing data [skip ci]"
+   git push origin HEAD:main  # 直接 Push 至 Main，绕过 Pull/Rebase 冲突
+   ```
 
 ---
 
