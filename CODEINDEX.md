@@ -23,7 +23,7 @@
 |------|---------|--------------------------|
 | `app.py` | Homepage dashboard | Price table, NordVPN CTA, nav to sub-pages |
 | `data_engine.py` | Price data pipeline | `get_price(service, country)`, SERVICES, COUNTRIES lists, currency mapping |
-| `page_generator.py` | Generates 42 pSEO sub-pages + sitemap.xml | Run manually: `python page_generator.py` |
+| `page_generator.py` | Generates 42 pSEO pages + automated sitemap.xml | `build_sitemap()` auto-scans `pages/` for manual guides/reviews now. |
 | `config.py` | Affiliate links + site constants | `NORDVPN_URL`, `G2A_URL`, `SITE_URL` |
 
 ---
@@ -32,7 +32,7 @@
 
 | File | Purpose | Key exports |
 |------|---------|-------------|
-| `components/guide_base.py` | Shared CSS + helpers for all guide pages | `GUIDE_CSS`, `guide_page_setup()`, `render_breadcrumb()`, `render_nordvpn_banner()`, `render_nordvpn_cta(eyebrow, body, social_line)`, `render_vpn_list(best_for)`, `render_footer(disclaimer)` |
+| `components/guide_base.py` | Shared CSS + helpers for all guide pages | `guide_page_setup(title, description=None)` handles meta tags. |
 | `components/template.py` | Shared renderer for 42 auto-generated pSEO sub-pages | `render_page(service, country)` — called by every `pages/{service}_{country}.py` |
 
 **To change pSEO sub-page layout/style: edit `components/template.py`.**
@@ -106,7 +106,68 @@ GitHub Actions (.github/workflows/refresh-data.yml) → runs data_engine.py dail
 | Change pSEO sub-page layout | `components/template.py` |
 | Add a new pSEO sub-page | Edit SERVICES/COUNTRIES in `page_generator.py`, re-run it |
 | Add a new guide page | Copy a guide page, import from `guide_base`, follow same structure |
-| Update sitemap | Re-run `page_generator.py` |
+| Update sitemap | Re-run `page_generator.py`，然后 push 到 `gh-pages` 分支 |
+| Update robots.txt | 编辑 `gh-pages` 分支上的 `robots.txt` |
+
+---
+
+## 静态文件托管架构 (sitemap.xml / robots.txt)
+
+> ⚠️ 不要让 AI 工具修改这套架构，已有多次被外部工具破坏的前例。
+
+### 架构说明
+
+Streamlit 本身无法直接托管静态文件。当前使用两层机制：
+
+| 文件 | 实际存放位置 | 访问路径 |
+|------|-------------|---------|
+| `sitemap.xml` | `gh-pages` 分支根目录 | `subpricing.com/sitemap.xml` |
+| `robots.txt` | `gh-pages` 分支根目录 | `subpricing.com/robots.txt` |
+
+### 工作原理
+
+`render.yaml` 配置了 rewrite 规则，将 `/sitemap.xml` 和 `/robots.txt` 的请求代理到 GitHub Pages：
+
+```yaml
+routes:
+  - type: rewrite
+    source: /sitemap.xml
+    destination: https://chiarlaC.github.io/geo-arbitrage-mrr/sitemap.xml
+  - type: rewrite
+    source: /robots.txt
+    destination: https://chiarlaC.github.io/geo-arbitrage-mrr/robots.txt
+```
+
+### 更新流程
+
+```bash
+# 切换到 gh-pages 分支
+git checkout gh-pages
+
+# 编辑 sitemap.xml 或 robots.txt
+# ...
+
+# 提交并推送
+git add sitemap.xml robots.txt
+git commit -m "chore: update sitemap/robots"
+git push origin gh-pages
+
+# 回到 main 分支继续开发
+git checkout main
+```
+
+### robots.txt 当前内容（正确状态）
+
+```
+User-agent: *
+Allow: /
+Sitemap: https://subpricing.com/sitemap.xml
+```
+
+### ⚠️ 已知风险
+
+- AI 工具（如 antigravity）可能在不了解此架构的情况下修改 `render.yaml` 或在 `main` 分支创建静态文件，导致 GSC 读取 sitemap 失败。
+- 每次让 AI 协助 SEO 相关修改前，先告知它：**静态文件在 gh-pages 分支，通过 render.yaml rewrite 提供服务。**
 
 ---
 
@@ -119,7 +180,9 @@ GitHub Actions (.github/workflows/refresh-data.yml) → runs data_engine.py dail
 | 问题 | 原因 | 修复 |
 |------|------|------|
 | `push rejected` | `git pull --rebase` 在 commit 之后执行 | 改为 add → commit → push |
-| `cannot pull with rebase: unstaged changes` | `data_engine.py` 修改了 `data.csv` 导致 tree 为 dirty，无法进行 pull/rebase | **Sync-First 策略**：运行前先 fetch + reset --hard，运行后直接 push |
+| `cannot pull with rebase: unstaged changes` | `data_engine.py` 修改了 `data.csv` 导致 tree 为 dirty | **Sync-First 策略**：运行前先 fetch + reset --hard |
+| `Sitemap missing manuals` | `page_generator.py` 以前只写 42 个组合 | 改为自动扫描 `pages/*.py` 并排除 auto-gen slugs |
+| `Manual guides deleted` | `page_generator.py` 误将非组合文件判为 stale | 修正 `expected` 命名模式 (underscore) 并添加 `guide_` 白名单 |
 
 ### 当前正确执行顺序 (Sync-First Strategy)
 1. **Sync (Action Prep):** `git fetch` 和 `git reset --hard origin/main` 确保 runner 环境绝对干净。
