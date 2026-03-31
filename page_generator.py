@@ -111,14 +111,29 @@ def build_sitemap(combos: list[tuple[str, str]]) -> str:
     <priority>1.0</priority>
   </url>""")
 
-    # Sub-pages
+    # Sub-pages (Auto-generated)
+    generated_slugs = set()
     for service, country in combos:
         slug = f"{to_url_slug(service)}_{to_url_slug(country)}"
+        generated_slugs.add(f"{slug}.py")
         url_blocks.append(f"""  <url>
     <loc>{BASE_URL}/{slug}</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>""")
+
+    # Manual Pages (Guides, Reviews, etc.)
+    if os.path.exists(PAGES_DIR):
+        files = os.listdir(PAGES_DIR)
+        for fname in sorted(files):
+            if fname.endswith(".py") and fname not in generated_slugs and fname != "__init__.py":
+                slug = fname.replace(".py", "")
+                url_blocks.append(f"""  <url>
+    <loc>{BASE_URL}/{slug}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>""")
 
     body = "\n".join(url_blocks)
@@ -155,14 +170,19 @@ def generate(dry_run: bool = False) -> None:
     os.makedirs(PAGES_DIR, exist_ok=True)
 
     # Remove any stale .py files from previous naming conventions
+    # Skip guide_ pages and other manual files
     removed = 0
-    expected = {f"{to_slug(s)}-{to_slug(c)}.py" for s, c in product(SERVICES, COUNTRIES)}
+    expected = {f"{to_slug(s)}_{to_slug(c)}.py" for s, c in product(SERVICES, COUNTRIES)}
     for fname in os.listdir(PAGES_DIR):
-        if fname.endswith(".py") and fname not in expected:
-            stale = os.path.join(PAGES_DIR, fname)
-            os.remove(stale)
-            print(f"  [-] removed stale: pages/{fname}")
-            removed += 1
+        # Only remove if it looks like an old auto-gen file (service_country.py)
+        # and it's NOT in our current expected set.
+        # We assume manual files start with 'guide_', 'nordvpn_', 'privacy_', etc.
+        if fname.endswith(".py") and fname not in expected and fname != "__init__.py":
+            if "_" in fname and not (fname.startswith("guide_") or fname.startswith("nordvpn_") or fname.startswith("privacy_")):
+                stale = os.path.join(PAGES_DIR, fname)
+                os.remove(stale)
+                print(f"  [-] removed stale: pages/{fname}")
+                removed += 1
     if removed:
         print()
 
@@ -187,9 +207,10 @@ def generate(dry_run: bool = False) -> None:
 
     # Write sitemap
     sitemap_content = build_sitemap(combos)
+    num_urls = sitemap_content.count("<url>")
     with open(SITEMAP_OUT, "w", encoding="utf-8") as f:
         f.write(sitemap_content)
-    print(f"\n  [+] sitemap.xml  ({total + 1} URLs)")
+    print(f"\n  [+] sitemap.xml  ({num_urls} URLs)")
 
     print(f"\n  Done. {written} page files + sitemap written.")
 

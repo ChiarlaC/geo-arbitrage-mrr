@@ -16,7 +16,10 @@ from components.guide_base import (
     render_nordvpn_banner, render_nordvpn_cta, render_vpn_list, render_footer,
 )
 
-guide_page_setup("How to Get Netflix Turkey Price 2026 — Full Guide")
+guide_page_setup(
+    "How to Get Netflix Turkey Price 2026 — Full Guide",
+    description="Comprehensive 2026 guide on how to get Netflix Turkey price using gift cards. Step-by-step instructions, risk assessment, and VPN requirements."
+)
 render_breadcrumb("Netflix")
 
 st.markdown("# How to Get Netflix Turkey Price (2026 Guide)")

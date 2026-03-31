@@ -8,3 +8,6 @@ services:
       - type: redirect
         source: /sitemap.xml
         destination: https://chiarlaC.github.io/geo-arbitrage-mrr/sitemap.xml
+      - type: redirect
+        source: /robots.txt
+        destination: https://chiarlaC.github.io/geo-arbitrage-mrr/robots.txt

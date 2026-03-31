@@ -15,7 +15,10 @@ from components.guide_base import (
     render_nordvpn_banner, render_nordvpn_cta, render_vpn_list, render_footer,
 )
 
-guide_page_setup("How to Get Spotify Argentina Price 2026 — Full Guide")
+guide_page_setup(
+    "How to Get Spotify Argentina Price 2026 — Full Guide",
+    description="How to get Spotify Argentina or Turkey price in 2026. The easiest geo-arbitrage method using gift cards with 95%+ success rate."
+)
 render_breadcrumb("Spotify")
 
 st.markdown("# How to Get Spotify Argentina Price (2026 Guide)")

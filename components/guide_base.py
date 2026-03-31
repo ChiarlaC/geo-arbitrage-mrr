@@ -89,7 +89,7 @@ GUIDE_CSS = """
 """
 
 
-def guide_page_setup(page_title: str) -> None:
+def guide_page_setup(page_title: str, description: str = "") -> None:
     """Call at the top of every guide page, before any content."""
     st.set_page_config(
         page_title=page_title,
@@ -97,6 +97,11 @@ def guide_page_setup(page_title: str) -> None:
         layout="wide",
         initial_sidebar_state="collapsed",
     )
+    if description:
+        st.markdown(
+            f'<meta name="description" content="{description}">',
+            unsafe_allow_html=True,
+        )
     st.markdown(GUIDE_CSS, unsafe_allow_html=True)
 
 
