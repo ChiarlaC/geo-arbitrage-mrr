@@ -3,6 +3,8 @@
 > Read this file first. It tells you exactly where to look before opening any code file.
 > Last updated: 2026-03-31
 
+> ⚠️ **AI 工具使用前必读：** 本项目有非常规的两层静态文件架构。`sitemap.xml` 和 `robots.txt` **不在 main 分支提供服务**，而是通过 `render.yaml` rewrite 代理到 `gh-pages` 分支。在修改任何 SEO / 静态文件相关内容前，先读"静态文件托管架构"章节，否则极易破坏 GSC 可读性。
+
 ---
 
 ## Affiliate Links & Constants → `config.py`
@@ -113,46 +115,63 @@ GitHub Actions (.github/workflows/refresh-data.yml) → runs data_engine.py dail
 
 ## 静态文件托管架构 (sitemap.xml / robots.txt)
 
-> ⚠️ 不要让 AI 工具修改这套架构，已有多次被外部工具破坏的前例。
+> ⚠️ **这是本项目最容易被 AI 工具破坏的部分，已有多次前例。修改前务必理解完整架构。**
 
-### 架构说明
+### 为什么这样设计
 
-Streamlit 本身无法直接托管静态文件。当前使用两层机制：
+Streamlit 是纯应用框架，**无法直接在根路径托管静态文件**。访问 `/sitemap.xml` 默认返回 Streamlit 404。解决方案是两层架构：
 
-| 文件 | 实际存放位置 | 访问路径 |
-|------|-------------|---------|
-| `sitemap.xml` | `gh-pages` 分支根目录 | `subpricing.com/sitemap.xml` |
-| `robots.txt` | `gh-pages` 分支根目录 | `subpricing.com/robots.txt` |
+```
+用户/爬虫访问 subpricing.com/sitemap.xml
+        ↓
+  Render 平台拦截（render.yaml rewrite 规则）
+        ↓
+  透明代理到 GitHub Pages（gh-pages 分支）
+        ↓
+  返回真实的 sitemap.xml 内容
+```
 
-### 工作原理
-
-`render.yaml` 配置了 rewrite 规则，将 `/sitemap.xml` 和 `/robots.txt` 的请求代理到 GitHub Pages：
+### render.yaml 规则（不可改动）
 
 ```yaml
 routes:
-  - type: rewrite
+  - type: rewrite          # ← 必须是 rewrite，不能是 redirect
     source: /sitemap.xml
     destination: https://chiarlaC.github.io/geo-arbitrage-mrr/sitemap.xml
-  - type: rewrite
+  - type: rewrite          # ← 必须是 rewrite，不能是 redirect
     source: /robots.txt
     destination: https://chiarlaC.github.io/geo-arbitrage-mrr/robots.txt
 ```
 
-### 更新流程
+**`rewrite` vs `redirect` 的区别：**
+- `rewrite`：服务端透明代理，爬虫看到 200，内容直接返回 ✅
+- `redirect`：返回 302 跳转，Googlebot 可能拒绝跟随，导致 GSC 读取失败 ❌
 
+### 文件实际位置
+
+| 文件 | 实际存放 | 对外 URL |
+|------|---------|---------|
+| `sitemap.xml` | `gh-pages` 分支根目录 | `subpricing.com/sitemap.xml` |
+| `robots.txt` | `gh-pages` 分支根目录 | `subpricing.com/robots.txt` |
+| `sitemap.xml`（main） | `main` 分支根目录 | **不对外服务**，仅作为生成源 |
+
+### 正确更新流程
+
+**更新 sitemap（跑完 page_generator.py 之后）：**
 ```bash
-# 切换到 gh-pages 分支
 git checkout gh-pages
-
-# 编辑 sitemap.xml 或 robots.txt
-# ...
-
-# 提交并推送
-git add sitemap.xml robots.txt
-git commit -m "chore: update sitemap/robots"
+git checkout main -- sitemap.xml
+git commit -m "chore: sync sitemap from main"
 git push origin gh-pages
+git checkout main
+```
 
-# 回到 main 分支继续开发
+**更新 robots.txt：**
+```bash
+git checkout gh-pages
+# 直接编辑 robots.txt
+git add robots.txt && git commit -m "chore: update robots.txt"
+git push origin gh-pages
 git checkout main
 ```
 
@@ -164,10 +183,12 @@ Allow: /
 Sitemap: https://subpricing.com/sitemap.xml
 ```
 
-### ⚠️ 已知风险
+### ⚠️ 已发生的破坏案例
 
-- AI 工具（如 antigravity）可能在不了解此架构的情况下修改 `render.yaml` 或在 `main` 分支创建静态文件，导致 GSC 读取 sitemap 失败。
-- 每次让 AI 协助 SEO 相关修改前，先告知它：**静态文件在 gh-pages 分支，通过 render.yaml rewrite 提供服务。**
+| 时间 | 工具 | 破坏内容 | 影响 |
+|------|------|---------|------|
+| 2026-03-31 | antigravity | 将 `render.yaml` 中 `robots.txt` 的 `rewrite` 改为 `redirect` | robots.txt 对爬虫可能不可读 |
+| 2026-03-31 | antigravity | 删除了 `main` 分支上的 `sitemap.xml` | page_generator.py 输出丢失 |
 
 ---
 
@@ -183,6 +204,8 @@ Sitemap: https://subpricing.com/sitemap.xml
 | `cannot pull with rebase: unstaged changes` | `data_engine.py` 修改了 `data.csv` 导致 tree 为 dirty | **Sync-First 策略**：运行前先 fetch + reset --hard |
 | `Sitemap missing manuals` | `page_generator.py` 以前只写 42 个组合 | 改为自动扫描 `pages/*.py` 并排除 auto-gen slugs |
 | `Manual guides deleted` | `page_generator.py` 误将非组合文件判为 stale | 修正 `expected` 命名模式 (underscore) 并添加 `guide_` 白名单 |
+| `robots.txt redirect 破坏` | antigravity 将 `render.yaml` 的 `rewrite` 改为 `redirect` | 改回 `rewrite`；`redirect` 会让 Googlebot 看到 302，可能拒绝读取 |
+| `main 分支 sitemap.xml 丢失` | antigravity 删除了 main 上的 sitemap.xml | 重新运行 `page_generator.py` 生成并 commit |
 
 ### 当前正确执行顺序 (Sync-First Strategy)
 1. **Sync (Action Prep):** `git fetch` 和 `git reset --hard origin/main` 确保 runner 环境绝对干净。
