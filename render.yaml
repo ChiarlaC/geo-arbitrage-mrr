@@ -5,9 +5,9 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     routes:
-      - type: redirect
+      - type: rewrite
         source: /sitemap.xml
         destination: https://chiarlaC.github.io/geo-arbitrage-mrr/sitemap.xml
-      - type: redirect
+      - type: rewrite
         source: /robots.txt
         destination: https://chiarlaC.github.io/geo-arbitrage-mrr/robots.txt
