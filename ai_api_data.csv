@@ -1,0 +1,21 @@
+model_id,model_name,category,input_cost,output_cost,cache_cost,context_length,modality
+qwen/qwen3.5-9b,Qwen: Qwen3.5-9B,Multimodal,0.05,0.15,N/A,256K,text+image+video->text
+openai/gpt-5-nano,OpenAI: GPT-5 Nano,Multimodal,0.05,0.4,0.01,400K,text+image+file->text
+qwen/qwen3.5-flash-02-23,Qwen: Qwen3.5-Flash,"Multimodal, Social Media, Solo Dev",0.07,0.26,N/A,1000K,text+image+video->text
+mistralai/devstral-small,Mistral: Devstral Small 1.1,Code,0.1,0.3,0.01,131K,text->text
+qwen/qwen3-coder-flash,Qwen: Qwen3 Coder Flash,"Code, Solo Dev",0.2,0.97,0.04,1000K,text->text
+x-ai/grok-code-fast-1,xAI: Grok Code Fast 1,Code,0.2,1.5,0.02,256K,text->text
+qwen/qwen3-coder,Qwen: Qwen3 Coder 480B A35B,Code,0.22,1.0,0.02,262K,text->text
+qwen/qwen3.5-plus-02-15,Qwen: Qwen3.5 Plus 2026-02-15,Text,0.26,1.56,N/A,1000K,text+image+video->text
+deepseek/deepseek-v3.2,DeepSeek: DeepSeek V3.2,"Text, Social Media, Solo Dev",0.26,0.38,0.13,163K,text->text
+google/gemini-2.5-flash-image,Google: Nano Banana (Gemini 2.5 Flash Image),"Image Gen, Social Media, Solo Dev",0.3,2.5,0.03,32K,text+image->text+image
+google/gemini-3.1-flash-image-preview,Google: Nano Banana 2 (Gemini 3.1 Flash Image Preview),Image Gen,0.5,3.0,N/A,65K,text+image->text+image
+anthropic/claude-haiku-4.5,Anthropic: Claude Haiku 4.5,Social Media,1.0,5.0,0.1,200K,text+image->text
+openai/gpt-5.3-codex,OpenAI: GPT-5.3-Codex,Code,1.75,14.0,0.17,400K,text+image+file->text
+x-ai/grok-4.20,xAI: Grok 4.20,Text,2.0,6.0,0.2,2000K,text+image->text
+google/gemini-3.1-pro-preview,Google: Gemini 3.1 Pro Preview,"Multimodal, Text",2.0,12.0,0.2,1048K,text+image+file+audio+video->text
+openai/gpt-5.4,OpenAI: GPT-5.4,"Multimodal, Text",2.5,15.0,0.25,1050K,text+image+file->text
+openai/gpt-5-image-mini,OpenAI: GPT-5 Image Mini,Image Gen,2.5,2.0,0.25,400K,text+image+file->text+image
+anthropic/claude-sonnet-4.6,Anthropic: Claude Sonnet 4.6,"Multimodal, Text, Code, Solo Dev",3.0,15.0,0.3,1000K,text+image->text
+anthropic/claude-opus-4.6,Anthropic: Claude Opus 4.6,Text,5.0,25.0,0.5,1000K,text+image->text
+openai/gpt-5-image,OpenAI: GPT-5 Image,Image Gen,10.0,10.0,1.25,400K,text+image+file->text+image

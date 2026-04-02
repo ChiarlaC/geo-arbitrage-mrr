@@ -221,6 +221,7 @@ nav_html = f"""
   {_build_dropdown("Netflix", "netflix")}
   {_build_dropdown("YouTube Premium", "youtube_premium")}
   {_build_dropdown("Spotify", "spotify")}
+  <a class="nav-dropdown" href="/ai_api_pricing" target="_self" style="text-decoration: none; color: #111;">🤖 AI Pricing</a>
   <a class="nav-feedback" href="mailto:feedback@subpricing.com">✉ Report a Bug</a>
 </div>
 """
@@ -262,6 +263,15 @@ st.markdown(f"""
     <div style="font-size:0.78rem;color:#555;margin-top:0.25rem">Tested on Netflix Turkey · Spotify Argentina · YouTube Premium — March 2026</div>
   </div>
   <a href="/nordvpn_review" style="display:inline-block;background:#111;color:#fff;text-decoration:none;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.6rem 1.4rem;white-space:nowrap">Read Review &#9654;</a>
+</div>
+
+<div style="display:flex;align-items:center;gap:1.2rem;margin:1.4rem 0;padding:1rem 1.4rem;border:2px solid #111;background:#f9f9f9">
+  <div style="flex:1">
+    <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:#888;margin-bottom:0.3rem;font-weight:700">AI Model Pricing</div>
+    <div style="font-size:0.95rem;font-weight:700;color:#111">Click here to see the latest AI MODEL comparison!</div>
+    <div style="font-size:0.78rem;color:#555;margin-top:0.25rem">Real-time API costs · 20+ models · Use case recommendations</div>
+  </div>
+  <a href="/ai_api_pricing" style="display:inline-block;background:#111;color:#fff;text-decoration:none;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.6rem 1.4rem;white-space:nowrap">View Pricing &#9654;</a>
 </div>
 """, unsafe_allow_html=True)
 

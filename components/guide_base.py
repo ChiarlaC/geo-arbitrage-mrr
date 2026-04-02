@@ -107,7 +107,11 @@ def guide_page_setup(page_title: str, description: str = "") -> None:
 
 def render_breadcrumb(service_label: str) -> None:
     """Render back link + breadcrumb trail."""
-    st.page_link("app.py", label="← Back to Dashboard")
+    st.markdown(
+        '<a href="/" style="font-size:0.85rem;color:#111;text-decoration:none;font-weight:600;'
+        'display:inline-block;margin-bottom:0.5rem">← Back to Dashboard</a>',
+        unsafe_allow_html=True
+    )
     st.markdown(
         f'<div class="breadcrumb">'
         f'<a href="{SITE_URL}/">Home</a> &rsaquo; Guides &rsaquo; {service_label}'
