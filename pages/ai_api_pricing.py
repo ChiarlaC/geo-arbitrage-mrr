@@ -198,7 +198,11 @@ fig.update_layout(
         yanchor="bottom",
         y=1.02,
         xanchor="right",
-        x=1
+        x=1,
+        font=dict(size=12, color='#111'),
+        bgcolor='rgba(255,255,255,0.8)',
+        bordercolor='#ccc',
+        borderwidth=1
     ),
     hovermode='x unified',
     height=500,
