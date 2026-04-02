@@ -94,15 +94,88 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Load data with caching
+# Load data with caching (mtime-based invalidation)
 import os
 
-@st.cache_data
-def load_data():
-    csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ai_api_data.csv')
+@st.cache_data(show_spinner=False)
+def load_data(csv_path: str, mtime: float):
     return pd.read_csv(csv_path)
 
-df = load_data()
+CSV_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ai_api_data.csv')
+MTIME = os.path.getmtime(CSV_PATH)
+df = load_data(CSV_PATH, MTIME)
+
+# Pre-generate recommendation cards (HTML caching)
+@st.cache_data(show_spinner=False)
+def generate_recommendation_cards(df: pd.DataFrame, use_case: str):
+    """Generate HTML for all recommendation cards for a given use case."""
+    models = df[df['category'].str.contains(use_case, na=False)].sort_values('input_cost')
+
+    reasons = {
+        'Multimodal': {
+            'claude-sonnet-4.6': 'Native PDF support with text+image extraction. Best for complex documents with mixed content.',
+            'gpt-5.4': 'Strong vision capabilities, supports file attachments. Ideal for diagram analysis and technical documentation.',
+            'gpt-5-nano': 'Ultra-cheap multimodal option. Great for high-volume OCR tasks with tight budgets.',
+            'gemini-3.1-pro': 'Longest context window (1M+ tokens). Perfect for processing entire books or large document batches.',
+            'qwen3.5-flash': 'Best price/performance ratio. Fast OCR with surprisingly good accuracy for charts and tables.',
+            'qwen3.5-9b': 'Cheapest multimodal model. Suitable for simple image classification or basic OCR workflows.'
+        },
+        'Text': {
+            'claude-opus-4.6': 'Strongest reasoning model. Best for legal analysis, research synthesis, and strategic planning.',
+            'claude-sonnet-4.6': 'Balanced flagship: fast, accurate, great at following complex instructions. Top choice for writing.',
+            'gpt-5.4': 'Creative writing specialist. Excels at storytelling, marketing copy, and conversational tone.',
+            'gemini-3.1-pro': 'Best for translation and multilingual tasks. Handles 100+ languages with cultural nuance.',
+            'deepseek-v3.2': 'Best price/performance for text. Surprisingly strong at reasoning despite low cost.',
+            'qwen3.5-plus': 'Strong Chinese language support. Ideal for CN/EN translation and Chinese content generation.',
+            'grok-4.20': 'Real-time web access. Best for news summary, trend analysis, and fact-checking recent events.'
+        },
+        'Code': {
+            'claude-sonnet-4.6': 'Best full-stack coding model. Excels at architectural decisions, refactoring, and complex debugging.',
+            'gpt-5.3-codex': 'OpenAI\'s code specialist. Strong at function completion and API wrapper generation.',
+            'grok-code-fast-1': 'Fastest code generation. Ideal for repetitive CRUD code and boilerplate generation.',
+            'qwen3-coder': 'Best value for large codebases. Handles entire repo context for accurate refactoring.',
+            'qwen3-coder-flash': 'Ultra-cheap code assistant. Great for code review, linting suggestions, and simple scripts.',
+            'devstral-small': 'Lightweight code model. Perfect for embedded systems, edge devices, or tight budgets.'
+        },
+        'Image Gen': {
+            'gpt-5-image': 'Highest quality photorealistic images. Best for professional marketing and product photography.',
+            'gpt-5-image-mini': 'Good quality at mid-tier price. Ideal for social media posts and blog illustrations.',
+            'gemini-3.1-flash-image': 'Fast generation with decent quality. Great for A/B testing multiple design variations.',
+            'gemini-2.5-flash-image': 'Cheapest image gen. Perfect for high-volume thumbnail creation or placeholder graphics.'
+        }
+    }
+
+    cards_html = []
+    reason_dict = reasons.get(use_case, {})
+
+    for _, row in models.iterrows():
+        if row['input_cost'] <= 0.1:
+            badge_text = "Best Value"
+        elif 'claude' in row['model_id'].lower():
+            badge_text = "Strongest" if use_case == 'Text' else "Best Overall"
+        else:
+            badge_text = "Solid Choice"
+
+        reason_html = ""
+        for key, desc in reason_dict.items():
+            if key in row['model_id']:
+                reason_html = f'<div class="model-card-reason">Why: {desc}</div>'
+                break
+
+        card_html = f"""
+        <div class="model-card">
+            <div class="model-card-title">{badge_text}: {row['model_name']}</div>
+            {reason_html}
+            <div class="model-card-pricing">
+                Input: <span class="highlight">${row['input_cost']}/M</span> |
+                Output: <span class="highlight">${row['output_cost']}/M</span> |
+                Context: {row['context_length']}
+            </div>
+        </div>
+        """
+        cards_html.append(card_html)
+
+    return '\n'.join(cards_html)
 
 render_breadcrumb("AI Model Pricing")
 
@@ -383,165 +456,22 @@ else:
 if tab1:
     st.markdown("### Why Multimodal?")
     st.markdown("Best for: Image understanding, OCR, PDF processing, chart analysis, document workflows")
-
-    models = df[df['category'].str.contains('Multimodal', na=False)].sort_values('input_cost')
-
-    reasons = {
-        'claude-sonnet-4.6': 'Native PDF support with text+image extraction. Best for complex documents with mixed content.',
-        'gpt-5.4': 'Strong vision capabilities, supports file attachments. Ideal for diagram analysis and technical documentation.',
-        'gpt-5-nano': 'Ultra-cheap multimodal option. Great for high-volume OCR tasks with tight budgets.',
-        'gemini-3.1-pro': 'Longest context window (1M+ tokens). Perfect for processing entire books or large document batches.',
-        'qwen3.5-flash': 'Best price/performance ratio. Fast OCR with surprisingly good accuracy for charts and tables.',
-        'qwen3.5-9b': 'Cheapest multimodal model. Suitable for simple image classification or basic OCR workflows.'
-    }
-
-    for _, row in models.iterrows():
-        if row['input_cost'] <= 0.1:
-            badge_text = "Best Value"
-        elif 'claude' in row['model_id'].lower():
-            badge_text = "Strongest"
-        else:
-            badge_text = "Solid Choice"
-
-        reason = ""
-        for key, desc in reasons.items():
-            if key in row['model_id']:
-                reason = f'<div class="model-card-reason">Why: {desc}</div>'
-                break
-
-        st.markdown(f"""
-        <div class="model-card">
-            <div class="model-card-title">{badge_text}: {row['model_name']}</div>
-            {reason}
-            <div class="model-card-pricing">
-                Input: <span class="highlight">${row['input_cost']}/M</span> |
-                Output: <span class="highlight">${row['output_cost']}/M</span> |
-                Context: {row['context_length']}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown(generate_recommendation_cards(df, 'Multimodal'), unsafe_allow_html=True)
 
 if tab2:
     st.markdown("### Why Text Excellence?")
     st.markdown("Best for: Long-form writing, translation, knowledge base Q&A, summarization, complex reasoning")
-
-    models = df[df['category'].str.contains('Text', na=False)].sort_values('input_cost')
-
-    reasons = {
-        'claude-opus-4.6': 'Strongest reasoning model. Best for legal analysis, research synthesis, and strategic planning.',
-        'claude-sonnet-4.6': 'Balanced flagship: fast, accurate, great at following complex instructions. Top choice for writing.',
-        'gpt-5.4': 'Creative writing specialist. Excels at storytelling, marketing copy, and conversational tone.',
-        'gemini-3.1-pro': 'Best for translation and multilingual tasks. Handles 100+ languages with cultural nuance.',
-        'deepseek-v3.2': 'Best price/performance for text. Surprisingly strong at reasoning despite low cost.',
-        'qwen3.5-plus': 'Strong Chinese language support. Ideal for CN/EN translation and Chinese content generation.',
-        'grok-4.20': 'Real-time web access. Best for news summary, trend analysis, and fact-checking recent events.'
-    }
-
-    for _, row in models.iterrows():
-        if row['input_cost'] <= 0.3:
-            badge_text = "Best Value"
-        elif 'opus' in row['model_id'].lower():
-            badge_text = "Deep Thinking"
-        else:
-            badge_text = "Flagship"
-
-        reason = ""
-        for key, desc in reasons.items():
-            if key in row['model_id']:
-                reason = f'<div class="model-card-reason">Why: {desc}</div>'
-                break
-
-        st.markdown(f"""
-        <div class="model-card">
-            <div class="model-card-title">{badge_text}: {row['model_name']}</div>
-            {reason}
-            <div class="model-card-pricing">
-                Input: <span class="highlight">${row['input_cost']}/M</span> |
-                Output: <span class="highlight">${row['output_cost']}/M</span> |
-                Context: {row['context_length']}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown(generate_recommendation_cards(df, 'Text'), unsafe_allow_html=True)
 
 if tab3:
     st.markdown("### Why Code Specialist?")
     st.markdown("Best for: Full-stack development, API integration, debugging, automation scripts, code review")
-
-    models = df[df['category'].str.contains('Code', na=False)].sort_values('input_cost')
-
-    reasons = {
-        'claude-sonnet-4.6': 'Best full-stack coding model. Excels at architectural decisions, refactoring, and complex debugging.',
-        'gpt-5.3-codex': 'OpenAI\'s code specialist. Strong at function completion and API wrapper generation.',
-        'grok-code-fast-1': 'Fastest code generation. Ideal for repetitive CRUD code and boilerplate generation.',
-        'qwen3-coder': 'Best value for large codebases. Handles entire repo context for accurate refactoring.',
-        'qwen3-coder-flash': 'Ultra-cheap code assistant. Great for code review, linting suggestions, and simple scripts.',
-        'devstral-small': 'Lightweight code model. Perfect for embedded systems, edge devices, or tight budgets.'
-    }
-
-    for _, row in models.iterrows():
-        if row['input_cost'] <= 0.25:
-            badge_text = "Best Value"
-        elif 'claude' in row['model_id'].lower():
-            badge_text = "Best Overall"
-        else:
-            badge_text = "Code-Focused"
-
-        reason = ""
-        for key, desc in reasons.items():
-            if key in row['model_id']:
-                reason = f'<div class="model-card-reason">Why: {desc}</div>'
-                break
-
-        st.markdown(f"""
-        <div class="model-card">
-            <div class="model-card-title">{badge_text}: {row['model_name']}</div>
-            {reason}
-            <div class="model-card-pricing">
-                Input: <span class="highlight">${row['input_cost']}/M</span> |
-                Output: <span class="highlight">${row['output_cost']}/M</span> |
-                Context: {row['context_length']}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown(generate_recommendation_cards(df, 'Code'), unsafe_allow_html=True)
 
 if tab4:
     st.markdown("### Why Image Generation?")
     st.markdown("Best for: Marketing materials, social media graphics, product mockups, wireframes")
-
-    models = df[df['category'].str.contains('Image Gen', na=False)].sort_values('input_cost')
-
-    reasons = {
-        'gpt-5-image': 'Highest quality photorealistic images. Best for professional marketing and product photography.',
-        'gpt-5-image-mini': 'Good quality at mid-tier price. Ideal for social media posts and blog illustrations.',
-        'gemini-3.1-flash-image': 'Fast generation with decent quality. Great for A/B testing multiple design variations.',
-        'gemini-2.5-flash-image': 'Cheapest image gen. Perfect for high-volume thumbnail creation or placeholder graphics.'
-    }
-
-    for _, row in models.iterrows():
-        if row['input_cost'] <= 0.5:
-            badge_text = "Budget Friendly"
-        elif 'gpt-5-image' in row['model_id'] and 'mini' not in row['model_id']:
-            badge_text = "Highest Quality"
-        else:
-            badge_text = "Good Balance"
-
-        reason = ""
-        for key, desc in reasons.items():
-            if key in row['model_id']:
-                reason = f'<div class="model-card-reason">Why: {desc}</div>'
-                break
-
-        st.markdown(f"""
-        <div class="model-card">
-            <div class="model-card-title">{badge_text}: {row['model_name']}</div>
-            {reason}
-            <div class="model-card-pricing">
-                Input: <span class="highlight">${row['input_cost']}/M</span> |
-                Output: <span class="highlight">${row['output_cost']}/M</span> |
-                Context: {row['context_length']}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown(generate_recommendation_cards(df, 'Image Gen'), unsafe_allow_html=True)
 
 if tab5:
     st.markdown("### Why Social Media Workflow?")
