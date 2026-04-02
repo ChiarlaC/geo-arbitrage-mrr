@@ -95,7 +95,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load data
-df = pd.read_csv('ai_api_data.csv')
+import os
+csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ai_api_data.csv')
+df = pd.read_csv(csv_path)
 
 render_breadcrumb("AI Model Pricing")
 
