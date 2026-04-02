@@ -94,10 +94,15 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Load data
+# Load data with caching
 import os
-csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ai_api_data.csv')
-df = pd.read_csv(csv_path)
+
+@st.cache_data
+def load_data():
+    csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ai_api_data.csv')
+    return pd.read_csv(csv_path)
+
+df = load_data()
 
 render_breadcrumb("AI Model Pricing")
 
