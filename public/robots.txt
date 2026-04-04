@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://subpricing.com/sitemap.xml
+
+# Disallow admin pages and internal APIs
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Allow search engines to crawl dynamic pricing pages
+Allow: /*/argentina
+Allow: /*/egypt
+Allow: /*/india
+Allow: /*/nigeria
+Allow: /*/pakistan
+Allow: /*/philippines
+Allow: /*/turkey
+
+# Crawl delay to be respectful
+Crawl-delay: 1

@@ -2,22 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer components {
+  .card {
+    @apply transform-gpu transition-all duration-300;
+    backface-visibility: hidden;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --background: #fafaf9;
+    --foreground: #1c1917;
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] font-sans min-h-screen;
+  }
+
+  h1 {
+    @apply text-3xl font-display font-semibold tracking-tight mb-6;
+  }
+
+  h2 {
+    @apply text-2xl font-display font-medium mb-4;
+  }
+
+  h3 {
+    @apply text-xl font-display font-medium mb-3;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-neutral-200/50 
+           hover:shadow-lg transition-all duration-300;
+    transform: translateZ(0); /* Force hardware acceleration for better rendering */
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-b from-primary-500 to-primary-600 text-white 
+           font-medium rounded-xl px-6 py-3 shadow-lg shadow-primary-500/30
+           hover:shadow-xl hover:shadow-primary-500/40 active:scale-100
+           transition-all duration-200;
+    transform: translateZ(0); /* Force hardware acceleration */
+  }
+
+  .glass {
+    @apply bg-white/60 backdrop-blur-md border border-white/20;
+  }
 }
 
 @layer utilities {

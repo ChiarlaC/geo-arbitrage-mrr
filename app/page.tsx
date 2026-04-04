@@ -1,101 +1,83 @@
-import Image from "next/image";
+import MetricCards from "@/components/MetricCards";
+import PricingTable from "@/components/PricingTable";
+import { loadPricingData } from "@/lib/data";
 
-export default function Home() {
+export default async function HomePage() {
+  const pricingData = await loadPricingData();
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="space-y-8">
+      <div className="text-center">
+        <h1 className="text-4xl font-display font-bold tracking-tight">Global Subscription Price Tracker</h1>
+        <p className="text-neutral-600 mt-4 max-w-2xl mx-auto">
+          Compare subscription prices across 49 countries. Save up to 90% on Netflix, Spotify,
+          YouTube Premium, and more.
+        </p>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <MetricCards data={pricingData} />
+
+      <div className="card bg-white/90 backdrop-blur-xl rounded-xl shadow-sm border border-neutral-200/50 p-6">
+        <div className="mb-6">
+          <h2 className="text-2xl font-display font-semibold">Subscription Prices by Country</h2>
+          <p className="text-neutral-600 mt-2">
+            Click on column headers to sort. Data updated daily. Scroll to view all data.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <PricingTable data={pricingData} />
+      </div>
+
+      <div className="card bg-neutral-50/50 backdrop-blur-sm rounded-xl border border-neutral-200/50 p-8">
+        <h3 className="text-xl font-display font-semibold mb-6 text-center">How It Works</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="card bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-neutral-200/30 hover:shadow-xl">
+            <div className="text-5xl font-display font-bold text-primary-500 mb-4">1</div>
+            <h4 className="text-lg font-display font-medium mb-3">Compare</h4>
+            <p className="text-neutral-600">
+              Browse prices for 6 popular subscription services across 7 countries.
+            </p>
+          </div>
+          <div className="card bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-neutral-200/30 hover:shadow-xl">
+            <div className="text-5xl font-display font-bold text-primary-500 mb-4">2</div>
+            <h4 className="text-lg font-display font-medium mb-3">Calculate</h4>
+            <p className="text-neutral-600">
+              See exact savings in USD and percentage compared to US prices.
+            </p>
+          </div>
+          <div className="card bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-neutral-200/30 hover:shadow-xl">
+            <div className="text-5xl font-display font-bold text-primary-500 mb-4">3</div>
+            <h4 className="text-lg font-display font-medium mb-3">Subscribe</h4>
+            <p className="text-neutral-600">
+              Use a VPN to access geo-restricted pricing and save hundreds per year.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="card bg-white/90 backdrop-blur-xl rounded-xl shadow-sm border border-neutral-200/50 p-8">
+        <h3 className="text-xl font-display font-semibold mb-6">NordVPN Recommendation</h3>
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1">
+            <p className="mb-6 text-neutral-700">
+              To access regional pricing, you need a VPN. We recommend NordVPN for its fast
+              speeds, reliable connections, and ability to bypass geo-restrictions.
+            </p>
+            <a
+              href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=143797"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary bg-gradient-to-b from-primary-500 to-primary-600 text-white uppercase text-sm px-8 py-4 hover:shadow-xl hover:shadow-primary-500/40"
+            >
+              Get NordVPN - Save 70%
+            </a>
+          </div>
+          <div className="text-neutral-700 space-y-3">
+            <p className="flex items-center gap-2">✅ 30-day money-back guarantee</p>
+            <p className="flex items-center gap-2">✅ 5,400+ servers in 60 countries</p>
+            <p className="flex items-center gap-2">✅ Works with Netflix, Spotify, YouTube Premium</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

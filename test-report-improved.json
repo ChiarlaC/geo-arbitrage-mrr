@@ -1,0 +1,273 @@
+{
+  "timestamp": "2026-04-04T18:05:46.989Z",
+  "totalPages": 53,
+  "successCount": 53,
+  "errorCount": 0,
+  "results": [
+    {
+      "url": "/",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/ai-pricing",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/about",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/privacy",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/terms",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/guide/netflix",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/guide/spotify",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/guide/youtube-premium",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/guide/disney-plus",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/guide/canva-pro",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/guide/tidal",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/netflix/argentina",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/netflix/egypt",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/netflix/india",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/netflix/nigeria",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/netflix/pakistan",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/netflix/philippines",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/netflix/turkey",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/spotify/argentina",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/spotify/egypt",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/spotify/india",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/spotify/nigeria",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/spotify/pakistan",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/spotify/philippines",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/spotify/turkey",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/youtube-premium/argentina",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/youtube-premium/egypt",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/youtube-premium/india",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/youtube-premium/nigeria",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/youtube-premium/pakistan",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/youtube-premium/philippines",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/youtube-premium/turkey",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/disney-plus/argentina",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/disney-plus/egypt",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/disney-plus/india",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/disney-plus/nigeria",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/disney-plus/pakistan",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/disney-plus/philippines",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/disney-plus/turkey",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/canva-pro/argentina",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/canva-pro/egypt",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/canva-pro/india",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/canva-pro/nigeria",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/canva-pro/pakistan",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/canva-pro/philippines",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/canva-pro/turkey",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/tidal/argentina",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/tidal/egypt",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/tidal/india",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/tidal/nigeria",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/tidal/pakistan",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/tidal/philippines",
+      "status": "success",
+      "statusCode": 200
+    },
+    {
+      "url": "/tidal/turkey",
+      "status": "success",
+      "statusCode": 200
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "service": "Netflix",
+    "country": "Turkey",
+    "plan": "Standard HD",
+    "local_price": "₺149.99",
+    "usd_price": 3.37,
+    "savings_vs_us": 78.3
+  },
+  {
+    "service": "Netflix",
+    "country": "Argentina",
+    "plan": "Standard HD",
+    "local_price": "ARS 1,199",
+    "usd_price": 0.86,
+    "savings_vs_us": 94.4
+  },
+  {
+    "service": "Netflix",
+    "country": "Nigeria",
+    "plan": "Standard HD",
+    "local_price": "₦2900.00",
+    "usd_price": 2.1,
+    "savings_vs_us": 86.4
+  },
+  {
+    "service": "Netflix",
+    "country": "Egypt",
+    "plan": "Standard HD",
+    "local_price": "EGP100.00",
+    "usd_price": 1.87,
+    "savings_vs_us": 87.9
+  },
+  {
+    "service": "Netflix",
+    "country": "Pakistan",
+    "plan": "Standard HD",
+    "local_price": "PKR250.00",
+    "usd_price": 0.9,
+    "savings_vs_us": 94.2
+  },
+  {
+    "service": "Netflix",
+    "country": "Philippines",
+    "plan": "Standard HD",
+    "local_price": "₱149.00",
+    "usd_price": 2.47,
+    "savings_vs_us": 84.0
+  },
+  {
+    "service": "Netflix",
+    "country": "India",
+    "plan": "Mobile",
+    "local_price": "₹199.00",
+    "usd_price": 2.13,
+    "savings_vs_us": 86.3
+  },
+  {
+    "service": "YouTube Premium",
+    "country": "Turkey",
+    "plan": "Individual",
+    "local_price": "₺47.99",
+    "usd_price": 1.08,
+    "savings_vs_us": 92.3
+  },
+  {
+    "service": "YouTube Premium",
+    "country": "Argentina",
+    "plan": "Individual",
+    "local_price": "ARS 549",
+    "usd_price": 0.4,
+    "savings_vs_us": 97.2
+  },
+  {
+    "service": "YouTube Premium",
+    "country": "Nigeria",
+    "plan": "Individual",
+    "local_price": "₦1490.00",
+    "usd_price": 1.08,
+    "savings_vs_us": 92.3
+  },
+  {
+    "service": "YouTube Premium",
+    "country": "Egypt",
+    "plan": "Individual",
+    "local_price": "EGP39.99",
+    "usd_price": 0.75,
+    "savings_vs_us": 94.7
+  },
+  {
+    "service": "YouTube Premium",
+    "country": "Pakistan",
+    "plan": "Individual",
+    "local_price": "PKR219.00",
+    "usd_price": 0.78,
+    "savings_vs_us": 94.4
+  },
+  {
+    "service": "YouTube Premium",
+    "country": "Philippines",
+    "plan": "Individual",
+    "local_price": "₱99.00",
+    "usd_price": 1.64,
+    "savings_vs_us": 88.3
+  },
+  {
+    "service": "YouTube Premium",
+    "country": "India",
+    "plan": "Individual",
+    "local_price": "₹89.00",
+    "usd_price": 0.95,
+    "savings_vs_us": 93.2
+  },
+  {
+    "service": "Spotify",
+    "country": "Turkey",
+    "plan": "Individual",
+    "local_price": "₺34.99",
+    "usd_price": 0.79,
+    "savings_vs_us": 93.4
+  },
+  {
+    "service": "Spotify",
+    "country": "Argentina",
+    "plan": "Individual",
+    "local_price": "ARS 399",
+    "usd_price": 0.29,
+    "savings_vs_us": 97.6
+  },
+  {
+    "service": "Spotify",
+    "country": "Nigeria",
+    "plan": "Individual",
+    "local_price": "₦900.00",
+    "usd_price": 0.65,
+    "savings_vs_us": 94.6
+  },
+  {
+    "service": "Spotify",
+    "country": "Egypt",
+    "plan": "Individual",
+    "local_price": "EGP25.00",
+    "usd_price": 0.47,
+    "savings_vs_us": 96.1
+  },
+  {
+    "service": "Spotify",
+    "country": "Pakistan",
+    "plan": "Individual",
+    "local_price": "PKR159.00",
+    "usd_price": 0.57,
+    "savings_vs_us": 95.2
+  },
+  {
+    "service": "Spotify",
+    "country": "Philippines",
+    "plan": "Individual",
+    "local_price": "₱129.00",
+    "usd_price": 2.14,
+    "savings_vs_us": 82.1
+  },
+  {
+    "service": "Spotify",
+    "country": "India",
+    "plan": "Individual",
+    "local_price": "₹119.00",
+    "usd_price": 1.27,
+    "savings_vs_us": 89.4
+  },
+  {
+    "service": "Disney Plus",
+    "country": "Turkey",
+    "plan": "Standard",
+    "local_price": "₺59.99",
+    "usd_price": 1.35,
+    "savings_vs_us": 91.3
+  },
+  {
+    "service": "Disney Plus",
+    "country": "Argentina",
+    "plan": "Standard",
+    "local_price": "ARS 799",
+    "usd_price": 0.57,
+    "savings_vs_us": 95.9
+  },
+  {
+    "service": "Disney Plus",
+    "country": "Nigeria",
+    "plan": "Standard",
+    "local_price": "₦1900.00",
+    "usd_price": 1.38,
+    "savings_vs_us": 90.1
+  },
+  {
+    "service": "Disney Plus",
+    "country": "Egypt",
+    "plan": "Standard",
+    "local_price": "EGP39.99",
+    "usd_price": 0.75,
+    "savings_vs_us": 94.7
+  },
+  {
+    "service": "Disney Plus",
+    "country": "Pakistan",
+    "plan": "Standard",
+    "local_price": "PKR199.00",
+    "usd_price": 0.72,
+    "savings_vs_us": 94.9
+  },
+  {
+    "service": "Disney Plus",
+    "country": "Philippines",
+    "plan": "Standard",
+    "local_price": "₱99.00",
+    "usd_price": 1.64,
+    "savings_vs_us": 88.3
+  },
+  {
+    "service": "Disney Plus",
+    "country": "India",
+    "plan": "Standard",
+    "local_price": "₹89.00",
+    "usd_price": 0.95,
+    "savings_vs_us": 93.2
+  },
+  {
+    "service": "Canva Pro",
+    "country": "Turkey",
+    "plan": "Individual",
+    "local_price": "₺149.99",
+    "usd_price": 3.37,
+    "savings_vs_us": 78.3
+  },
+  {
+    "service": "Canva Pro",
+    "country": "Argentina",
+    "plan": "Individual",
+    "local_price": "ARS 799",
+    "usd_price": 0.57,
+    "savings_vs_us": 95.9
+  },
+  {
+    "service": "Canva Pro",
+    "country": "Nigeria",
+    "plan": "Individual",
+    "local_price": "₦2900.00",
+    "usd_price": 2.1,
+    "savings_vs_us": 86.4
+  },
+  {
+    "service": "Canva Pro",
+    "country": "Egypt",
+    "plan": "Individual",
+    "local_price": "EGP100.00",
+    "usd_price": 1.87,
+    "savings_vs_us": 87.9
+  },
+  {
+    "service": "Canva Pro",
+    "country": "Pakistan",
+    "plan": "Individual",
+    "local_price": "PKR250.00",
+    "usd_price": 0.9,
+    "savings_vs_us": 94.2
+  },
+  {
+    "service": "Canva Pro",
+    "country": "Philippines",
+    "plan": "Individual",
+    "local_price": "₱149.00",
+    "usd_price": 2.47,
+    "savings_vs_us": 84.0
+  },
+  {
+    "service": "Canva Pro",
+    "country": "India",
+    "plan": "Individual",
+    "local_price": "₹199.00",
+    "usd_price": 2.13,
+    "savings_vs_us": 86.3
+  },
+  {
+    "service": "Tidal",
+    "country": "Turkey",
+    "plan": "HiFi",
+    "local_price": "₺34.99",
+    "usd_price": 0.79,
+    "savings_vs_us": 93.4
+  },
+  {
+    "service": "Tidal",
+    "country": "Argentina",
+    "plan": "HiFi",
+    "local_price": "ARS 399",
+    "usd_price": 0.29,
+    "savings_vs_us": 97.6
+  },
+  {
+    "service": "Tidal",
+    "country": "Nigeria",
+    "plan": "HiFi",
+    "local_price": "₦900.00",
+    "usd_price": 0.65,
+    "savings_vs_us": 94.6
+  },
+  {
+    "service": "Tidal",
+    "country": "Egypt",
+    "plan": "HiFi",
+    "local_price": "EGP25.00",
+    "usd_price": 0.47,
+    "savings_vs_us": 96.1
+  },
+  {
+    "service": "Tidal",
+    "country": "Pakistan",
+    "plan": "HiFi",
+    "local_price": "PKR159.00",
+    "usd_price": 0.57,
+    "savings_vs_us": 95.2
+  },
+  {
+    "service": "Tidal",
+    "country": "Philippines",
+    "plan": "HiFi",
+    "local_price": "₱129.00",
+    "usd_price": 2.14,
+    "savings_vs_us": 82.1
+  },
+  {
+    "service": "Tidal",
+    "country": "India",
+    "plan": "HiFi",
+    "local_price": "₹119.00",
+    "usd_price": 1.27,
+    "savings_vs_us": 89.4
+  }
+]

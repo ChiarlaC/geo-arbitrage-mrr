@@ -1,0 +1,273 @@
+{
+  "timestamp": "2026-04-04T17:37:15.196Z",
+  "totalPages": 53,
+  "successCount": 0,
+  "errorCount": 53,
+  "results": [
+    {
+      "url": "/",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/\n"
+    },
+    {
+      "url": "/ai-pricing",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/ai-pricing\n"
+    },
+    {
+      "url": "/about",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/about\n"
+    },
+    {
+      "url": "/privacy",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/privacy\n"
+    },
+    {
+      "url": "/terms",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/terms\n"
+    },
+    {
+      "url": "/guide/netflix",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/guide/netflix\n"
+    },
+    {
+      "url": "/guide/spotify",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/guide/spotify\n"
+    },
+    {
+      "url": "/guide/youtube-premium",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/guide/youtube-premium\n"
+    },
+    {
+      "url": "/guide/disney-plus",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/guide/disney-plus\n"
+    },
+    {
+      "url": "/guide/canva-pro",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/guide/canva-pro\n"
+    },
+    {
+      "url": "/guide/tidal",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/guide/tidal\n"
+    },
+    {
+      "url": "/netflix/argentina",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/netflix/argentina\n"
+    },
+    {
+      "url": "/netflix/egypt",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/netflix/egypt\n"
+    },
+    {
+      "url": "/netflix/india",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/netflix/india\n"
+    },
+    {
+      "url": "/netflix/nigeria",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/netflix/nigeria\n"
+    },
+    {
+      "url": "/netflix/pakistan",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/netflix/pakistan\n"
+    },
+    {
+      "url": "/netflix/philippines",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/netflix/philippines\n"
+    },
+    {
+      "url": "/netflix/turkey",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/netflix/turkey\n"
+    },
+    {
+      "url": "/spotify/argentina",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/spotify/argentina\n"
+    },
+    {
+      "url": "/spotify/egypt",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/spotify/egypt\n"
+    },
+    {
+      "url": "/spotify/india",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/spotify/india\n"
+    },
+    {
+      "url": "/spotify/nigeria",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/spotify/nigeria\n"
+    },
+    {
+      "url": "/spotify/pakistan",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/spotify/pakistan\n"
+    },
+    {
+      "url": "/spotify/philippines",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/spotify/philippines\n"
+    },
+    {
+      "url": "/spotify/turkey",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/spotify/turkey\n"
+    },
+    {
+      "url": "/youtube-premium/argentina",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/youtube-premium/argentina\n"
+    },
+    {
+      "url": "/youtube-premium/egypt",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/youtube-premium/egypt\n"
+    },
+    {
+      "url": "/youtube-premium/india",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/youtube-premium/india\n"
+    },
+    {
+      "url": "/youtube-premium/nigeria",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/youtube-premium/nigeria\n"
+    },
+    {
+      "url": "/youtube-premium/pakistan",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/youtube-premium/pakistan\n"
+    },
+    {
+      "url": "/youtube-premium/philippines",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/youtube-premium/philippines\n"
+    },
+    {
+      "url": "/youtube-premium/turkey",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/youtube-premium/turkey\n"
+    },
+    {
+      "url": "/disney-plus/argentina",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/disney-plus/argentina\n"
+    },
+    {
+      "url": "/disney-plus/egypt",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/disney-plus/egypt\n"
+    },
+    {
+      "url": "/disney-plus/india",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/disney-plus/india\n"
+    },
+    {
+      "url": "/disney-plus/nigeria",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/disney-plus/nigeria\n"
+    },
+    {
+      "url": "/disney-plus/pakistan",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/disney-plus/pakistan\n"
+    },
+    {
+      "url": "/disney-plus/philippines",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/disney-plus/philippines\n"
+    },
+    {
+      "url": "/disney-plus/turkey",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/disney-plus/turkey\n"
+    },
+    {
+      "url": "/canva-pro/argentina",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/canva-pro/argentina\n"
+    },
+    {
+      "url": "/canva-pro/egypt",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/canva-pro/egypt\n"
+    },
+    {
+      "url": "/canva-pro/india",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/canva-pro/india\n"
+    },
+    {
+      "url": "/canva-pro/nigeria",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/canva-pro/nigeria\n"
+    },
+    {
+      "url": "/canva-pro/pakistan",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/canva-pro/pakistan\n"
+    },
+    {
+      "url": "/canva-pro/philippines",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/canva-pro/philippines\n"
+    },
+    {
+      "url": "/canva-pro/turkey",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/canva-pro/turkey\n"
+    },
+    {
+      "url": "/tidal/argentina",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tidal/argentina\n"
+    },
+    {
+      "url": "/tidal/egypt",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tidal/egypt\n"
+    },
+    {
+      "url": "/tidal/india",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tidal/india\n"
+    },
+    {
+      "url": "/tidal/nigeria",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tidal/nigeria\n"
+    },
+    {
+      "url": "/tidal/pakistan",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tidal/pakistan\n"
+    },
+    {
+      "url": "/tidal/philippines",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tidal/philippines\n"
+    },
+    {
+      "url": "/tidal/turkey",
+      "status": "error",
+      "error": "Command failed: curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tidal/turkey\n"
+    }
+  ]
+}
