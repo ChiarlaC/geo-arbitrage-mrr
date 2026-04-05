@@ -58,6 +58,16 @@ export default async function AiPricingPage() {
           </p>
         </header>
 
+        {/* Interactive Cost Calculator - MOVED TO TOP */}
+        <section className="mb-12">
+          <AiCostCalculator models={aiModels} />
+        </section>
+
+        {/* Use Case Recommendations */}
+        <section className="mb-12">
+          <AiUseCaseRecommendations models={aiModels} />
+        </section>
+
         {/* SEO-visible stats to ensure crawlers see key pricing facts */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
@@ -76,31 +86,6 @@ export default async function AiPricingPage() {
             <p className="text-gray-500 text-sm">per 1M output tokens across GPT-4, Claude, Gemini</p>
           </div>
         </div>
-
-        {/* SEO-rich copy with long-tail keywords */}
-        <section className="prose max-w-none mb-10 text-gray-800">
-          <p>
-            Need an up-to-date <strong>AI model comparison</strong>? We track <strong>OpenAI API cost</strong> for GPT-4 Turbo
-            and GPT-4o, <strong>Anthropic pricing</strong> for Claude Sonnet, Opus, and Haiku, plus <strong>Gemini API pricing</strong>
-            for Gemini 1.5 Pro/Flash. Use this guide to find the <strong>cheapest AI API</strong> for your workload.
-          </p>
-          <h2>Claude API Pricing (Anthropic)</h2>
-          <p>
-            Claude models like Opus, Sonnet, and Haiku offer competitive throughput and long context. Claude Sonnet pricing
-            starts under a dollar per 1M input tokens for many regions, making <strong>Claude API pricing</strong> attractive
-            for chatbots and RAG workloads.
-          </p>
-          <h2>GPT-4 and OpenAI API Costs</h2>
-          <p>
-            <strong>GPT-4 cost</strong> varies by model. GPT-4 Turbo offers lower rates, while GPT-4o and GPT-4.1 deliver
-            stronger reasoning at slightly higher <strong>gpt-4 api cost</strong>. Check input/output token pricing below.
-          </p>
-          <h2>Google Gemini Pricing</h2>
-          <p>
-            <strong>Gemini API pricing</strong> covers Gemini Pro and Gemini Flash. These multimodal models are priced
-            aggressively for image and text synthesis, making them competitive for teams seeking cost-efficient generation.
-          </p>
-        </section>
 
         {/* Server-rendered data table for crawlers (no JS needed) */}
         <section className="bg-white border border-gray-200 rounded-xl shadow-sm mb-12">
@@ -136,16 +121,6 @@ export default async function AiPricingPage() {
               </tbody>
             </table>
           </div>
-        </section>
-
-        {/* Interactive Cost Calculator */}
-        <section className="mb-12">
-          <AiCostCalculator models={aiModels} />
-        </section>
-
-        {/* Use Case Recommendations */}
-        <section className="mb-12">
-          <AiUseCaseRecommendations models={aiModels} />
         </section>
 
         {/* Keep interactive dashboard for users; crawlers already saw server HTML above */}
