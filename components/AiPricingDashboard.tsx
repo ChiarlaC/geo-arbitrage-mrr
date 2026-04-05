@@ -38,11 +38,20 @@ export default function AiPricingDashboard() {
   }, []);
 
   // Extract unique categories
-  const categories = ['All', ...Array.from(new Set(models.map(model => model.category.split(', ')[0])))];
+  const categories = ['All', ...Array.from(new Set(models.map(model => model.category.split(', ')[0])))]
+
+  const categorySubtitles: Record<string, string> = {
+    Code: 'Ideal for software engineers, developers, and technical teams. Best for code generation, debugging, and technical documentation.',
+    Text: 'Perfect for writers, marketers, and content creators. Optimized for blog posts, articles, and creative writing.',
+    'Image Gen': 'Built for designers, artists, and creative professionals. Generate images, edit photos, and create visual content.',
+    Multimodal: 'Versatile for cross-functional teams. Process text, images, and video in a single workflow.',
+    'Social Media': 'Tailored for social media managers and marketers. Create posts, captions, and engagement content.',
+    All: 'Compare all AI models across categories. Find the best price-performance ratio for any use case.',
+  };
 
   // Filter models by selected category
-  const filteredModels = selectedCategory === 'All' 
-    ? models 
+  const filteredModels = selectedCategory === 'All'
+    ? models
     : models.filter(model => model.category.includes(selectedCategory));
 
   // Prepare chart data (top 10 by input cost for visibility)
@@ -81,7 +90,7 @@ export default function AiPricingDashboard() {
         className="w-full"
         onValueChange={(value) => setSelectedCategory(value)}
       >
-        <Tabs.List className="flex flex-wrap gap-2 border-b border-gray-200 pb-2 mb-6">
+        <Tabs.List className="flex flex-wrap gap-2 border-b border-gray-200 pb-2 mb-3">
           {categories.map(category => (
             <Tabs.Trigger
               key={category}
@@ -96,6 +105,9 @@ export default function AiPricingDashboard() {
             </Tabs.Trigger>
           ))}
         </Tabs.List>
+        <p className="prose text-sm text-gray-600 mb-4">
+          {categorySubtitles[selectedCategory as keyof typeof categorySubtitles] || categorySubtitles['All']}
+        </p>
       </Tabs.Root>
 
       {/* Statistics Cards */}

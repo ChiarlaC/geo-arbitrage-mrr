@@ -3,6 +3,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import AiPricingDashboard from '@/components/AiPricingDashboard';
 import AiCostCalculator from '@/components/AiCostCalculator';
 import AiUseCaseRecommendations from '@/components/AiUseCaseRecommendations';
+import NordVPNBanner from '@/components/NordVPNBanner';
 import aiDataJson from '@/public/ai-data.json';
 import { AiModelData } from '@/lib/types';
 
@@ -109,9 +110,9 @@ export default async function AiPricingPage() {
               Real prices for Claude, GPT-4, Gemini, and more — exposed in HTML for SEO visibility.
             </p>
           </div>
-          <div className="overflow-x-auto">
+          <div className="max-h-[500px] overflow-y-auto overflow-x-auto border border-gray-200 rounded-lg">
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-gray-50 text-gray-700 uppercase tracking-wide">
+              <thead className="sticky top-0 bg-white z-10 border-b-2 border-gray-300 text-gray-700 uppercase tracking-wide">
                 <tr>
                   <th className="px-4 py-3">Model</th>
                   <th className="px-4 py-3">Category</th>
@@ -123,7 +124,7 @@ export default async function AiPricingPage() {
               </thead>
               <tbody>
                 {aiModels.map((model) => (
-                  <tr key={model.model_id} className="border-t border-gray-100">
+                  <tr key={model.model_id} className="border-t border-gray-100 hover:bg-gray-50 transition-colors">
                     <td className="px-4 py-3 font-semibold text-gray-900">{model.model_name}</td>
                     <td className="px-4 py-3 text-gray-700">{model.category}</td>
                     <td className="px-4 py-3 text-gray-900">${Number(model.input_cost).toFixed(4)}</td>
@@ -173,6 +174,9 @@ export default async function AiPricingPage() {
             documentation.
           </p>
         </div>
+
+        {/* NordVPN Affiliate Banner */}
+        <NordVPNBanner />
       </div>
     </div>
   );
