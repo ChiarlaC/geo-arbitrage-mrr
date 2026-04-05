@@ -2,9 +2,11 @@ export interface PricingData {
   service: string;
   country: string;
   plan: string;
-  local_price: string;
-  usd_price: number;
-  savings_vs_us: number;
+  localPrice: number;
+  localCurrency: string;
+  priceUSD: number;
+  savingsPercent: number;
+  symbol: string;
 }
 
 export interface AiModelData {

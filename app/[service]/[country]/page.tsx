@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${data.service} Price in ${data.country} 2026 — Geo-Subs Tracker`;
-  const description = `How much does ${data.service} cost in ${data.country}? Real-time pricing: ${data.local_price} = $${data.usd_price}/mo. Save ${data.savings_vs_us}% vs US.`;
+  const description = `How much does ${data.service} cost in ${data.country}? Real-time pricing: ${data.symbol}${data.localPrice.toFixed(2)} = $${data.priceUSD.toFixed(2)}/mo. Save ${data.savingsPercent.toFixed(1)}% vs US.`;
 
   return {
     title,
@@ -89,7 +89,7 @@ export default async function ServiceCountryPage({ params }: PageProps) {
             <h3 className="font-semibold mb-3">Why Prices Vary by Country</h3>
             <p className="mb-3">
               Subscription services adjust prices based on local purchasing power, competition, and market conditions.
-              This is why you can save up to {data.savings_vs_us.toFixed(1)}% by subscribing from {data.country}.
+              This is why you can save up to {data.savingsPercent.toFixed(1)}% by subscribing from {data.country}.
             </p>
             <p>
               Note: You must maintain a VPN connection during signup, but can usually watch without VPN after.
@@ -103,11 +103,11 @@ export default async function ServiceCountryPage({ params }: PageProps) {
             <ul className="space-y-3">
               <li className="flex items-center">
                 <span className="inline-block w-3 h-3 bg-accent mr-2"></span>
-                Save ${(data.usd_price * 12 * (data.savings_vs_us / 100)).toFixed(2)} per year
+                Save ${(data.priceUSD * 12 * (data.savingsPercent / 100)).toFixed(2)} per year
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-3 h-3 bg-accent mr-2"></span>
-                {data.savings_vs_us > 70 ? "Extreme" : data.savings_vs_us > 40 ? "High" : "Moderate"} savings tier
+                {data.savingsPercent > 70 ? "Extreme" : data.savingsPercent > 40 ? "High" : "Moderate"} savings tier
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-3 h-3 bg-accent mr-2"></span>

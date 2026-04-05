@@ -44,7 +44,7 @@ export default function AiUseCaseRecommendations({ models }: AiUseCaseRecommenda
       description: 'Long context, batch processing',
       priority: 'balanced',
       filterFunc: (m) => {
-        return (m.context_length || 0) >= 100000;
+        return (parseInt(m.context_length) || 0) >= 100000;
       },
     },
     {
@@ -143,7 +143,7 @@ export default function AiUseCaseRecommendations({ models }: AiUseCaseRecommenda
                               <span>Out: ${(Number(model.output_cost) || 0).toFixed(2)}/1M</span>
                               {model.context_length && (
                                 <span className="text-blue-600">
-                                  {(model.context_length / 1000).toFixed(0)}K ctx
+                                  {(parseInt(model.context_length) / 1000).toFixed(0)}K ctx
                                 </span>
                               )}
                             </div>

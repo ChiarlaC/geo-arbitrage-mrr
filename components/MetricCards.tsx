@@ -18,7 +18,7 @@ export default function MetricCards({ data }: MetricCardsProps) {
       };
     }
 
-    const savings = data.map((item) => item.savings_vs_us);
+    const savings = data.map((item) => item.savingsPercent);
     const avgSavings = savings.reduce((a, b) => a + b, 0) / savings.length;
     const maxSavings = Math.max(...savings);
 

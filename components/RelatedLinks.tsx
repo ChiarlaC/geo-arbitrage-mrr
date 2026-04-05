@@ -41,8 +41,8 @@ export default function RelatedLinks({ currentService, currentCountry, allData }
                 <div className="text-xs text-neutral-500">{item.country}</div>
               </div>
               <div className="text-right">
-                <div className="font-display font-medium">${item.usd_price.toFixed(2)}</div>
-                <div className="text-xs text-primary-500">{item.savings_vs_us.toFixed(1)}% off</div>
+                <div className="font-display font-medium">${item.priceUSD.toFixed(2)}</div>
+                <div className="text-xs text-primary-500">{item.savingsPercent.toFixed(1)}% off</div>
               </div>
             </Link>
           </li>

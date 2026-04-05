@@ -29,17 +29,20 @@ const columns = [
     cell: (info) => info.getValue(),
     enableSorting: false,
   }),
-  columnHelper.accessor("local_price", {
+  columnHelper.accessor("localPrice", {
     header: "Local Price",
-    cell: (info) => info.getValue(),
+    cell: (info) => {
+      const row = info.row.original;
+      return `${row.symbol}${info.getValue().toFixed(2)}`;
+    },
     enableSorting: false,
   }),
-  columnHelper.accessor("usd_price", {
+  columnHelper.accessor("priceUSD", {
     header: "USD Price",
     cell: (info) => `$${info.getValue().toFixed(2)}`,
     enableSorting: true,
   }),
-  columnHelper.accessor("savings_vs_us", {
+  columnHelper.accessor("savingsPercent", {
     header: "Savings vs US",
     cell: (info) => `${info.getValue().toFixed(1)}%`,
     enableSorting: true,
@@ -52,7 +55,7 @@ interface PricingTableProps {
 
 export default function PricingTable({ data }: PricingTableProps) {
   const [sorting, setSorting] = useState<SortingState>([
-    { id: "savings_vs_us", desc: true },
+    { id: "savingsPercent", desc: true },
   ]);
 
   const table = useReactTable({

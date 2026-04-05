@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const countryName = formatCountryName(params.country);
   const serviceCount = countryData.length;
   const avgSavings =
-    countryData.reduce((sum, item) => sum + item.savings_vs_us, 0) / Math.max(serviceCount, 1);
+    countryData.reduce((sum, item) => sum + item.savingsPercent, 0) / Math.max(serviceCount, 1);
 
   return {
     title: `${countryName} Subscription Prices 2026 — Netflix, Spotify, YouTube Deals`,
@@ -77,7 +77,7 @@ export default async function CountryPage({ params }: PageProps) {
   const countryName = formatCountryName(params.country);
   const serviceCount = countryData.length;
   const avgSavings =
-    countryData.reduce((sum, item) => sum + item.savings_vs_us, 0) / Math.max(serviceCount, 1);
+    countryData.reduce((sum, item) => sum + item.savingsPercent, 0) / Math.max(serviceCount, 1);
 
   const findService = (name: string) =>
     countryData.find((item) => item.service.toLowerCase() === name.toLowerCase());
@@ -88,7 +88,7 @@ export default async function CountryPage({ params }: PageProps) {
 
   const cheapest = countryData.reduce<PricingData | null>((best, item) => {
     if (!best) return item;
-    return item.usd_price < best.usd_price ? item : best;
+    return item.priceUSD < best.priceUSD ? item : best;
   }, null);
 
   return (
@@ -115,8 +115,8 @@ export default async function CountryPage({ params }: PageProps) {
 
         <h2>How Much Does Netflix Cost in {countryName}?</h2>
         <p>
-          Netflix in {countryName} {netflix ? `costs ${netflix.local_price} (~$${netflix.usd_price.toFixed(2)})` : "is available with regional pricing"} per month for popular plans.
-          That is about {netflix ? `${netflix.savings_vs_us.toFixed(1)}%` : "significant"} cheaper than the US list price.
+          Netflix in {countryName} {netflix ? `costs ${netflix.symbol}${netflix.localPrice.toFixed(2)} (~$${netflix.priceUSD.toFixed(2)})` : "is available with regional pricing"} per month for popular plans.
+          That is about {netflix ? `${netflix.savingsPercent.toFixed(1)}%` : "significant"} cheaper than the US list price.
         </p>
 
         <h2>Spotify {countryName} Pricing</h2>
@@ -128,22 +128,22 @@ export default async function CountryPage({ params }: PageProps) {
         <ul>
           {youtube && (
             <li>
-              <strong>YouTube Premium {countryName}</strong>: {youtube.local_price} (~${youtube.usd_price.toFixed(2)}) — great for ad-free viewing and downloads.
+              <strong>YouTube Premium {countryName}</strong>: {youtube.symbol}{youtube.localPrice.toFixed(2)} (~${youtube.priceUSD.toFixed(2)}) — great for ad-free viewing and downloads.
             </li>
           )}
           {spotify && (
             <li>
-              <strong>Spotify</strong>: {spotify.local_price} (~${spotify.usd_price.toFixed(2)}) with student and family options in some regions.
+              <strong>Spotify</strong>: {spotify.symbol}{spotify.localPrice.toFixed(2)} (~${spotify.priceUSD.toFixed(2)}) with student and family options in some regions.
             </li>
           )}
           {netflix && (
             <li>
-              <strong>Netflix</strong>: {netflix.local_price} (~${netflix.usd_price.toFixed(2)}) — popular for HD streaming and downloads.
+              <strong>Netflix</strong>: {netflix.symbol}{netflix.localPrice.toFixed(2)} (~${netflix.priceUSD.toFixed(2)}) — popular for HD streaming and downloads.
             </li>
           )}
           {cheapest && (
             <li>
-              <strong>Cheapest subscription in {countryName}</strong>: {cheapest.service} at {cheapest.local_price} (~${cheapest.usd_price.toFixed(2)}).
+              <strong>Cheapest subscription in {countryName}</strong>: {cheapest.service} at {cheapest.symbol}{cheapest.localPrice.toFixed(2)} (~${cheapest.priceUSD.toFixed(2)}).
             </li>
           )}
         </ul>
@@ -153,7 +153,7 @@ export default async function CountryPage({ params }: PageProps) {
         <ul>
           {countryData.map((service) => (
             <li key={`${service.service}-${service.plan}`}>
-              <strong>{service.service}</strong>: {service.local_price} (~${service.usd_price.toFixed(2)}) — {service.savings_vs_us.toFixed(1)}% cheaper vs US.
+              <strong>{service.service}</strong>: {service.symbol}{service.localPrice.toFixed(2)} (~${service.priceUSD.toFixed(2)}) — {service.savingsPercent.toFixed(1)}% cheaper vs US.
             </li>
           ))}
         </ul>
@@ -187,7 +187,7 @@ export default async function CountryPage({ params }: PageProps) {
           <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
             <p itemProp="text" className="text-gray-700">
               {cheapest
-                ? `${cheapest.service} is the cheapest at ${cheapest.local_price} (~$${cheapest.usd_price.toFixed(2)}).`
+                ? `${cheapest.service} is the cheapest at ${cheapest.symbol}${cheapest.localPrice.toFixed(2)} (~$${cheapest.priceUSD.toFixed(2)}).`
                 : `Look for local bundles and student discounts to find the cheapest subscription.`}
             </p>
           </div>
@@ -198,7 +198,7 @@ export default async function CountryPage({ params }: PageProps) {
           <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
             <p itemProp="text" className="text-gray-700">
               {netflix
-                ? `Netflix costs ${netflix.local_price} (~$${netflix.usd_price.toFixed(2)}) in ${countryName}, which is about ${netflix.savings_vs_us.toFixed(1)}% cheaper than the US.`
+                ? `Netflix costs ${netflix.symbol}${netflix.localPrice.toFixed(2)} (~$${netflix.priceUSD.toFixed(2)}) in ${countryName}, which is about ${netflix.savingsPercent.toFixed(1)}% cheaper than the US.`
                 : `Netflix pricing varies, but regional plans are typically far cheaper than US rates.`}
             </p>
           </div>

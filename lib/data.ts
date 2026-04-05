@@ -8,25 +8,31 @@ export const samplePricingData: PricingData[] = [
     service: 'Netflix',
     country: 'Turkey',
     plan: 'Standard HD',
-    local_price: '₺149.99',
-    usd_price: 3.37,
-    savings_vs_us: 78.3,
+    localPrice: 149.99,
+    localCurrency: 'TRY',
+    priceUSD: 3.37,
+    savingsPercent: 78.3,
+    symbol: '₺',
   },
   {
     service: 'Spotify',
     country: 'Argentina',
     plan: 'Individual',
-    local_price: 'ARS 799',
-    usd_price: 0.85,
-    savings_vs_us: 85.2,
+    localPrice: 799,
+    localCurrency: 'ARS',
+    priceUSD: 0.85,
+    savingsPercent: 85.2,
+    symbol: 'ARS',
   },
   {
     service: 'YouTube Premium',
     country: 'India',
     plan: 'Individual',
-    local_price: '₹129',
-    usd_price: 1.55,
-    savings_vs_us: 88.5,
+    localPrice: 129,
+    localCurrency: 'INR',
+    priceUSD: 1.55,
+    savingsPercent: 88.5,
+    symbol: '₹',
   },
 ];
 
@@ -51,10 +57,10 @@ export const sampleAiModelData: AiModelData[] = [
   },
 ];
 
-import pricingData from '@/public/data.json';
+import pricingDataJson from '@/public/data.json';
 
 export async function loadPricingData(): Promise<PricingData[]> {
-  return pricingData as PricingData[];
+  return pricingDataJson.subscriptions as PricingData[];
 }
 
 export async function loadAiModelData(): Promise<AiModelData[]> {
@@ -77,7 +83,7 @@ export async function loadAiModelData(): Promise<AiModelData[]> {
 
 export function getPrice(service: string, country: string): PricingData | undefined {
   const allData = require('@/public/data.json');
-  return allData.find(
+  return allData.subscriptions.find(
     (item: PricingData) =>
       item.service.toLowerCase() === service.toLowerCase() &&
       item.country.toLowerCase() === country.toLowerCase()
