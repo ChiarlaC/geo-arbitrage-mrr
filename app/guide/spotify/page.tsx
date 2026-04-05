@@ -1,174 +1,250 @@
 import GuideLayout from '@/components/GuideLayout';
-import StepList from '@/components/StepList';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import WarningBox from '@/components/WarningBox';
+import MethodComparisonTable from '@/components/MethodComparisonTable';
+import EnhancedStepList from '@/components/EnhancedStepList';
+import VPNAffiliateCTA from '@/components/VPNAffiliateCTA';
+
+export const metadata = {
+  title: 'How to Get Spotify Argentina Price 2026 — Full Guide | Subpricing',
+  description: 'How to get Spotify Argentina or Turkey price in 2026. The easiest geo-arbitrage method using gift cards with 95%+ success rate.',
+};
 
 export default function SpotifyGuidePage() {
+  const methods = [
+    {
+      name: 'Foreign credit card (direct)',
+      successRate: '~5%',
+      status: 'blocked' as const,
+      description: 'BIN detection rejects non-local cards'
+    },
+    {
+      name: 'Wise / Revolut virtual card',
+      successRate: '~30%',
+      status: 'risky' as const,
+      description: 'Many virtual card BINs are blacklisted'
+    },
+    {
+      name: 'Spotify gift card (G2A / Eneba)',
+      successRate: '~99%',
+      status: 'works' as const,
+      description: 'Bypasses all card geo-checks — recommended'
+    }
+  ];
+
   const steps = [
     {
       number: 1,
-      title: 'Select a Low-Cost Country',
-      description: 'Choose a country with significantly lower Spotify pricing. Top choices include Argentina, Turkey, Pakistan, and Egypt. Check our pricing table for the latest rates.',
-      estimatedTime: '5 minutes',
-      important: true
+      title: 'Connect VPN to an Argentina server',
+      description: (
+        <>
+          <p className="mb-3">
+            Open an incognito window. This ensures spotify.com detects your IP as Argentina
+            during account creation. Free VPNs are blocked — you need a premium VPN.
+          </p>
+          <p className="font-semibold text-gray-900">Don't have VPN?</p>
+          <ol className="list-decimal ml-6 mt-2 space-y-1">
+            <li><a href="https://nordvpn.com" target="_blank" rel="noopener" className="text-red-600 font-bold underline">NordVPN</a> — best for Spotify</li>
+            <li>ExpressVPN</li>
+            <li>Surfshark</li>
+          </ol>
+        </>
+      )
     },
     {
       number: 2,
-      title: 'Setup a VPN Service',
-      description: 'Subscribe to a VPN provider with servers in your target country. NordVPN and Surfshark are reliable options that work well with Spotify.',
-      estimatedTime: '10 minutes'
+      title: 'Create a new Spotify account at spotify.com/ar/',
+      description: (
+        <>
+          <p>
+            Use a fresh email. Set your country to Argentina when prompted.
+            Do not use a Facebook login — it may carry your existing country setting.
+          </p>
+        </>
+      )
     },
     {
       number: 3,
-      title: 'Connect VPN to Target Country',
-      description: 'Launch your VPN app and connect to a server in your chosen country. Verify your IP address shows the correct location.',
-      estimatedTime: '2 minutes',
-      important: true
+      title: 'Buy an Argentina Spotify gift card on G2A or Eneba',
+      description: (
+        <>
+          <p className="mb-3">
+            Search "Spotify Argentina gift card." Denominations vary — buy enough to cover
+            1–3 months. You'll receive a code by email within minutes.
+          </p>
+          <a
+            href="https://www.g2a.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-red-600 text-white font-bold text-xs uppercase tracking-wide px-5 py-2 rounded mt-2 hover:bg-red-700"
+          >
+            Buy Spotify Gift Card on G2A →
+          </a>
+          <div className="text-xs text-gray-500 mt-2">Affiliate link · We may earn a commission</div>
+        </>
+      )
     },
     {
       number: 4,
-      title: 'Use Incognito Browser',
-      description: 'Open a private/incognito browser window to prevent location tracking from cookies and cache. This ensures Spotify sees you as a new user from the target country.',
-      estimatedTime: '1 minute'
+      title: 'Redeem the gift card in your Spotify account',
+      description: (
+        <>
+          <p>
+            Go to spotify.com/redeem (while still on Argentina VPN). Enter the code.
+            Your account will show a peso balance — use it to activate Premium.
+          </p>
+        </>
+      )
     },
     {
       number: 5,
-      title: 'Create New Spotify Account',
-      description: 'Visit Spotify.com and sign up for a new account. Use an email address not previously associated with Spotify. The pricing should display in local currency.',
-      estimatedTime: '10 minutes',
-      important: true
-    },
-    {
-      number: 6,
-      title: 'Choose Payment Method',
-      description: 'Use an international payment method. Virtual cards (Revolut, Wise) or local gift cards from the target country work best. Some countries accept international credit cards.',
-      estimatedTime: '15 minutes'
-    },
-    {
-      number: 7,
-      title: 'Verify and Enjoy Music',
-      description: 'Complete the verification process and start streaming! After account creation, you can disconnect the VPN for regular use, but keep it for occasional verification.',
-      estimatedTime: '5 minutes'
+      title: 'Disconnect VPN and enjoy!',
+      description: (
+        <>
+          <p>
+            After activation, Spotify Premium works worldwide without VPN.
+            You only need VPN for account creation and gift card redemption.
+          </p>
+        </>
+      )
     }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        <Breadcrumbs 
+        <Breadcrumbs
           items={[
             { label: 'Home', href: '/' },
-            { label: 'Guides', href: '/guide' },
+            { label: 'Guides', href: '/' },
             { label: 'Spotify Guide', href: '/guide/spotify' }
           ]}
         />
-        
+
         <GuideLayout
-          title="How to Get Spotify Premium at International Prices"
+          title="How to Get Spotify Argentina Price (2026 Guide)"
           difficulty="Easy"
           vpnRequired={true}
-          estimatedTime="40-50 minutes"
+          estimatedTime="15-20 minutes"
         >
           <div className="prose max-w-none">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Overview</h2>
-            <p className="mb-6">
-              Spotify uses regional pricing, with significant variations between countries. 
-              By creating an account through a country with lower pricing, you can save up to 97% compared to US prices.
-              Spotify is one of the easiest services to set up with international pricing.
+            <p className="text-sm text-gray-600 mb-4">
+              Gift card method · No ongoing VPN required · 95%+ success rate
             </p>
 
-            <div className="bg-gray-50 p-6 rounded-lg mb-8">
+            <div className="inline-block px-4 py-2 bg-green-50 border border-green-200 text-green-900 font-bold text-xs uppercase tracking-wide rounded mb-6">
+              Difficulty: Easy · Best starting point for geo-arbitrage
+            </div>
+
+            <div className="bg-blue-50 p-6 rounded-lg mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Best Deals</h3>
               <ul className="space-y-2">
                 <li className="flex justify-between">
-                  <span>Argentina Individual:</span>
-                  <span className="font-semibold">$0.29/month (97% savings)</span>
+                  <span>Argentina Premium:</span>
+                  <span className="font-semibold">$0.83/month (92% savings)</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Egypt Individual:</span>
-                  <span className="font-semibold">$0.47/month (96% savings)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Pakistan Individual:</span>
-                  <span className="font-semibold">$0.57/month (95% savings)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Turkey Individual:</span>
-                  <span className="font-semibold">$0.79/month (93% savings)</span>
+                  <span>Turkey Premium:</span>
+                  <span className="font-semibold">$1.85/month (81% savings)</span>
                 </li>
               </ul>
             </div>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Step-by-Step Guide</h2>
-            <StepList steps={steps} />
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-6">
+              Which method works in 2026?
+            </h2>
 
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Payment Methods by Country</h2>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead>
-                    <tr>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Country</th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Recommended Payment</th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Success Rate</th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    <tr>
-                      <td className="px-4 py-3 text-sm font-medium text-gray-900">Argentina</td>
-                      <td className="px-4 py-3 text-sm text-gray-600">Virtual card (Revolut)</td>
-                      <td className="px-4 py-3">
-                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">High</span>
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-600">Easiest country for international cards</td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3 text-sm font-medium text-gray-900">Turkey</td>
-                      <td className="px-4 py-3 text-sm text-gray-600">Local credit/debit card</td>
-                      <td className="px-4 py-3">
-                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">High</span>
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-600">Some international cards work</td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3 text-sm font-medium text-gray-900">Pakistan</td>
-                      <td className="px-4 py-3 text-sm text-gray-600">Local bank card</td>
-                      <td className="px-4 py-3">
-                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Medium</span>
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-600">May require local payment method</td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3 text-sm font-medium text-gray-900">Egypt</td>
-                      <td className="px-4 py-3 text-sm text-gray-600">Vodafone Cash or local card</td>
-                      <td className="px-4 py-3">
-                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Medium</span>
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-600">Local payment methods preferred</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <MethodComparisonTable methods={methods} />
+
+            <WarningBox type="tip" title="Why gift cards work">
+              <p>
+                Spotify's payment gateway checks the country of your credit card's issuing bank (BIN).
+                A gift card has no BIN — it's just a code. Once redeemed, Spotify sees a local balance
+                and charges it normally.
+              </p>
+            </WarningBox>
+
+            <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-6">
+              Step-by-step: Spotify Argentina (cheapest option)
+            </h2>
+
+            <EnhancedStepList steps={steps} />
+
+            <WarningBox type="warning" title="Important Notes">
+              <ul className="space-y-2 list-disc ml-4">
+                <li>You must use VPN when redeeming gift cards in the future</li>
+                <li>Spotify may ask you to verify your location occasionally</li>
+                <li>Family plans require all members to be in the same country</li>
+              </ul>
+            </WarningBox>
+
+            <VPNAffiliateCTA
+              service="Spotify"
+              eyebrow="VPN Required for Setup Only"
+              body="You only need VPN during account creation and when redeeming gift cards. After activation, Spotify works worldwide without VPN."
+            />
+
+            <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-6">
+              Common Questions
+            </h2>
+
+            <div className="space-y-6" itemScope itemType="https://schema.org/FAQPage">
+              <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <h3 className="font-bold text-gray-900 mb-2" itemProp="name">
+                  Can I use my existing Spotify account?
+                </h3>
+                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                  <p itemProp="text" className="text-gray-700">
+                    No. You need to create a brand new account with Argentina as the selected country.
+                    Existing accounts cannot change their country region.
+                  </p>
+                </div>
+              </div>
+
+              <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <h3 className="font-bold text-gray-900 mb-2" itemProp="name">
+                  Do I need VPN every time I listen to music?
+                </h3>
+                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                  <p itemProp="text" className="text-gray-700">
+                    No. After activating Premium, you can listen from anywhere in the world without VPN.
+                    You only need VPN for account creation and when redeeming new gift cards.
+                  </p>
+                </div>
+              </div>
+
+              <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <h3 className="font-bold text-gray-900 mb-2" itemProp="name">
+                  How long does Argentina Premium last?
+                </h3>
+                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                  <p itemProp="text" className="text-gray-700">
+                    Depends on the gift card value. A typical gift card covers 1-3 months.
+                    You'll need to buy and redeem a new card before your balance runs out.
+                  </p>
+                </div>
+              </div>
+
+              <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <h3 className="font-bold text-gray-900 mb-2" itemProp="name">
+                  Is this against Spotify's Terms of Service?
+                </h3>
+                <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                  <p itemProp="text" className="text-gray-700">
+                    Using a VPN to access regional pricing may violate Terms of Service.
+                    However, Spotify's enforcement is minimal compared to streaming services like Netflix.
+                    Proceed at your own discretion.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-green-50 border border-green-200 rounded-lg">
-              <h3 className="text-lg font-semibold text-green-900 mb-3">Why Spotify is Easier Than Other Services</h3>
-              <ul className="space-y-2 text-green-800">
-                <li>• Spotify accepts international payment methods more readily than Netflix or Disney+</li>
-                <li>• Account verification is less frequent</li>
-                <li>• Family plans can be shared across regions with fewer restrictions</li>
-                <li>• Mobile app works without VPN after initial setup</li>
-              </ul>
-            </div>
-
-            <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <h3 className="text-lg font-semibold text-blue-900 mb-3">Important Considerations</h3>
-              <ul className="space-y-2 text-blue-800">
-                <li>• Spotify may require re-verification if you change countries frequently</li>
-                <li>• Student and family plans have additional verification requirements</li>
-                <li>• Prices are subject to change as Spotify adjusts regional pricing</li>
-                <li>• Using VPNs to access regional pricing may violate Spotify's Terms of Service</li>
-              </ul>
+            <div className="mt-12 p-6 bg-gray-100 border border-gray-300 rounded-lg text-sm text-gray-600">
+              <p>
+                <strong>Disclaimer:</strong> This guide reflects methods verified as of 2026.
+                Spotify policies may change without notice.
+                Terms of service compliance is your responsibility.
+              </p>
             </div>
           </div>
         </GuideLayout>

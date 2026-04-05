@@ -1,63 +1,82 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://subpricing.com';
+  const baseUrl = "https://subpricing.com";
 
-  // Static routes
-  const staticRoutes = [
+  const countries = [
+    "turkey",
+    "argentina",
+    "nigeria",
+    "egypt",
+    "pakistan",
+    "philippines",
+    "india",
+    "brazil",
+    "poland",
+    "colombia",
+  ];
+
+  const services = [
+    "netflix",
+    "spotify",
+    "youtube-premium",
+    "disney-plus",
+    "hbo-max",
+    "apple-music",
+  ];
+
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1,
+      changeFrequency: "daily",
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/ai-pricing`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/privacy`,
       lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
+      changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
       lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
+      changeFrequency: "yearly",
       priority: 0.3,
     },
   ];
 
-  // Guide routes
-  const guideServices = ['netflix', 'spotify', 'youtube-premium', 'disney-plus', 'canva-pro', 'tidal'];
-  const guideRoutes = guideServices.map(service => ({
-    url: `${baseUrl}/guide/${service}`,
+  const countryPages: MetadataRoute.Sitemap = countries.map((country) => ({
+    url: `${baseUrl}/country/${country}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
+    changeFrequency: "weekly",
+    priority: 0.8,
   }));
 
-  // Dynamic pricing routes (service/country combinations)
-  const services = ['netflix', 'spotify', 'youtube-premium', 'disney-plus', 'canva-pro', 'tidal'];
-  const countries = ['argentina', 'egypt', 'india', 'nigeria', 'pakistan', 'philippines', 'turkey'];
-  
-  const dynamicRoutes = services.flatMap(service =>
-    countries.map(country => ({
+  const serviceCountryPages: MetadataRoute.Sitemap = services.flatMap((service) =>
+    countries.map((country) => ({
       url: `${baseUrl}/${service}/${country}`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
+      changeFrequency: "weekly",
+      priority: 0.7,
     }))
   );
 
-  return [...staticRoutes, ...guideRoutes, ...dynamicRoutes];
+  return [
+    ...staticRoutes,
+    ...countryPages,
+    ...serviceCountryPages,
+  ];
 }

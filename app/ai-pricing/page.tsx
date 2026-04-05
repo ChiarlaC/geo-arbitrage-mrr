@@ -1,66 +1,164 @@
-import AiPricingDashboard from '@/components/AiPricingDashboard';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import { Metadata } from 'next';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import AiPricingDashboard from '@/components/AiPricingDashboard';
+import aiDataJson from '@/public/ai-data.json';
+import { AiModelData } from '@/lib/types';
 
+// SEO-first metadata with long-tail keywords directly in title/description
 export const metadata: Metadata = {
-  title: 'AI API Pricing Comparison | Subpricing',
-  description: 'Compare pricing for AI models across providers including OpenAI, Anthropic, Google, and more. Real-time cost analysis for GPT-5, Claude, Gemini, and other models.',
-  keywords: ['AI pricing', 'API costs', 'GPT-5 pricing', 'Claude pricing', 'Gemini pricing', 'AI model comparison'],
+  title: 'AI API Pricing 2026: Claude, GPT-4, Gemini Cost Comparison',
+  description:
+    'Compare Claude API pricing, GPT-4 cost, OpenAI API rates, Anthropic pricing, and Google Gemini API costs. Find the cheapest AI API across providers with real-time model pricing.',
+  keywords: [
+    'claude api pricing',
+    'gpt-4 cost',
+    'gpt-4 api cost',
+    'anthropic pricing',
+    'openai api cost',
+    'gemini api pricing',
+    'ai model comparison',
+    'cheapest ai api',
+  ],
 };
 
-export default function AiPricingPage() {
+// Server-rendered page to expose pricing data to crawlers (no JS required for core content)
+export default async function AiPricingPage() {
+  const aiModels = aiDataJson as AiModelData[];
+
   const breadcrumbs = [
     { label: 'Home', href: '/' },
     { label: 'AI Pricing', href: '/ai-pricing' },
   ];
 
+  // Basic aggregates for quick-read stats
+  const totalModels = aiModels.length;
+  const providers = Array.from(new Set(aiModels.map((m) => m.model_name.split(':')[0]?.trim())));
+  const avgInput =
+    aiModels.reduce((sum, m) => sum + (Number(m.input_cost) || 0), 0) / Math.max(aiModels.length, 1);
+  const avgOutput =
+    aiModels.reduce((sum, m) => sum + (Number(m.output_cost) || 0), 0) / Math.max(aiModels.length, 1);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
         <Breadcrumbs items={breadcrumbs} />
-        
+
         <header className="mb-10">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            AI API Pricing Comparison
+            AI API Pricing Comparison 2026: Claude, GPT-4, Gemini
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl">
-            Compare real-time pricing for AI models across providers. Analyze input/output costs, 
-            context lengths, and modalities to find the most cost-effective solution for your use case.
+          <p className="text-lg text-gray-700 max-w-4xl">
+            Compare <strong>Claude API pricing</strong>, <strong>GPT-4 cost</strong>, and <strong>Gemini API pricing</strong>
+            across OpenAI, Anthropic, Google, and emerging providers. This server-rendered page exposes real-time
+            <strong> AI model costs</strong> so search engines and users can find the <strong>cheapest AI API</strong> without
+            waiting for client-side JavaScript.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Total Models</h3>
-            <p className="text-3xl font-bold text-blue-600">20</p>
-            <p className="text-gray-500 text-sm mt-2">Across 6 major providers</p>
+        {/* SEO-visible stats to ensure crawlers see key pricing facts */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Total Models Indexed</h3>
+            <p className="text-3xl font-bold text-blue-600">{totalModels}</p>
+            <p className="text-gray-500 text-sm">Across {providers.length}+ providers</p>
           </div>
-          
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Cost Range</h3>
-            <p className="text-3xl font-bold text-green-600">$0.05 - $25</p>
-            <p className="text-gray-500 text-sm mt-2">Per 1M output tokens</p>
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Avg Input Cost</h3>
+            <p className="text-3xl font-bold text-green-600">${avgInput.toFixed(2)}</p>
+            <p className="text-gray-500 text-sm">per 1M input tokens (OpenAI, Anthropic, Google)</p>
           </div>
-          
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Categories</h3>
-            <p className="text-3xl font-bold text-purple-600">5</p>
-            <p className="text-gray-500 text-sm mt-2">Text, Code, Image, Multimodal, Social Media</p>
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Avg Output Cost</h3>
+            <p className="text-3xl font-bold text-purple-600">${avgOutput.toFixed(2)}</p>
+            <p className="text-gray-500 text-sm">per 1M output tokens across GPT-4, Claude, Gemini</p>
           </div>
         </div>
 
+        {/* SEO-rich copy with long-tail keywords */}
+        <section className="prose max-w-none mb-10 text-gray-800">
+          <p>
+            Need an up-to-date <strong>AI model comparison</strong>? We track <strong>OpenAI API cost</strong> for GPT-4 Turbo
+            and GPT-4o, <strong>Anthropic pricing</strong> for Claude Sonnet, Opus, and Haiku, plus <strong>Gemini API pricing</strong>
+            for Gemini 1.5 Pro/Flash. Use this guide to find the <strong>cheapest AI API</strong> for your workload.
+          </p>
+          <h2>Claude API Pricing (Anthropic)</h2>
+          <p>
+            Claude models like Opus, Sonnet, and Haiku offer competitive throughput and long context. Claude Sonnet pricing
+            starts under a dollar per 1M input tokens for many regions, making <strong>Claude API pricing</strong> attractive
+            for chatbots and RAG workloads.
+          </p>
+          <h2>GPT-4 and OpenAI API Costs</h2>
+          <p>
+            <strong>GPT-4 cost</strong> varies by model. GPT-4 Turbo offers lower rates, while GPT-4o and GPT-4.1 deliver
+            stronger reasoning at slightly higher <strong>gpt-4 api cost</strong>. Check input/output token pricing below.
+          </p>
+          <h2>Google Gemini Pricing</h2>
+          <p>
+            <strong>Gemini API pricing</strong> covers Gemini Pro and Gemini Flash. These multimodal models are priced
+            aggressively for image and text synthesis, making them competitive for teams seeking cost-efficient generation.
+          </p>
+        </section>
+
+        {/* Server-rendered data table for crawlers (no JS needed) */}
+        <section className="bg-white border border-gray-200 rounded-xl shadow-sm mb-12">
+          <div className="p-6 border-b border-gray-200">
+            <h2 className="text-xl font-semibold text-gray-900">AI Model Pricing Table (Server Rendered)</h2>
+            <p className="text-gray-600 text-sm mt-1">
+              Real prices for Claude, GPT-4, Gemini, and more — exposed in HTML for SEO visibility.
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-left text-sm">
+              <thead className="bg-gray-50 text-gray-700 uppercase tracking-wide">
+                <tr>
+                  <th className="px-4 py-3">Model</th>
+                  <th className="px-4 py-3">Category</th>
+                  <th className="px-4 py-3">Input $/1M</th>
+                  <th className="px-4 py-3">Output $/1M</th>
+                  <th className="px-4 py-3">Context</th>
+                  <th className="px-4 py-3">Modality</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aiModels.map((model) => (
+                  <tr key={model.model_id} className="border-t border-gray-100">
+                    <td className="px-4 py-3 font-semibold text-gray-900">{model.model_name}</td>
+                    <td className="px-4 py-3 text-gray-700">{model.category}</td>
+                    <td className="px-4 py-3 text-gray-900">${Number(model.input_cost).toFixed(4)}</td>
+                    <td className="px-4 py-3 text-gray-900">${Number(model.output_cost).toFixed(4)}</td>
+                    <td className="px-4 py-3 text-gray-700">{model.context_length}</td>
+                    <td className="px-4 py-3 text-gray-700">{model.modality}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Keep interactive dashboard for users; crawlers already saw server HTML above */}
         <AiPricingDashboard />
-        
+
         <div className="mt-12 bg-blue-50 border border-blue-200 rounded-xl p-6">
           <h3 className="text-xl font-semibold text-blue-800 mb-3">How to Use This Data</h3>
           <ul className="list-disc pl-5 text-blue-700 space-y-2">
-            <li><strong>Input Costs:</strong> Price per 1 million input tokens processed</li>
-            <li><strong>Output Costs:</strong> Price per 1 million output tokens generated</li>
-            <li><strong>Context Length:</strong> Maximum tokens the model can process in one request</li>
-            <li><strong>Modality:</strong> Types of input/output supported (text, image, video, etc.)</li>
+            <li>
+              <strong>Input Costs:</strong> Compare $/1M input tokens for <strong>Claude API pricing</strong>,
+              <strong> GPT-4 cost</strong>, and <strong>Gemini pricing</strong>.
+            </li>
+            <li>
+              <strong>Output Costs:</strong> Check completion pricing to find the <strong>cheapest AI API</strong> for your
+              use case.
+            </li>
+            <li>
+              <strong>Context Length:</strong> Long contexts help RAG and agents — see Anthropic and Gemini limits.
+            </li>
+            <li>
+              <strong>Modality:</strong> Text, code, image, and multimodal support for each model.
+            </li>
           </ul>
-          <p className="mt-4 text-blue-600 text-sm">
-            Note: Prices are per 1M tokens and may vary based on usage volume and provider promotions.
+          <p className="mt-4 text-blue-700 text-sm">
+            Prices are per 1M tokens and may vary by region or volume tiers. Last updated automatically from provider
+            documentation.
           </p>
         </div>
       </div>
