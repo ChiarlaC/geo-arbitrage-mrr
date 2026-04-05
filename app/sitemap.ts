@@ -25,6 +25,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "apple-music",
   ];
 
+  const guides = [
+    "netflix",
+    "spotify",
+    "youtube-premium",
+    "disney-plus",
+    "canva-pro",
+    "tidal",
+  ];
+
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -58,6 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
+    url: `${baseUrl}/guide/${guide}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const countryPages: MetadataRoute.Sitemap = countries.map((country) => ({
     url: `${baseUrl}/country/${country}`,
     lastModified: new Date(),
@@ -76,6 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    ...guidePages,
     ...countryPages,
     ...serviceCountryPages,
   ];
