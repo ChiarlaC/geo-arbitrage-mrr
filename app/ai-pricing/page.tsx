@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import AiPricingDashboard from '@/components/AiPricingDashboard';
+import AiCostCalculator from '@/components/AiCostCalculator';
+import AiUseCaseRecommendations from '@/components/AiUseCaseRecommendations';
 import aiDataJson from '@/public/ai-data.json';
 import { AiModelData } from '@/lib/types';
 
@@ -133,6 +135,16 @@ export default async function AiPricingPage() {
               </tbody>
             </table>
           </div>
+        </section>
+
+        {/* Interactive Cost Calculator */}
+        <section className="mb-12">
+          <AiCostCalculator models={aiModels} />
+        </section>
+
+        {/* Use Case Recommendations */}
+        <section className="mb-12">
+          <AiUseCaseRecommendations models={aiModels} />
         </section>
 
         {/* Keep interactive dashboard for users; crawlers already saw server HTML above */}
