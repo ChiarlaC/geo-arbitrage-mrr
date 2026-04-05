@@ -1,338 +1,565 @@
-[
-  {
-    "service": "Netflix",
-    "country": "Turkey",
-    "plan": "Standard HD",
-    "local_price": "₺149.99",
-    "usd_price": 3.37,
-    "savings_vs_us": 78.3
-  },
-  {
-    "service": "Netflix",
-    "country": "Argentina",
-    "plan": "Standard HD",
-    "local_price": "ARS 1,199",
-    "usd_price": 0.86,
-    "savings_vs_us": 94.4
-  },
-  {
-    "service": "Netflix",
-    "country": "Nigeria",
-    "plan": "Standard HD",
-    "local_price": "₦2900.00",
-    "usd_price": 2.1,
-    "savings_vs_us": 86.4
-  },
-  {
-    "service": "Netflix",
-    "country": "Egypt",
-    "plan": "Standard HD",
-    "local_price": "EGP100.00",
-    "usd_price": 1.87,
-    "savings_vs_us": 87.9
-  },
-  {
-    "service": "Netflix",
-    "country": "Pakistan",
-    "plan": "Standard HD",
-    "local_price": "PKR250.00",
-    "usd_price": 0.9,
-    "savings_vs_us": 94.2
-  },
-  {
-    "service": "Netflix",
-    "country": "Philippines",
-    "plan": "Standard HD",
-    "local_price": "₱149.00",
-    "usd_price": 2.47,
-    "savings_vs_us": 84.0
-  },
-  {
-    "service": "Netflix",
-    "country": "India",
-    "plan": "Mobile",
-    "local_price": "₹199.00",
-    "usd_price": 2.13,
-    "savings_vs_us": 86.3
-  },
-  {
-    "service": "YouTube Premium",
-    "country": "Turkey",
-    "plan": "Individual",
-    "local_price": "₺47.99",
-    "usd_price": 1.08,
-    "savings_vs_us": 92.3
-  },
-  {
-    "service": "YouTube Premium",
-    "country": "Argentina",
-    "plan": "Individual",
-    "local_price": "ARS 549",
-    "usd_price": 0.4,
-    "savings_vs_us": 97.2
-  },
-  {
-    "service": "YouTube Premium",
-    "country": "Nigeria",
-    "plan": "Individual",
-    "local_price": "₦1490.00",
-    "usd_price": 1.08,
-    "savings_vs_us": 92.3
-  },
-  {
-    "service": "YouTube Premium",
-    "country": "Egypt",
-    "plan": "Individual",
-    "local_price": "EGP39.99",
-    "usd_price": 0.75,
-    "savings_vs_us": 94.7
-  },
-  {
-    "service": "YouTube Premium",
-    "country": "Pakistan",
-    "plan": "Individual",
-    "local_price": "PKR219.00",
-    "usd_price": 0.78,
-    "savings_vs_us": 94.4
-  },
-  {
-    "service": "YouTube Premium",
-    "country": "Philippines",
-    "plan": "Individual",
-    "local_price": "₱99.00",
-    "usd_price": 1.64,
-    "savings_vs_us": 88.3
-  },
-  {
-    "service": "YouTube Premium",
-    "country": "India",
-    "plan": "Individual",
-    "local_price": "₹89.00",
-    "usd_price": 0.95,
-    "savings_vs_us": 93.2
-  },
-  {
-    "service": "Spotify",
-    "country": "Turkey",
-    "plan": "Individual",
-    "local_price": "₺34.99",
-    "usd_price": 0.79,
-    "savings_vs_us": 93.4
-  },
-  {
-    "service": "Spotify",
-    "country": "Argentina",
-    "plan": "Individual",
-    "local_price": "ARS 399",
-    "usd_price": 0.29,
-    "savings_vs_us": 97.6
-  },
-  {
-    "service": "Spotify",
-    "country": "Nigeria",
-    "plan": "Individual",
-    "local_price": "₦900.00",
-    "usd_price": 0.65,
-    "savings_vs_us": 94.6
-  },
-  {
-    "service": "Spotify",
-    "country": "Egypt",
-    "plan": "Individual",
-    "local_price": "EGP25.00",
-    "usd_price": 0.47,
-    "savings_vs_us": 96.1
-  },
-  {
-    "service": "Spotify",
-    "country": "Pakistan",
-    "plan": "Individual",
-    "local_price": "PKR159.00",
-    "usd_price": 0.57,
-    "savings_vs_us": 95.2
-  },
-  {
-    "service": "Spotify",
-    "country": "Philippines",
-    "plan": "Individual",
-    "local_price": "₱129.00",
-    "usd_price": 2.14,
-    "savings_vs_us": 82.1
-  },
-  {
-    "service": "Spotify",
-    "country": "India",
-    "plan": "Individual",
-    "local_price": "₹119.00",
-    "usd_price": 1.27,
-    "savings_vs_us": 89.4
-  },
-  {
-    "service": "Disney Plus",
-    "country": "Turkey",
-    "plan": "Standard",
-    "local_price": "₺59.99",
-    "usd_price": 1.35,
-    "savings_vs_us": 91.3
-  },
-  {
-    "service": "Disney Plus",
-    "country": "Argentina",
-    "plan": "Standard",
-    "local_price": "ARS 799",
-    "usd_price": 0.57,
-    "savings_vs_us": 95.9
-  },
-  {
-    "service": "Disney Plus",
-    "country": "Nigeria",
-    "plan": "Standard",
-    "local_price": "₦1900.00",
-    "usd_price": 1.38,
-    "savings_vs_us": 90.1
-  },
-  {
-    "service": "Disney Plus",
-    "country": "Egypt",
-    "plan": "Standard",
-    "local_price": "EGP39.99",
-    "usd_price": 0.75,
-    "savings_vs_us": 94.7
-  },
-  {
-    "service": "Disney Plus",
-    "country": "Pakistan",
-    "plan": "Standard",
-    "local_price": "PKR199.00",
-    "usd_price": 0.72,
-    "savings_vs_us": 94.9
-  },
-  {
-    "service": "Disney Plus",
-    "country": "Philippines",
-    "plan": "Standard",
-    "local_price": "₱99.00",
-    "usd_price": 1.64,
-    "savings_vs_us": 88.3
-  },
-  {
-    "service": "Disney Plus",
-    "country": "India",
-    "plan": "Standard",
-    "local_price": "₹89.00",
-    "usd_price": 0.95,
-    "savings_vs_us": 93.2
-  },
-  {
-    "service": "Canva Pro",
-    "country": "Turkey",
-    "plan": "Individual",
-    "local_price": "₺149.99",
-    "usd_price": 3.37,
-    "savings_vs_us": 78.3
-  },
-  {
-    "service": "Canva Pro",
-    "country": "Argentina",
-    "plan": "Individual",
-    "local_price": "ARS 799",
-    "usd_price": 0.57,
-    "savings_vs_us": 95.9
-  },
-  {
-    "service": "Canva Pro",
-    "country": "Nigeria",
-    "plan": "Individual",
-    "local_price": "₦2900.00",
-    "usd_price": 2.1,
-    "savings_vs_us": 86.4
-  },
-  {
-    "service": "Canva Pro",
-    "country": "Egypt",
-    "plan": "Individual",
-    "local_price": "EGP100.00",
-    "usd_price": 1.87,
-    "savings_vs_us": 87.9
-  },
-  {
-    "service": "Canva Pro",
-    "country": "Pakistan",
-    "plan": "Individual",
-    "local_price": "PKR250.00",
-    "usd_price": 0.9,
-    "savings_vs_us": 94.2
-  },
-  {
-    "service": "Canva Pro",
-    "country": "Philippines",
-    "plan": "Individual",
-    "local_price": "₱149.00",
-    "usd_price": 2.47,
-    "savings_vs_us": 84.0
-  },
-  {
-    "service": "Canva Pro",
-    "country": "India",
-    "plan": "Individual",
-    "local_price": "₹199.00",
-    "usd_price": 2.13,
-    "savings_vs_us": 86.3
-  },
-  {
-    "service": "Tidal",
-    "country": "Turkey",
-    "plan": "HiFi",
-    "local_price": "₺34.99",
-    "usd_price": 0.79,
-    "savings_vs_us": 93.4
-  },
-  {
-    "service": "Tidal",
-    "country": "Argentina",
-    "plan": "HiFi",
-    "local_price": "ARS 399",
-    "usd_price": 0.29,
-    "savings_vs_us": 97.6
-  },
-  {
-    "service": "Tidal",
-    "country": "Nigeria",
-    "plan": "HiFi",
-    "local_price": "₦900.00",
-    "usd_price": 0.65,
-    "savings_vs_us": 94.6
-  },
-  {
-    "service": "Tidal",
-    "country": "Egypt",
-    "plan": "HiFi",
-    "local_price": "EGP25.00",
-    "usd_price": 0.47,
-    "savings_vs_us": 96.1
-  },
-  {
-    "service": "Tidal",
-    "country": "Pakistan",
-    "plan": "HiFi",
-    "local_price": "PKR159.00",
-    "usd_price": 0.57,
-    "savings_vs_us": 95.2
-  },
-  {
-    "service": "Tidal",
-    "country": "Philippines",
-    "plan": "HiFi",
-    "local_price": "₱129.00",
-    "usd_price": 2.14,
-    "savings_vs_us": 82.1
-  },
-  {
-    "service": "Tidal",
-    "country": "India",
-    "plan": "HiFi",
-    "local_price": "₹119.00",
-    "usd_price": 1.27,
-    "savings_vs_us": 89.4
-  }
-]
+{
+  "lastUpdated": "2026-04-05T09:56:18.725426Z",
+  "subscriptions": [
+    {
+      "service": "Netflix",
+      "country": "US",
+      "plan": "Standard HD",
+      "localPrice": 15.49,
+      "localCurrency": "USD",
+      "priceUSD": 15.49,
+      "savingsPercent": 0,
+      "symbol": "$"
+    },
+    {
+      "service": "Netflix",
+      "country": "Turkey",
+      "plan": "Standard HD",
+      "localPrice": 149.99,
+      "localCurrency": "TRY",
+      "priceUSD": 3.36,
+      "savingsPercent": 78.0,
+      "symbol": "₺"
+    },
+    {
+      "service": "Netflix",
+      "country": "Argentina",
+      "plan": "Standard HD",
+      "localPrice": 1199.0,
+      "localCurrency": "ARS",
+      "priceUSD": 0.86,
+      "savingsPercent": 94.0,
+      "symbol": "ARS"
+    },
+    {
+      "service": "Netflix",
+      "country": "Nigeria",
+      "plan": "Standard HD",
+      "localPrice": 2900.0,
+      "localCurrency": "NGN",
+      "priceUSD": 2.1,
+      "savingsPercent": 86.0,
+      "symbol": "₦"
+    },
+    {
+      "service": "Netflix",
+      "country": "Egypt",
+      "plan": "Standard HD",
+      "localPrice": 100.0,
+      "localCurrency": "EGP",
+      "priceUSD": 1.84,
+      "savingsPercent": 88.0,
+      "symbol": "EGP"
+    },
+    {
+      "service": "Netflix",
+      "country": "Pakistan",
+      "plan": "Standard HD",
+      "localPrice": 250.0,
+      "localCurrency": "PKR",
+      "priceUSD": 0.89,
+      "savingsPercent": 94.0,
+      "symbol": "PKR"
+    },
+    {
+      "service": "Netflix",
+      "country": "Philippines",
+      "plan": "Standard HD",
+      "localPrice": 149.0,
+      "localCurrency": "PHP",
+      "priceUSD": 2.46,
+      "savingsPercent": 84.0,
+      "symbol": "₱"
+    },
+    {
+      "service": "Netflix",
+      "country": "India",
+      "plan": "Mobile",
+      "localPrice": 199.0,
+      "localCurrency": "INR",
+      "priceUSD": 2.14,
+      "savingsPercent": 86.0,
+      "symbol": "₹"
+    },
+    {
+      "service": "Netflix",
+      "country": "Brazil",
+      "plan": "Standard",
+      "localPrice": 32.9,
+      "localCurrency": "BRL",
+      "priceUSD": 6.38,
+      "savingsPercent": 59.0,
+      "symbol": "R$"
+    },
+    {
+      "service": "Netflix",
+      "country": "Poland",
+      "plan": "Standard",
+      "localPrice": 43.0,
+      "localCurrency": "PLN",
+      "priceUSD": 11.59,
+      "savingsPercent": 25.0,
+      "symbol": "zł"
+    },
+    {
+      "service": "Netflix",
+      "country": "Colombia",
+      "plan": "Standard",
+      "localPrice": 16900.0,
+      "localCurrency": "COP",
+      "priceUSD": 4.61,
+      "savingsPercent": 70.0,
+      "symbol": "COP"
+    },
+    {
+      "service": "Spotify",
+      "country": "US",
+      "plan": "Individual",
+      "localPrice": 11.99,
+      "localCurrency": "USD",
+      "priceUSD": 11.99,
+      "savingsPercent": 0,
+      "symbol": "$"
+    },
+    {
+      "service": "Spotify",
+      "country": "Turkey",
+      "plan": "Individual",
+      "localPrice": 59.99,
+      "localCurrency": "TRY",
+      "priceUSD": 1.35,
+      "savingsPercent": 89.0,
+      "symbol": "₺"
+    },
+    {
+      "service": "Spotify",
+      "country": "Argentina",
+      "plan": "Individual",
+      "localPrice": 750.0,
+      "localCurrency": "ARS",
+      "priceUSD": 0.54,
+      "savingsPercent": 95.0,
+      "symbol": "ARS"
+    },
+    {
+      "service": "Spotify",
+      "country": "Nigeria",
+      "plan": "Individual",
+      "localPrice": 900.0,
+      "localCurrency": "NGN",
+      "priceUSD": 0.65,
+      "savingsPercent": 95.0,
+      "symbol": "₦"
+    },
+    {
+      "service": "Spotify",
+      "country": "Egypt",
+      "plan": "Individual",
+      "localPrice": 25.0,
+      "localCurrency": "EGP",
+      "priceUSD": 0.46,
+      "savingsPercent": 96.0,
+      "symbol": "EGP"
+    },
+    {
+      "service": "Spotify",
+      "country": "Pakistan",
+      "plan": "Individual",
+      "localPrice": 159.0,
+      "localCurrency": "PKR",
+      "priceUSD": 0.57,
+      "savingsPercent": 95.0,
+      "symbol": "PKR"
+    },
+    {
+      "service": "Spotify",
+      "country": "Philippines",
+      "plan": "Individual",
+      "localPrice": 129.0,
+      "localCurrency": "PHP",
+      "priceUSD": 2.13,
+      "savingsPercent": 82.0,
+      "symbol": "₱"
+    },
+    {
+      "service": "Spotify",
+      "country": "India",
+      "plan": "Individual",
+      "localPrice": 119.0,
+      "localCurrency": "INR",
+      "priceUSD": 1.28,
+      "savingsPercent": 89.0,
+      "symbol": "₹"
+    },
+    {
+      "service": "Spotify",
+      "country": "Brazil",
+      "plan": "Individual",
+      "localPrice": 21.9,
+      "localCurrency": "BRL",
+      "priceUSD": 4.25,
+      "savingsPercent": 65.0,
+      "symbol": "R$"
+    },
+    {
+      "service": "Spotify",
+      "country": "Poland",
+      "plan": "Individual",
+      "localPrice": 19.99,
+      "localCurrency": "PLN",
+      "priceUSD": 5.39,
+      "savingsPercent": 55.0,
+      "symbol": "zł"
+    },
+    {
+      "service": "Spotify",
+      "country": "Colombia",
+      "plan": "Individual",
+      "localPrice": 14900.0,
+      "localCurrency": "COP",
+      "priceUSD": 4.07,
+      "savingsPercent": 66.0,
+      "symbol": "COP"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "US",
+      "plan": "Individual",
+      "localPrice": 13.99,
+      "localCurrency": "USD",
+      "priceUSD": 13.99,
+      "savingsPercent": 0,
+      "symbol": "$"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Turkey",
+      "plan": "Individual",
+      "localPrice": 47.99,
+      "localCurrency": "TRY",
+      "priceUSD": 1.08,
+      "savingsPercent": 92.0,
+      "symbol": "₺"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Argentina",
+      "plan": "Individual",
+      "localPrice": 549.0,
+      "localCurrency": "ARS",
+      "priceUSD": 0.4,
+      "savingsPercent": 97.0,
+      "symbol": "ARS"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Nigeria",
+      "plan": "Individual",
+      "localPrice": 1490.0,
+      "localCurrency": "NGN",
+      "priceUSD": 1.08,
+      "savingsPercent": 92.0,
+      "symbol": "₦"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Egypt",
+      "plan": "Individual",
+      "localPrice": 39.99,
+      "localCurrency": "EGP",
+      "priceUSD": 0.74,
+      "savingsPercent": 95.0,
+      "symbol": "EGP"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Pakistan",
+      "plan": "Individual",
+      "localPrice": 219.0,
+      "localCurrency": "PKR",
+      "priceUSD": 0.78,
+      "savingsPercent": 94.0,
+      "symbol": "PKR"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Philippines",
+      "plan": "Individual",
+      "localPrice": 99.0,
+      "localCurrency": "PHP",
+      "priceUSD": 1.64,
+      "savingsPercent": 88.0,
+      "symbol": "₱"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "India",
+      "plan": "Individual",
+      "localPrice": 89.0,
+      "localCurrency": "INR",
+      "priceUSD": 0.96,
+      "savingsPercent": 93.0,
+      "symbol": "₹"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Brazil",
+      "plan": "Individual",
+      "localPrice": 20.9,
+      "localCurrency": "BRL",
+      "priceUSD": 4.05,
+      "savingsPercent": 71.0,
+      "symbol": "R$"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Poland",
+      "plan": "Individual",
+      "localPrice": 23.99,
+      "localCurrency": "PLN",
+      "priceUSD": 6.46,
+      "savingsPercent": 54.0,
+      "symbol": "zł"
+    },
+    {
+      "service": "YouTube Premium",
+      "country": "Colombia",
+      "plan": "Individual",
+      "localPrice": 13900.0,
+      "localCurrency": "COP",
+      "priceUSD": 3.79,
+      "savingsPercent": 73.0,
+      "symbol": "COP"
+    },
+    {
+      "service": "Disney+",
+      "country": "US",
+      "plan": "Standard",
+      "localPrice": 13.99,
+      "localCurrency": "USD",
+      "priceUSD": 13.99,
+      "savingsPercent": 0,
+      "symbol": "$"
+    },
+    {
+      "service": "Disney+",
+      "country": "Turkey",
+      "plan": "Standard",
+      "localPrice": 89.99,
+      "localCurrency": "TRY",
+      "priceUSD": 2.02,
+      "savingsPercent": 86.0,
+      "symbol": "₺"
+    },
+    {
+      "service": "Disney+",
+      "country": "Argentina",
+      "plan": "Standard",
+      "localPrice": 599.0,
+      "localCurrency": "ARS",
+      "priceUSD": 0.43,
+      "savingsPercent": 97.0,
+      "symbol": "ARS"
+    },
+    {
+      "service": "Disney+",
+      "country": "Nigeria",
+      "plan": "Standard",
+      "localPrice": 2100.0,
+      "localCurrency": "NGN",
+      "priceUSD": 1.52,
+      "savingsPercent": 89.0,
+      "symbol": "₦"
+    },
+    {
+      "service": "Disney+",
+      "country": "Egypt",
+      "plan": "Standard",
+      "localPrice": 59.0,
+      "localCurrency": "EGP",
+      "priceUSD": 1.09,
+      "savingsPercent": 92.0,
+      "symbol": "EGP"
+    },
+    {
+      "service": "Disney+",
+      "country": "Pakistan",
+      "plan": "Standard",
+      "localPrice": 300.0,
+      "localCurrency": "PKR",
+      "priceUSD": 1.07,
+      "savingsPercent": 92.0,
+      "symbol": "PKR"
+    },
+    {
+      "service": "Disney+",
+      "country": "Philippines",
+      "plan": "Standard",
+      "localPrice": 149.0,
+      "localCurrency": "PHP",
+      "priceUSD": 2.46,
+      "savingsPercent": 82.0,
+      "symbol": "₱"
+    },
+    {
+      "service": "Disney+",
+      "country": "India",
+      "plan": "Standard",
+      "localPrice": 299.0,
+      "localCurrency": "INR",
+      "priceUSD": 3.21,
+      "savingsPercent": 77.0,
+      "symbol": "₹"
+    },
+    {
+      "service": "Disney+",
+      "country": "Brazil",
+      "plan": "Standard",
+      "localPrice": 33.9,
+      "localCurrency": "BRL",
+      "priceUSD": 6.57,
+      "savingsPercent": 53.0,
+      "symbol": "R$"
+    },
+    {
+      "service": "Disney+",
+      "country": "Poland",
+      "plan": "Standard",
+      "localPrice": 37.99,
+      "localCurrency": "PLN",
+      "priceUSD": 10.24,
+      "savingsPercent": 27.0,
+      "symbol": "zł"
+    },
+    {
+      "service": "Disney+",
+      "country": "Colombia",
+      "plan": "Standard",
+      "localPrice": 18900.0,
+      "localCurrency": "COP",
+      "priceUSD": 5.16,
+      "savingsPercent": 63.0,
+      "symbol": "COP"
+    },
+    {
+      "service": "HBO Max",
+      "country": "US",
+      "plan": "With Ads",
+      "localPrice": 15.99,
+      "localCurrency": "USD",
+      "priceUSD": 15.99,
+      "savingsPercent": 0,
+      "symbol": "$"
+    },
+    {
+      "service": "HBO Max",
+      "country": "Turkey",
+      "plan": "Standard",
+      "localPrice": 119.99,
+      "localCurrency": "TRY",
+      "priceUSD": 2.69,
+      "savingsPercent": 83.0,
+      "symbol": "₺"
+    },
+    {
+      "service": "HBO Max",
+      "country": "Argentina",
+      "plan": "Standard",
+      "localPrice": 999.0,
+      "localCurrency": "ARS",
+      "priceUSD": 0.72,
+      "savingsPercent": 95.0,
+      "symbol": "ARS"
+    },
+    {
+      "service": "HBO Max",
+      "country": "Brazil",
+      "plan": "Standard",
+      "localPrice": 39.9,
+      "localCurrency": "BRL",
+      "priceUSD": 7.73,
+      "savingsPercent": 52.0,
+      "symbol": "R$"
+    },
+    {
+      "service": "HBO Max",
+      "country": "Poland",
+      "plan": "Standard",
+      "localPrice": 29.99,
+      "localCurrency": "PLN",
+      "priceUSD": 8.08,
+      "savingsPercent": 49.0,
+      "symbol": "zł"
+    },
+    {
+      "service": "HBO Max",
+      "country": "Colombia",
+      "plan": "Standard",
+      "localPrice": 21900.0,
+      "localCurrency": "COP",
+      "priceUSD": 5.98,
+      "savingsPercent": 63.0,
+      "symbol": "COP"
+    },
+    {
+      "service": "Apple Music",
+      "country": "US",
+      "plan": "Individual",
+      "localPrice": 10.99,
+      "localCurrency": "USD",
+      "priceUSD": 10.99,
+      "savingsPercent": 0,
+      "symbol": "$"
+    },
+    {
+      "service": "Apple Music",
+      "country": "Turkey",
+      "plan": "Individual",
+      "localPrice": 34.99,
+      "localCurrency": "TRY",
+      "priceUSD": 0.78,
+      "savingsPercent": 93.0,
+      "symbol": "₺"
+    },
+    {
+      "service": "Apple Music",
+      "country": "Argentina",
+      "plan": "Individual",
+      "localPrice": 599.0,
+      "localCurrency": "ARS",
+      "priceUSD": 0.43,
+      "savingsPercent": 96.0,
+      "symbol": "ARS"
+    },
+    {
+      "service": "Apple Music",
+      "country": "India",
+      "plan": "Individual",
+      "localPrice": 99.0,
+      "localCurrency": "INR",
+      "priceUSD": 1.06,
+      "savingsPercent": 90.0,
+      "symbol": "₹"
+    },
+    {
+      "service": "Apple Music",
+      "country": "Brazil",
+      "plan": "Individual",
+      "localPrice": 21.9,
+      "localCurrency": "BRL",
+      "priceUSD": 4.25,
+      "savingsPercent": 61.0,
+      "symbol": "R$"
+    },
+    {
+      "service": "Apple Music",
+      "country": "Poland",
+      "plan": "Individual",
+      "localPrice": 19.99,
+      "localCurrency": "PLN",
+      "priceUSD": 5.39,
+      "savingsPercent": 51.0,
+      "symbol": "zł"
+    }
+  ]
+}
