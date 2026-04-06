@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy | Subpricing",
   description: "Privacy policy for Subpricing website",
+  alternates: {
+    canonical: "https://subpricing.com/privacy",
+  },
 };
 
 export default function PrivacyPage() {

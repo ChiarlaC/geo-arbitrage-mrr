@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service | Subpricing",
   description: "Terms of service for Subpricing website",
+  alternates: {
+    canonical: "https://subpricing.com/terms",
+  },
 };
 
 export default function TermsPage() {

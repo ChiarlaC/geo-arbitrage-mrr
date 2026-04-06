@@ -13,6 +13,8 @@ export default function NordVPNBanner() {
             <img
               src="/affiliates/nordvpn-728x90.png"
               alt="NordVPN Special Offer - Save up to 74%"
+              width="728"
+              height="90"
               className="mx-auto rounded-lg shadow-md hover:shadow-xl transition-shadow"
             />
           </picture>

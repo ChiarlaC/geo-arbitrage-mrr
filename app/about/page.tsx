@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About Subpricing | Global Subscription Price Tracker",
   description: "Learn about Subpricing's mission to help users save money on subscriptions by comparing prices across different countries.",
+  alternates: {
+    canonical: "https://subpricing.com/about",
+  },
 };
 
 export default function AboutPage() {

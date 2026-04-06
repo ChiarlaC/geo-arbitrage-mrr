@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     'ai model comparison',
     'cheapest ai api',
   ],
+  alternates: {
+    canonical: 'https://subpricing.com/ai-pricing',
+  },
 };
 
 // Server-rendered page to expose pricing data to crawlers (no JS required for core content)
