@@ -43,10 +43,10 @@ jobs:
           else
             git commit -m "chore: update subscription pricing data [skip ci]
 
-Automated update from GitHub Actions
-- Fetched live exchange rates
-- Updated USD conversions
-- Recalculated savings percentages"
+          Automated update from GitHub Actions
+          - Fetched live exchange rates
+          - Updated USD conversions
+          - Recalculated savings percentages"
             git push
           fi
 

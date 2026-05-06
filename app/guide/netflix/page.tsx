@@ -6,8 +6,8 @@ import EnhancedStepList from '@/components/EnhancedStepList';
 import VPNAffiliateCTA from '@/components/VPNAffiliateCTA';
 
 export const metadata = {
-  title: 'How to Get Netflix Turkey Price 2026 — Full Guide | Subpricing',
-  description: 'Comprehensive 2026 guide on how to get Netflix Turkey price using gift cards. Step-by-step instructions with screenshots, risk assessment, and VPN requirements.',
+  title: 'Netflix Turkey Price 2026: $3/month Guide (VPN + Gift Card)',
+  description: "Get Netflix Turkey for ~$3/month in 2026. Exact steps: VPN setup, Turkish gift card purchase, account creation. Updated for Netflix's latest enforcement rules.",
 };
 
 export default function NetflixGuidePage() {
