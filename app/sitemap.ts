@@ -21,8 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "spotify",
     "youtube-premium",
     "disney-plus",
-    "hbo-max",
-    "apple-music",
+    "tidal",
+    "canva-pro",
   ];
 
   const guides = [
@@ -81,6 +81,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
+    url: `${baseUrl}/${service}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
   const serviceCountryPages: MetadataRoute.Sitemap = services.flatMap((service) =>
     countries.map((country) => ({
       url: `${baseUrl}/${service}/${country}`,
@@ -93,6 +100,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes,
     ...guidePages,
+    ...servicePages,
     ...countryPages,
     ...serviceCountryPages,
   ];
