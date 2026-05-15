@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import {
-  BarChart,
   Bar,
   XAxis,
   YAxis,
@@ -15,27 +14,14 @@ import {
   Line,
 } from 'recharts';
 import { AiModelData } from '@/lib/types';
-import { loadAiModelData } from '@/lib/data';
 import AiModelCard from './AiModelCard';
 
-export default function AiPricingDashboard() {
-  const [models, setModels] = useState<AiModelData[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [loading, setLoading] = useState(true);
+interface AiPricingDashboardProps {
+  models: AiModelData[];
+}
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await loadAiModelData();
-        setModels(data);
-      } catch (error) {
-        console.error('Failed to load AI model data:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
+export default function AiPricingDashboard({ models }: AiPricingDashboardProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   // Extract unique categories
   const categories = ['All', ...Array.from(new Set(models.map(model => model.category.split(', ')[0])))]
@@ -74,16 +60,9 @@ export default function AiPricingDashboard() {
     ? filteredModels.reduce((sum, model) => sum + model.output_cost, 0) / filteredModels.length 
     : 0;
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="text-gray-500">Loading AI pricing data...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-8">
+      <h2 className="text-2xl font-bold text-gray-900">AI Model Comparison by Category: Performance & Cost</h2>
       {/* Category Tabs */}
       <Tabs.Root 
         defaultValue="All" 

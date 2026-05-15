@@ -8,9 +8,10 @@ interface AiCostCalculatorProps {
 }
 
 export default function AiCostCalculator({ models }: AiCostCalculatorProps) {
-  const [inputTokens, setInputTokens] = useState(1000000); // 1M tokens default
+  const [inputTokens, setInputTokens] = useState(1000000);
   const [outputTokens, setOutputTokens] = useState(1000000);
   const [selectedProvider, setSelectedProvider] = useState('all');
+  const [showAll, setShowAll] = useState(false);
 
   // Extract unique providers
   const providers = useMemo(() => {
@@ -63,10 +64,19 @@ export default function AiCostCalculator({ models }: AiCostCalculatorProps) {
           <input
             type="number"
             value={inputTokens}
-            onChange={(e) => setInputTokens(Number(e.target.value))}
+            onChange={(e) => setInputTokens(Math.max(0, Number(e.target.value)))}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             min="0"
             step="100000"
+          />
+          <input
+            type="range"
+            min="0"
+            max="50000000"
+            step="100000"
+            value={Math.min(inputTokens, 50000000)}
+            onChange={(e) => setInputTokens(Number(e.target.value))}
+            className="w-full mt-2 accent-blue-500"
           />
           <p className="text-xs text-gray-500 mt-1">
             {(inputTokens / 1000000).toFixed(2)}M tokens
@@ -80,10 +90,19 @@ export default function AiCostCalculator({ models }: AiCostCalculatorProps) {
           <input
             type="number"
             value={outputTokens}
-            onChange={(e) => setOutputTokens(Number(e.target.value))}
+            onChange={(e) => setOutputTokens(Math.max(0, Number(e.target.value)))}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             min="0"
             step="100000"
+          />
+          <input
+            type="range"
+            min="0"
+            max="50000000"
+            step="100000"
+            value={Math.min(outputTokens, 50000000)}
+            onChange={(e) => setOutputTokens(Number(e.target.value))}
+            className="w-full mt-2 accent-green-500"
           />
           <p className="text-xs text-gray-500 mt-1">
             {(outputTokens / 1000000).toFixed(2)}M tokens
@@ -175,7 +194,7 @@ export default function AiCostCalculator({ models }: AiCostCalculatorProps) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {calculatedCosts.slice(0, 15).map((cost, index) => (
+            {(showAll ? calculatedCosts : calculatedCosts.slice(0, 15)).map((cost, index) => (
               <tr
                 key={cost.model}
                 className={`hover:bg-gray-50 ${index === 0 ? 'bg-green-50' : ''}`}
@@ -206,9 +225,14 @@ export default function AiCostCalculator({ models }: AiCostCalculatorProps) {
         </table>
 
         {calculatedCosts.length > 15 && (
-          <p className="text-sm text-gray-500 text-center mt-4">
-            Showing top 15 models. Total: {calculatedCosts.length} models
-          </p>
+          <div className="text-center mt-4">
+            <button
+              onClick={() => setShowAll(v => !v)}
+              className="px-4 py-2 text-sm text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors"
+            >
+              {showAll ? 'Show less' : `Show all ${calculatedCosts.length} models`}
+            </button>
+          </div>
         )}
       </div>
 

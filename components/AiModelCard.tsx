@@ -4,6 +4,13 @@ interface AiModelCardProps {
   model: AiModelData;
 }
 
+const formatCost = (v: number) => {
+  if (v === 0) return '$0';
+  if (v < 0.01) return `$${v.toFixed(4)}`;
+  if (v < 1) return `$${v.toFixed(3)}`;
+  return `$${v.toFixed(2)}`;
+};
+
 const costBadge = (total: number) => {
   if (total <= 0.5) return { label: 'Budget', className: 'bg-green-100 text-green-800' };
   if (total <= 2) return { label: 'Balanced', className: 'bg-blue-100 text-blue-800' };
@@ -61,12 +68,12 @@ export default function AiModelCard({ model }: AiModelCardProps) {
       <div className="grid grid-cols-2 gap-4 mb-5">
         <div className="text-center bg-blue-50 rounded-lg p-3">
           <p className="text-xs text-gray-600 mb-1">Input Cost</p>
-          <p className="text-lg font-bold text-blue-700">${model.input_cost.toFixed(2)}</p>
+          <p className="text-lg font-bold text-blue-700">{formatCost(model.input_cost)}</p>
           <p className="text-xs text-gray-500">per 1M tokens</p>
         </div>
         <div className="text-center bg-green-50 rounded-lg p-3">
           <p className="text-xs text-gray-600 mb-1">Output Cost</p>
-          <p className="text-lg font-bold text-green-700">${model.output_cost.toFixed(2)}</p>
+          <p className="text-lg font-bold text-green-700">{formatCost(model.output_cost)}</p>
           <p className="text-xs text-gray-500">per 1M tokens</p>
         </div>
       </div>
@@ -75,7 +82,7 @@ export default function AiModelCard({ model }: AiModelCardProps) {
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 mb-4">
         <div className="flex justify-between items-center">
           <span className="text-sm font-medium text-gray-700">Total Cost</span>
-          <span className="text-xl font-bold text-gray-900">${totalCost.toFixed(2)}</span>
+          <span className="text-xl font-bold text-gray-900">{formatCost(totalCost)}</span>
         </div>
         <p className="text-xs text-gray-500 mt-1">per 1M input + 1M output tokens</p>
       </div>

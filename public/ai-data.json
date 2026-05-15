@@ -45,13 +45,13 @@
     "modality": "text->text"
   },
   {
-    "model_id": "x-ai/grok-code-fast-1",
-    "model_name": "xAI: Grok Code Fast 1",
-    "category": "Code",
-    "input_cost": 0.2,
-    "output_cost": 1.5,
-    "context_length": "256K",
-    "modality": "text->text"
+    "model_id": "x-ai/grok-4-3",
+    "model_name": "xAI: Grok 4.3",
+    "category": "Multimodal, Text",
+    "input_cost": 1.25,
+    "output_cost": 2.5,
+    "context_length": "1000K",
+    "modality": "text+image->text"
   },
   {
     "model_id": "qwen/qwen3-coder",
@@ -162,12 +162,12 @@
     "modality": "text+image->text"
   },
   {
-    "model_id": "anthropic/claude-opus-4.6",
-    "model_name": "Anthropic: Claude Opus 4.6",
-    "category": "Text",
+    "model_id": "anthropic/claude-opus-4-7",
+    "model_name": "Anthropic: Claude Opus 4.7",
+    "category": "Text, Code",
     "input_cost": 5,
     "output_cost": 25,
-    "context_length": "1000K",
+    "context_length": "200K",
     "modality": "text+image->text"
   },
   {
@@ -178,5 +178,131 @@
     "output_cost": 10,
     "context_length": "400K",
     "modality": "text+image+file->text+image"
+  },
+  {
+    "model_id": "deepseek/deepseek-v4-flash",
+    "model_name": "DeepSeek: DeepSeek V4 Flash",
+    "category": "Text, Code",
+    "input_cost": 0.14,
+    "output_cost": 0.28,
+    "context_length": "1000K",
+    "modality": "text->text"
+  },
+  {
+    "model_id": "deepseek/deepseek-v4-pro",
+    "model_name": "DeepSeek: DeepSeek V4 Pro",
+    "category": "Text, Code",
+    "input_cost": 1.74,
+    "output_cost": 3.48,
+    "context_length": "1000K",
+    "modality": "text->text"
+  },
+  {
+    "model_id": "openai/gpt-4.1",
+    "model_name": "OpenAI: GPT-4.1",
+    "category": "Multimodal, Text",
+    "input_cost": 2,
+    "output_cost": 8,
+    "context_length": "128K",
+    "modality": "text+image+file->text"
+  },
+  {
+    "model_id": "openai/gpt-4.1-mini",
+    "model_name": "OpenAI: GPT-4.1 Mini",
+    "category": "Text",
+    "input_cost": 0.4,
+    "output_cost": 1.6,
+    "context_length": "128K",
+    "modality": "text+image+file->text"
+  },
+  {
+    "model_id": "openai/o3",
+    "model_name": "OpenAI: o3",
+    "category": "Text, Code",
+    "input_cost": 2,
+    "output_cost": 8,
+    "context_length": "200K",
+    "modality": "text->text"
+  },
+  {
+    "model_id": "openai/o4-mini",
+    "model_name": "OpenAI: o4-mini",
+    "category": "Text, Code",
+    "input_cost": 1.1,
+    "output_cost": 4.4,
+    "context_length": "200K",
+    "modality": "text->text"
+  },
+  {
+    "model_id": "google/gemini-2.5-pro",
+    "model_name": "Google: Gemini 2.5 Pro",
+    "category": "Multimodal, Text",
+    "input_cost": 1.25,
+    "output_cost": 10,
+    "context_length": "1000K",
+    "modality": "text+image+file+audio+video->text"
+  },
+  {
+    "model_id": "google/gemini-2.5-flash",
+    "model_name": "Google: Gemini 2.5 Flash",
+    "category": "Multimodal, Text",
+    "input_cost": 0.3,
+    "output_cost": 2.5,
+    "context_length": "1000K",
+    "modality": "text+image+file+audio+video->text"
+  },
+  {
+    "model_id": "meta/llama-4-scout",
+    "model_name": "Meta: Llama 4 Scout",
+    "category": "Multimodal, Text",
+    "input_cost": 0.1,
+    "output_cost": 0.32,
+    "context_length": "10000K",
+    "modality": "text+image->text"
+  },
+  {
+    "model_id": "meta/llama-4-maverick",
+    "model_name": "Meta: Llama 4 Maverick",
+    "category": "Multimodal, Text",
+    "input_cost": 0.19,
+    "output_cost": 0.59,
+    "context_length": "1000K",
+    "modality": "text+image->text"
+  },
+  {
+    "model_id": "mistralai/mistral-large-3",
+    "model_name": "Mistral: Mistral Large 3",
+    "category": "Multimodal, Text",
+    "input_cost": 0.5,
+    "output_cost": 1.5,
+    "context_length": "262K",
+    "modality": "text+image->text"
+  },
+  {
+    "model_id": "mistralai/mistral-medium-3-5",
+    "model_name": "Mistral: Mistral Medium 3.5",
+    "category": "Text",
+    "input_cost": 1.5,
+    "output_cost": 7.5,
+    "context_length": "128K",
+    "modality": "text->text"
+  },
+  {
+    "model_id": "xiaomi/mimo-v2-5",
+    "model_name": "Xiaomi: MiMo-V2.5",
+    "category": "Multimodal, Text",
+    "input_cost": 0.4,
+    "output_cost": 2,
+    "context_length": "1000K",
+    "modality": "text+image+audio+video->text"
+  },
+  {
+    "model_id": "xiaomi/mimo-v2-5-pro",
+    "model_name": "Xiaomi: MiMo-V2.5 Pro",
+    "category": "Code, Text",
+    "input_cost": 1,
+    "output_cost": 3,
+    "context_length": "256K",
+    "modality": "text->text"
   }
 ]
