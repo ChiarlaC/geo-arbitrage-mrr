@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = `${serviceName} Prices by Country 2026 — Compare & Save`;
-  const description = `Compare ${serviceName} subscription prices across 7+ countries. Find the cheapest ${serviceName} plan and save up to 90% with regional pricing.`;
+  const title = `${serviceName} Cheapest Country Price 2026 — Turkey, Argentina & More`;
+  const description = `Compare ${serviceName} prices across 10 countries. Turkey from $3/mo, Argentina from $2/mo. Find the cheapest ${serviceName} subscription and save up to 90% vs US price.`;
 
   return {
     title,
