@@ -1,5 +1,16 @@
 import { MetadataRoute } from "next";
 
+const serviceCountries: { [key: string]: string[] } = {
+  "netflix":          ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
+  "spotify":          ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
+  "youtube-premium":  ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
+  "disney-plus":      ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
+  "tidal":            ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
+  "canva-pro":        ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
+  "hbo-max":          ["turkey","argentina","brazil","poland","colombia"],
+  "apple-music":      ["turkey","argentina","india","brazil","poland"],
+};
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://subpricing.com";
 
@@ -23,6 +34,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "disney-plus",
     "tidal",
     "canva-pro",
+    "hbo-max",
+    "apple-music",
   ];
 
   const guides = [
@@ -88,13 +101,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const serviceCountryPages: MetadataRoute.Sitemap = services.flatMap((service) =>
-    countries.map((country) => ({
-      url: `${baseUrl}/${service}/${country}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    }))
+  const serviceCountryPages: MetadataRoute.Sitemap = Object.entries(serviceCountries).flatMap(
+    ([service, ctries]) =>
+      ctries.map((country) => ({
+        url: `${baseUrl}/${service}/${country}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      }))
   );
 
   return [

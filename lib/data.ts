@@ -69,11 +69,21 @@ export async function loadAiModelData(): Promise<AiModelData[]> {
   return aiDataJson as AiModelData[];
 }
 
+function slugToService(slug: string): string {
+  return slug
+    .replace(/-plus$/, '+')
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace('Youtube', 'YouTube')
+    .replace('Hbo', 'HBO');
+}
+
 export function getPrice(service: string, country: string): PricingData | undefined {
   const allData = require('@/public/data.json');
+  const serviceName = slugToService(service);
   return allData.subscriptions.find(
     (item: PricingData) =>
-      item.service.toLowerCase() === service.toLowerCase() &&
+      item.service.toLowerCase() === serviceName.toLowerCase() &&
       item.country.toLowerCase() === country.toLowerCase()
   );
 }

@@ -17,7 +17,13 @@ const serviceNames: { [key: string]: string } = {
   "disney-plus": "Disney Plus",
   "tidal": "Tidal",
   "canva-pro": "Canva Pro",
+  "hbo-max": "HBO Max",
+  "apple-music": "Apple Music",
 };
+
+const serviceHasGuide = new Set([
+  "netflix", "spotify", "youtube-premium", "disney-plus", "tidal", "canva-pro",
+]);
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { service } = await params;
@@ -230,6 +236,7 @@ export default async function ServicePage({ params }: PageProps) {
       </div>
 
       {/* Related Guide Link */}
+      {serviceHasGuide.has(service) && (
       <div className="text-center">
         <Link
           href={`/guide/${service}`}
@@ -238,6 +245,7 @@ export default async function ServicePage({ params }: PageProps) {
           📖 Read our complete {serviceName} guide →
         </Link>
       </div>
+      )}
     </div>
   );
 }
