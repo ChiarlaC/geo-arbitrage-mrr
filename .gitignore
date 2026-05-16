@@ -34,3 +34,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temporary scripts and test files
+backup-*.js
+convert-*.js
+test-*.js
+test-*.json
+verify-*.js
+start-*.ps1
+start-*.bat
+
+# temporary docs
+SEO-*.md
+ROADMAP.md
+AI_PRICING_PAGE_MODIFICATION*.md
+*-PROMPT.md
+*-PLAN.md
+*-COMPLETED.md
+
+# other platform configs (not Render)
+vercel.json
+sentry.*.config.ts
