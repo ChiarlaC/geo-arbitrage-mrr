@@ -63,22 +63,10 @@ export async function loadPricingData(): Promise<PricingData[]> {
   return pricingDataJson.subscriptions as PricingData[];
 }
 
+import aiDataJson from '@/public/ai-data.json';
+
 export async function loadAiModelData(): Promise<AiModelData[]> {
-  // In production, fetch from public/ai-data.json
-  try {
-    // Use absolute URL for development
-    const baseUrl = process.env.NODE_ENV === 'development' 
-      ? 'http://localhost:3000' 
-      : '';
-    const response = await fetch(`${baseUrl}/ai-data.json`);
-    if (!response.ok) {
-      throw new Error('Failed to load AI data');
-    }
-    return await response.json();
-  } catch (error) {
-    console.warn('Using sample AI model data due to error:', error);
-    return sampleAiModelData;
-  }
+  return aiDataJson as AiModelData[];
 }
 
 export function getPrice(service: string, country: string): PricingData | undefined {
