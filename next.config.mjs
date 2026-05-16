@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  outputFileTracingExcludes: { '*': ['**/*'] },
   async redirects() {
     const services = ['netflix', 'spotify', 'youtube-premium', 'disney-plus', 'canva-pro', 'tidal'];
     const countries = ['argentina', 'egypt', 'india', 'nigeria', 'pakistan', 'philippines', 'turkey'];
