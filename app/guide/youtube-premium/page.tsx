@@ -5,8 +5,8 @@ import EnhancedStepList from '@/components/EnhancedStepList';
 import VPNAffiliateCTA from '@/components/VPNAffiliateCTA';
 
 export const metadata = {
-  title: 'YouTube Premium Cheapest Country 2026: Turkey & Argentina Guide',
-  description: 'Get YouTube Premium for $1-2/month using Turkey or Argentina pricing. Step-by-step VPN guide, works in 2026. Save 85% vs US price.',
+  title: 'YouTube Premium Cheapest Country 2026: Turkey, Argentina & India Price Guide',
+  description: 'Get YouTube Premium for $0.40–$1.08/month. Turkey $1.08/mo, Argentina $0.40/mo, India $0.96/mo. Step-by-step VPN guide, works in 2026. Save 90–97% vs US price.',
 };
 
 export default function YouTubePremiumGuidePage() {
@@ -117,7 +117,7 @@ export default function YouTubePremiumGuidePage() {
         />
 
         <GuideLayout
-          title="How to Get YouTube Premium Turkey Price (2026 Guide)"
+          title="YouTube Premium Cheapest Country 2026: Turkey, Argentina & India"
           difficulty="Medium"
           vpnRequired={true}
           estimatedTime="20-30 minutes"
@@ -132,21 +132,44 @@ export default function YouTubePremiumGuidePage() {
             </div>
 
             <div className="bg-blue-50 p-6 rounded-lg mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Best Deals</h3>
-              <ul className="space-y-2">
-                <li className="flex justify-between">
-                  <span>Turkey Individual:</span>
-                  <span className="font-semibold">$1.55/month (90% savings)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Argentina Individual:</span>
-                  <span className="font-semibold">$0.67/month (96% savings)</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>India Individual:</span>
-                  <span className="font-semibold">$1.28/month (92% savings)</span>
-                </li>
-              </ul>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Best Prices (2026)</h3>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-blue-200">
+                    <th className="text-left py-2">Country</th>
+                    <th className="text-right py-2">Price/month</th>
+                    <th className="text-right py-2">Savings vs US</th>
+                    <th className="text-right py-2">Difficulty</th>
+                  </tr>
+                </thead>
+                <tbody className="space-y-1">
+                  <tr className="border-b border-blue-100">
+                    <td className="py-2 font-medium">🇦🇷 Argentina</td>
+                    <td className="text-right font-bold text-green-700">$0.40/mo</td>
+                    <td className="text-right">97% off</td>
+                    <td className="text-right text-amber-600">Hard</td>
+                  </tr>
+                  <tr className="border-b border-blue-100">
+                    <td className="py-2 font-medium">🇮🇳 India</td>
+                    <td className="text-right font-bold text-green-700">$0.96/mo</td>
+                    <td className="text-right">93% off</td>
+                    <td className="text-right text-amber-600">Medium</td>
+                  </tr>
+                  <tr className="border-b border-blue-100">
+                    <td className="py-2 font-medium">🇹🇷 Turkey</td>
+                    <td className="text-right font-bold text-green-700">$1.08/mo</td>
+                    <td className="text-right">92% off</td>
+                    <td className="text-right text-green-600">Easy</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 text-gray-500">🇺🇸 US (baseline)</td>
+                    <td className="text-right text-gray-500">$13.99/mo</td>
+                    <td className="text-right text-gray-500">—</td>
+                    <td className="text-right text-gray-500">—</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p className="text-xs text-gray-500 mt-3">Turkey recommended for most users — easiest setup, accepts most international cards.</p>
             </div>
 
             <WarningBox type="tip" title="Why Turkey is recommended">
@@ -199,6 +222,30 @@ export default function YouTubePremiumGuidePage() {
               eyebrow="Required for initial setup"
               body="You need VPN only during account creation. After Premium activates, YouTube works worldwide without VPN."
             />
+
+            <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-6">
+              Alternative: Argentina Price ($0.40/mo)
+            </h2>
+            <p className="text-gray-700 mb-4">
+              Argentina offers the cheapest YouTube Premium price at <strong>$0.40/month (97% off)</strong>.
+              The process is identical to Turkey — connect VPN to Argentina, create a Google account with an Argentine address, and subscribe at <a href="https://youtube.com/premium" target="_blank" rel="noopener" className="text-blue-600 underline">youtube.com/premium</a>.
+            </p>
+            <div className="bg-amber-50 border border-amber-200 p-4 rounded text-sm text-amber-900 mb-6">
+              <strong>Argentina caveat:</strong> Argentine pricing uses ARS (Argentine Peso), which fluctuates significantly.
+              Some international cards are declined more often than with Turkey. If your card fails, switch to the Turkey method.
+            </div>
+
+            <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-6">
+              Alternative: India Price ($0.96/mo)
+            </h2>
+            <p className="text-gray-700 mb-4">
+              India YouTube Premium costs <strong>₹89/month ($0.96/mo, 93% off)</strong>.
+              Follow the same steps as Turkey but connect your VPN to an India server and use an Indian billing address.
+            </p>
+            <div className="bg-gray-50 border border-gray-200 p-4 rounded text-sm text-gray-700 mb-8">
+              <strong>India tip:</strong> Use a virtual card (Revolut or Wise) with an Indian billing address.
+              Real Indian addresses work well — example: "MG Road, Bangalore, Karnataka 560001, India".
+            </div>
 
             <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-6">
               Common Questions
