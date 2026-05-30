@@ -15,8 +15,6 @@ const serviceNames: { [key: string]: string } = {
   "spotify": "Spotify",
   "youtube-premium": "YouTube Premium",
   "disney-plus": "Disney Plus",
-  "tidal": "Tidal",
-  "canva-pro": "Canva Pro",
   "hbo-max": "HBO Max",
   "apple-music": "Apple Music",
 };

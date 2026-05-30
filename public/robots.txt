@@ -2,6 +2,5 @@ User-agent: *
 Allow: /
 
 Disallow: /admin/
-Disallow: /_next/
 
 Sitemap: https://subpricing.com/sitemap.xml

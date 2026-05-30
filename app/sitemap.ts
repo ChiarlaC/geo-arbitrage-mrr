@@ -5,8 +5,6 @@ const serviceCountries: { [key: string]: string[] } = {
   "spotify":          ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
   "youtube-premium":  ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
   "disney-plus":      ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
-  "tidal":            ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
-  "canva-pro":        ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -30,8 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "spotify",
     "youtube-premium",
     "disney-plus",
-    "tidal",
-    "canva-pro",
   ];
 
   const guides = [
@@ -39,8 +35,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "spotify",
     "youtube-premium",
     "disney-plus",
-    "canva-pro",
-    "tidal",
   ];
 
   const staticRoutes: MetadataRoute.Sitemap = [

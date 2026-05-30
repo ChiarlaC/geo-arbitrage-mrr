@@ -79,9 +79,8 @@ function slugToService(slug: string): string {
 }
 
 export function getPrice(service: string, country: string): PricingData | undefined {
-  const allData = require('@/public/data.json');
   const serviceName = slugToService(service);
-  return allData.subscriptions.find(
+  return pricingDataJson.subscriptions.find(
     (item: PricingData) =>
       item.service.toLowerCase() === serviceName.toLowerCase() &&
       item.country.toLowerCase() === country.toLowerCase()

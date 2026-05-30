@@ -15,29 +15,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://subpricing.com",
-    title: "Subpricing — Global Subscription Price Tracker",
-    description: "Compare subscription prices across countries. Save up to 90% on Netflix, Spotify, YouTube Premium, and more.",
+    title: "Cheapest Subscription Prices by Country 2026 — Netflix, Spotify & More",
+    description: "Compare Netflix, Spotify, YouTube Premium prices across 10 countries. Turkey from $1/mo, Argentina from $0.40/mo. Save up to 97% vs US price with VPN.",
     siteName: "Subpricing",
     images: [
       {
         url: "https://subpricing.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Subpricing — Global Subscription Price Tracker",
+        alt: "Cheapest Subscription Prices by Country 2026",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Subpricing — Global Subscription Price Tracker",
-    description: "Compare subscription prices across countries. Save up to 90% on Netflix, Spotify, YouTube Premium, and more.",
+    title: "Cheapest Subscription Prices by Country 2026 — Netflix, Spotify & More",
+    description: "Compare Netflix, Spotify, YouTube Premium prices across 10 countries. Turkey from $1/mo, Argentina from $0.40/mo. Save up to 97% vs US price with VPN.",
     images: ["https://subpricing.com/og-image.png"],
     creator: "@subpricing",
-  },
-  verification: {
-    google: "your-verification-code",
-    yandex: "yandex-verification-code",
-    yahoo: "yahoo-verification-code",
   },
   alternates: {
     canonical: "https://subpricing.com",
@@ -66,12 +61,7 @@ export default function RootLayout({
               "@type": "WebSite",
               "name": "Subpricing",
               "url": "https://subpricing.com",
-              "description": "Compare subscription prices across countries. Save up to 90% on Netflix, Spotify, YouTube Premium, and more.",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://subpricing.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
+              "description": "Compare subscription prices across countries. Save up to 97% on Netflix, Spotify, YouTube Premium, and more.",
             }),
           }}
         />
