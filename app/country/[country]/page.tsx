@@ -52,6 +52,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `cheapest subscription ${countryName.toLowerCase()}`,
       `${countryName.toLowerCase()} vpn subscriptions`,
     ],
+    alternates: {
+      canonical: `https://subpricing.com/country/${params.country}`,
+    },
   };
 }
 

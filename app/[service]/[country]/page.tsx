@@ -26,9 +26,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${data.service} ${data.country} Price 2026: $${data.priceUSD.toFixed(2)}/mo — Save ${data.savingsPercent.toFixed(0)}%`;
   const description = `${data.service} costs ${data.symbol}${data.localPrice.toFixed(2)} ($${data.priceUSD.toFixed(2)}/mo) in ${data.country} — ${data.savingsPercent.toFixed(0)}% cheaper than the US. Step-by-step guide to subscribe at this price.`;
 
+  const serviceSlug = service;
+  const countrySlug = country;
+
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://subpricing.com/${serviceSlug}/${countrySlug}`,
+    },
   };
 }
 

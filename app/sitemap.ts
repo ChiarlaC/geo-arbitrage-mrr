@@ -7,8 +7,6 @@ const serviceCountries: { [key: string]: string[] } = {
   "disney-plus":      ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
   "tidal":            ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
   "canva-pro":        ["turkey","argentina","nigeria","egypt","pakistan","philippines","india","brazil","poland","colombia"],
-  "hbo-max":          ["turkey","argentina","brazil","poland","colombia"],
-  "apple-music":      ["turkey","argentina","india","brazil","poland"],
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -34,8 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "disney-plus",
     "tidal",
     "canva-pro",
-    "hbo-max",
-    "apple-music",
   ];
 
   const guides = [

@@ -3,16 +3,6 @@
   "subscriptions": [
     {
       "service": "Netflix",
-      "country": "US",
-      "plan": "Standard HD",
-      "localPrice": 15.49,
-      "localCurrency": "USD",
-      "priceUSD": 15.49,
-      "savingsPercent": 0,
-      "symbol": "$"
-    },
-    {
-      "service": "Netflix",
       "country": "Turkey",
       "plan": "Standard HD",
       "localPrice": 149.99,
@@ -110,16 +100,6 @@
       "priceUSD": 4.61,
       "savingsPercent": 70.0,
       "symbol": "COP"
-    },
-    {
-      "service": "Spotify",
-      "country": "US",
-      "plan": "Individual",
-      "localPrice": 11.99,
-      "localCurrency": "USD",
-      "priceUSD": 11.99,
-      "savingsPercent": 0,
-      "symbol": "$"
     },
     {
       "service": "Spotify",
@@ -223,16 +203,6 @@
     },
     {
       "service": "YouTube Premium",
-      "country": "US",
-      "plan": "Individual",
-      "localPrice": 13.99,
-      "localCurrency": "USD",
-      "priceUSD": 13.99,
-      "savingsPercent": 0,
-      "symbol": "$"
-    },
-    {
-      "service": "YouTube Premium",
       "country": "Turkey",
       "plan": "Individual",
       "localPrice": 47.99,
@@ -330,16 +300,6 @@
       "priceUSD": 3.79,
       "savingsPercent": 73.0,
       "symbol": "COP"
-    },
-    {
-      "service": "Disney+",
-      "country": "US",
-      "plan": "Standard",
-      "localPrice": 13.99,
-      "localCurrency": "USD",
-      "priceUSD": 13.99,
-      "savingsPercent": 0,
-      "symbol": "$"
     },
     {
       "service": "Disney+",
@@ -443,16 +403,6 @@
     },
     {
       "service": "HBO Max",
-      "country": "US",
-      "plan": "With Ads",
-      "localPrice": 15.99,
-      "localCurrency": "USD",
-      "priceUSD": 15.99,
-      "savingsPercent": 0,
-      "symbol": "$"
-    },
-    {
-      "service": "HBO Max",
       "country": "Turkey",
       "plan": "Standard",
       "localPrice": 119.99,
@@ -500,16 +450,6 @@
       "priceUSD": 5.98,
       "savingsPercent": 63.0,
       "symbol": "COP"
-    },
-    {
-      "service": "Apple Music",
-      "country": "US",
-      "plan": "Individual",
-      "localPrice": 10.99,
-      "localCurrency": "USD",
-      "priceUSD": 10.99,
-      "savingsPercent": 0,
-      "symbol": "$"
     },
     {
       "service": "Apple Music",
