@@ -5,8 +5,8 @@ import EnhancedStepList from '@/components/EnhancedStepList';
 import VPNAffiliateCTA from '@/components/VPNAffiliateCTA';
 
 export const metadata = {
-  title: 'How to Get Disney+ at Lower Prices 2026 | Subpricing',
-  description: 'Complete guide to getting Disney+ at Turkey or Argentina prices. Save up to 90% with our step-by-step instructions.',
+  title: 'Get Disney+ Turkey Price: $2.02/mo in 2026 — Step-by-Step VPN Guide',
+  description: 'Disney+ Turkey costs $2.02/mo in 2026 — 86% cheaper than the US. Works with VPN. Step-by-step guide to get this price today.',
 };
 
 export default function DisneyPlusGuidePage() {

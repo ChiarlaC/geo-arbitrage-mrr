@@ -6,8 +6,8 @@ import EnhancedStepList from '@/components/EnhancedStepList';
 import VPNAffiliateCTA from '@/components/VPNAffiliateCTA';
 
 export const metadata = {
-  title: 'How to Get Spotify Argentina Price 2026 — Full Guide | Subpricing',
-  description: 'How to get Spotify Argentina or Turkey price in 2026. The easiest geo-arbitrage method using gift cards with 95%+ success rate.',
+  title: 'Get Spotify Argentina Price: $0.54/mo in 2026 — Step-by-Step Guide',
+  description: 'Spotify Argentina costs $0.54/mo in 2026 — 95% cheaper than the US. Works with gift cards, no VPN needed. Step-by-step guide with 95%+ success rate.',
 };
 
 export default function SpotifyGuidePage() {

@@ -4,8 +4,8 @@ import NavigationBar from "@/components/NavigationBar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Subpricing — Global Subscription Price Tracker",
-  description: "Compare subscription prices across countries. Save up to 90% on Netflix, Spotify, YouTube Premium, and more.",
+  title: "Cheapest Subscription Prices by Country 2026 — Netflix, Spotify & More",
+  description: "Compare Netflix, Spotify, YouTube Premium prices across 10 countries. Turkey from $1/mo, Argentina from $0.40/mo. Save up to 97% vs US price with VPN.",
   keywords: ["subscription pricing", "Netflix price", "Spotify price", "YouTube Premium price", "VPN", "save money", "international pricing"],
   authors: [{ name: "Subpricing Team" }],
   creator: "Subpricing",

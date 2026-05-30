@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = `${serviceName} Cheapest Country Price 2026 — Turkey, Argentina & More`;
-  const description = `Compare ${serviceName} prices across 10 countries. Turkey from $3/mo, Argentina from $2/mo. Find the cheapest ${serviceName} subscription and save up to 90% vs US price.`;
+  const title = `${serviceName} Cheapest Country 2026 — Compare Prices, Save up to 97%`;
+  const description = `Compare ${serviceName} prices across 10 countries. Find the cheapest ${serviceName} subscription in 2026 and save up to 97% vs US price with a VPN.`;
 
   return {
     title,

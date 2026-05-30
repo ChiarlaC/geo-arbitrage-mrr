@@ -2,6 +2,11 @@ import GuideLayout from '@/components/GuideLayout';
 import StepList from '@/components/StepList';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
+export const metadata = {
+  title: 'Get Tidal Cheapest Price 2026 — Argentina $0.54/mo, Turkey $1.35/mo',
+  description: 'Tidal cheapest country in 2026: Argentina $0.54/mo, Turkey $1.35/mo — up to 95% off. Works with VPN. Step-by-step guide to get this price today.',
+};
+
 export default function TidalGuidePage() {
   const steps = [
     {

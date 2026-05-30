@@ -2,6 +2,11 @@ import GuideLayout from '@/components/GuideLayout';
 import StepList from '@/components/StepList';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
+export const metadata = {
+  title: 'Get Canva Pro Cheapest Price 2026 — Argentina $0.43/mo, India $0.96/mo',
+  description: 'Canva Pro cheapest country in 2026: Argentina $0.43/mo, India $0.96/mo — up to 97% off. Works with VPN. Step-by-step guide to get this price today.',
+};
+
 export default function CanvaProGuidePage() {
   const steps = [
     {
