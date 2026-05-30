@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = `${data.service} ${data.country} Subscription Price 2026: $${data.priceUSD.toFixed(2)}/mo — Save ${data.savingsPercent.toFixed(0)}%`;
-  const description = `${data.service} subscription in ${data.country} costs $${data.priceUSD.toFixed(2)}/mo — ${data.savingsPercent.toFixed(0)}% cheaper than the US price. Get it today with a VPN. Step-by-step guide included.`;
+  const title = `Get ${data.service} ${data.country} Price: $${data.priceUSD.toFixed(2)}/mo in 2026 — Save ${data.savingsPercent.toFixed(0)}%`;
+  const description = `${data.service} ${data.country} costs $${data.priceUSD.toFixed(2)}/mo in 2026 — ${data.savingsPercent.toFixed(0)}% cheaper than the US. Works with VPN. Step-by-step guide to get this price today.`;
 
   const serviceSlug = service;
   const countrySlug = country;
